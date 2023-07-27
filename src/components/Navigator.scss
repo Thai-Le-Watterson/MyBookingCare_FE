@@ -30,14 +30,20 @@
             position: absolute;
             padding: 0;
             .menu {
-                width: 205px;
-                padding: 0 15px;
-                height: 35px;
                 line-height: 35px;
                 text-transform: none;
+
+                &.active {
+                    background-color: #dedede;
+                }
+
                 .menu-link {
+                    display: inline-block;
                     text-decoration: none;
                     color: $text-in-light;
+                    width: 205px;
+                    padding: 0 15px;
+                    height: 35px;
                 }
                 .sub-menu-list {
                     display: none;

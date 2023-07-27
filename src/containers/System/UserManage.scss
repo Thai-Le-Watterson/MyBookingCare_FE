@@ -1,0 +1,128 @@
+.btn-add-user {
+    margin: 0 0 20px 20px;
+}
+
+.users-container {
+    table {
+        border-collapse: collapse;
+        background-color: #fff;
+        width: 100%;
+
+        tr {
+            &:nth-child(even) {
+                background-color: #ebebeb;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background-color: #cdcdcd;
+            }
+
+            th,
+            td {
+                text-align: left;
+                padding: 8px;
+
+                button {
+                    background-color: transparent;
+                    border: none;
+                    margin-left: 10px;
+                    padding: 0 12px;
+                }
+
+                .btn_edit {
+                    color: #0071ba;
+                }
+
+                .btn_delete {
+                    color: #04aa6d;
+                }
+            }
+
+            th {
+                background-color: #04aa6d;
+                color: white;
+            }
+        }
+    }
+}
+
+.modal-add-user {
+    .modal-header {
+        padding: 20px;
+
+        .modal-title {
+            width: 100%;
+            text-align: center;
+            font-size: 18px !important;
+        }
+
+        button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 26px;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .modal-body {
+        .row {
+            .form-row {
+                display: flex;
+
+                .form-group {
+                    padding-left: 5px;
+                    padding-right: 5px;
+
+                    &:first-child {
+                        padding-left: 0;
+                    }
+
+                    &:last-child {
+                        padding-right: 0;
+                    }
+                }
+            }
+            .form-group {
+                box-sizing: border-box;
+                display: block;
+                margin-bottom: 10px;
+
+                .title {
+                    display: block;
+                }
+
+                .radio-container {
+                    display: flex;
+                    align-items: center;
+                    height: 32px;
+
+                    .radio-item {
+                        flex-grow: 1;
+
+                        label {
+                            padding-left: 6px;
+                        }
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+
+                        *:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            button {
+                width: auto;
+                padding: 0 10px;
+            }
+        }
+    }
+}

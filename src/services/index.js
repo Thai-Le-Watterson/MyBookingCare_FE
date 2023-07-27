@@ -1,2 +1,2 @@
 export { default as adminService } from "./adminService";
-export { handleUserLogin } from "./userService";
+export * as userService from "./userService";

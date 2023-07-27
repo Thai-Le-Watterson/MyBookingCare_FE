@@ -14,9 +14,10 @@ import { path } from "../utils";
 
 import Home from "../routes/Home";
 import Login from "../containers/Auth/Login.js";
-import Header from "./Header/Header";
 import System from "../routes/System";
+import HomePage from "./HomePage/HomePage";
 
+import CustomScrollbars from "../components/CustomScrollbars";
 import { CustomToastCloseButton } from "../components/CustomToast";
 import ConfirmModal from "../components/ConfirmModal";
 
@@ -45,27 +46,35 @@ class App extends Component {
                 <Router history={history}>
                     <div className="main-container">
                         <ConfirmModal />
-                        {this.props.isLoggedIn && <Header />}
 
-                        <span className="content-container">
-                            <Switch>
-                                <Route
-                                    path={path.HOME}
-                                    exact
-                                    component={Home}
-                                />
-                                <Route
-                                    path={path.LOGIN}
-                                    component={userIsNotAuthenticated(Login)}
-                                />
-                                <Route
-                                    path={path.SYSTEM}
-                                    component={userIsAuthenticated(System)}
-                                />
-                            </Switch>
-                        </span>
+                        <div className="content-container">
+                            <CustomScrollbars>
+                                <Switch>
+                                    <Route
+                                        path={path.HOME}
+                                        exact
+                                        component={Home}
+                                    />
+                                    <Route
+                                        path={path.HOMEPAGE}
+                                        exact
+                                        component={HomePage}
+                                    />
+                                    <Route
+                                        path={path.LOGIN}
+                                        component={userIsNotAuthenticated(
+                                            Login
+                                        )}
+                                    />
+                                    <Route
+                                        path={path.SYSTEM}
+                                        component={userIsAuthenticated(System)}
+                                    />
+                                </Switch>
+                            </CustomScrollbars>
+                        </div>
 
-                        <ToastContainer
+                        {/* <ToastContainer
                             className="toast-container"
                             toastClassName="toast-item"
                             bodyClassName="toast-item-body"
@@ -76,6 +85,18 @@ class App extends Component {
                             closeOnClick={false}
                             draggable={false}
                             closeButton={<CustomToastCloseButton />}
+                        /> */}
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={3000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
                         />
                     </div>
                 </Router>

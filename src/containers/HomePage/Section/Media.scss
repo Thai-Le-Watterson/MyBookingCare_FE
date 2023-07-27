@@ -1,0 +1,16 @@
+.media-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px 183px;
+
+    .video {
+        width: 50%;
+        height: 400px;
+    }
+
+    .media-content {
+        display: inline-block;
+        width: 50%;
+        text-align: justify;
+    }
+}

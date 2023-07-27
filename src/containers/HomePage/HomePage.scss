@@ -1,0 +1,171 @@
+.section-overlay {
+    padding: 20px 183px;
+    border-bottom: 3px solid #efeef5;
+
+    &.section-bg {
+        background-color: #f5f5f5;
+    }
+
+    &.style-circle-img {
+        .section-item {
+            .margin-box {
+                border: 1px solid #cacaca;
+                padding: 5px;
+
+                .title {
+                    display: block;
+                    padding-top: 8px;
+                    text-align: center !important;
+                }
+                .img {
+                    border-radius: 50%;
+                    margin: 0 auto;
+                    width: 120px;
+                    height: 120px !important;
+                }
+            }
+        }
+    }
+
+    &.style-flex {
+        .section-item {
+            .margin-box {
+                display: flex;
+                gap: 10px;
+
+                .img {
+                    width: 50%;
+                    height: 150px;
+                }
+
+                .title {
+                    color: #323232;
+                    font-weight: bold;
+                    font-size: 16px;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+
+    .section-container {
+        $section-height: 200px;
+        padding: 20px 0 30px 0;
+
+        .slick-arrow {
+            height: 60px;
+            width: 30px;
+            border: 2px solid rgba(179, 179, 179, 0.3);
+            background-color: rgba(179, 179, 179, 0.5);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all linear 0.3s;
+
+            &::before {
+                content: none;
+            }
+
+            &:hover {
+                background-color: rgba(179, 179, 179, 0.8);
+                cursor: pointer;
+            }
+
+            i {
+                color: #2a2a2a;
+                font-size: 16px;
+            }
+        }
+
+        .slick-next {
+            right: -10px;
+            z-index: 99;
+        }
+
+        .slick-prev {
+            left: -10px;
+            z-index: 99;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+
+            .title {
+                margin-bottom: 25px;
+                font-size: 24px;
+                color: black;
+                text-transform: none;
+            }
+
+            .button {
+                height: min-content;
+                border: none;
+                background-color: #ebebeb;
+                text-transform: uppercase;
+                padding: 10px 15px;
+                color: #282e41;
+                font-size: 11px;
+                transition: all linear 0.2s;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: #f7d800;
+                    color: #fff;
+                }
+            }
+        }
+
+        .section-item {
+            padding: 5px;
+
+            &:hover {
+                cursor: pointer;
+                .title {
+                    color: #45c3d2;
+                }
+            }
+
+            .img {
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                height: $section-height - 30px;
+            }
+
+            .img1 {
+                background-image: url("../../assets/images/112457-co-xuong-khop.jpg");
+            }
+
+            .img2 {
+                background-image: url("../../assets/images/112550-tim-mach.jpg");
+            }
+
+            .img3 {
+                background-image: url("../../assets/images/113208-cot-song.jpg");
+            }
+
+            .img4 {
+                background-image: url("../../assets/images/113208-than-kinh.jpg");
+            }
+
+            .img5 {
+                background-image: url("../../assets/images/113221-benh-viem-gan.jpg");
+            }
+
+            .img6 {
+                background-image: url("../../assets/images/121305-cham-cuu.jpg");
+            }
+
+            .title {
+                color: #111;
+                padding: 5px 0;
+                font-size: 13px;
+                font-weight: 100;
+                text-transform: capitalize;
+                transition: all linear.3s;
+            }
+        }
+    }
+}
