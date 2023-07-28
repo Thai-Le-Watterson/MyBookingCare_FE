@@ -67,6 +67,18 @@ const deleteUser = (id) => {
     });
 };
 
+const getTopDoctors = async (limit) => {
+    try {
+        const data = await axios.get(`/api/top-doctors?limit=${limit || ""}`);
+        // console.log("check data: ", data);
+        if (data && data.data && data.data.errCode === 0) {
+            if (data.data.topDoctors) return data.data.topDoctors;
+        }
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 export {
     handleUserLogin,
     handleGetUsers,
@@ -74,4 +86,5 @@ export {
     createUser,
     deleteUser,
     updateUser,
+    getTopDoctors,
 };

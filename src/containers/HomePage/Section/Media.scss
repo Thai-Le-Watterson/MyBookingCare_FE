@@ -1,16 +1,16 @@
 .media-container {
-    display: flex;
-    gap: 20px;
-    padding: 20px 183px;
+    // display: flex;
+    // gap: 20px;
+    padding: 20px;
 
     .video {
-        width: 50%;
-        height: 400px;
+        // width: 50%;
+        height: 450px;
     }
 
     .media-content {
+        // width: 50%;
         display: inline-block;
-        width: 50%;
         text-align: justify;
     }
 }

@@ -10,9 +10,9 @@
         .section-item {
             .margin-box {
                 border: 1px solid #cacaca;
-                padding: 5px;
+                padding: 12px 5px;
 
-                .title {
+                .specialist {
                     display: block;
                     padding-top: 8px;
                     text-align: center !important;
@@ -46,6 +46,10 @@
                 }
             }
         }
+    }
+
+    .slick-disabled {
+        display: none !important;
     }
 
     .section-container {
@@ -119,9 +123,12 @@
 
         .section-item {
             padding: 5px;
+            text-align: center;
 
             &:hover {
                 cursor: pointer;
+                .name,
+                .specialist,
                 .title {
                     color: #45c3d2;
                 }
@@ -158,6 +165,17 @@
                 background-image: url("../../assets/images/121305-cham-cuu.jpg");
             }
 
+            .name {
+                margin-top: 12px;
+                margin-bottom: 0;
+                transition: all linear.3s;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
+            }
+
+            .specialist,
             .title {
                 color: #111;
                 padding: 5px 0;
@@ -165,6 +183,10 @@
                 font-weight: 100;
                 text-transform: capitalize;
                 transition: all linear.3s;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
             }
         }
     }

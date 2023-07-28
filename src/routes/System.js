@@ -5,6 +5,7 @@ import UserManage from "../containers/System/UserManage";
 import UserReduxManager from "../containers/System/UserReduxManager";
 import RegisterPackageGroupOrAcc from "../containers/System/RegisterPackageGroupOrAcc";
 import Header from "../containers/Header/Header";
+import DoctorManage from "../containers/System/DoctorManage";
 
 class System extends Component {
     render() {
@@ -23,6 +24,10 @@ class System extends Component {
                             <Route
                                 path="/system/user-redux-manage"
                                 component={UserReduxManager}
+                            />
+                            <Route
+                                path="/system/manage-doctor"
+                                component={DoctorManage}
                             />
                             <Route
                                 path="/system/register-package-group-or-account"

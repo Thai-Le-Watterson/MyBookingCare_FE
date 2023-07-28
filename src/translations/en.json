@@ -51,5 +51,10 @@
         "avatar": "Avatar",
         "save": "Save",
         "update": "Update"
+    },
+    "homepage": {
+        "outstanding-doctor": "Last week's featured doctor",
+        "search": "Search",
+        "more": "More"
     }
 }

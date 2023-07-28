@@ -14,7 +14,7 @@ class SampleNextArrow extends React.Component {
     render() {
         return (
             <div className={this.props.className} onClick={this.props.onClick}>
-                <i class="fa-solid fa-angle-right"></i>
+                <i className="fa-solid fa-angle-right"></i>
             </div>
         );
     }
@@ -25,7 +25,7 @@ class SamplePrevArrow extends React.Component {
     render() {
         return (
             <div className={this.props.className} onClick={this.props.onClick}>
-                <i class="fa-solid fa-angle-left"></i>
+                <i className="fa-solid fa-angle-left"></i>
             </div>
         );
     }
@@ -34,7 +34,7 @@ class SamplePrevArrow extends React.Component {
 class HomePage extends React.Component {
     settings = {
         dots: false,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,

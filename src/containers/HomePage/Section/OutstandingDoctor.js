@@ -1,56 +1,78 @@
 import React from "react";
 import Slider from "react-slick";
+import { connect } from "react-redux";
+import { languages } from "../../../utils";
+import { FormattedMessage } from "react-intl";
+import * as actions from "../../../store/actions/index";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 class OutstandingDoctor extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            topDoctors: [],
+        };
+    }
+
+    componentDidMount() {
+        this.props.getTopDoctors("");
+    }
+
+    componentDidUpdate = (prevProps, prevState) => {
+        if (prevProps.topDoctors !== this.props.topDoctors) {
+            this.setState({
+                topDoctors: this.props.topDoctors,
+            });
+        }
+    };
+
     render() {
+        let language = this.props.language;
+        let topDoctors = [...this.state.topDoctors];
+        if (topDoctors.length < 4)
+            topDoctors = topDoctors.concat(topDoctors).concat(topDoctors);
         return (
             <>
-                <div className="section-overlay section-bg style-circle-img">
+                <div className="section-overlay style-circle-img">
                     <div className="section-container">
                         <div className="section-title">
-                            <h1 className="title">Bác sĩ nổi bật tuần qua</h1>
-                            <button className="button">Tìm Kiếm</button>
+                            <h1 className="title">
+                                <FormattedMessage id="homepage.outstanding-doctor" />
+                            </h1>
+                            <button className="button">
+                                <FormattedMessage id="homepage.search" />
+                            </button>
                         </div>
                         <Slider {...this.props.settings}>
-                            <div className="section-item">
-                                <div className="margin-box">
-                                    <div className="img img1"></div>
-                                    <span className="title">Cơ xương khớp</span>
-                                </div>
-                            </div>
-                            <div className="section-item">
-                                <div className="margin-box">
-                                    <div className="img img2"></div>
-                                    <span className="title">Tim mạch</span>
-                                </div>
-                            </div>
-                            <div className="section-item">
-                                <div className="margin-box">
-                                    <div className="img img3"></div>
-                                    <span className="title">Cột sống</span>
-                                </div>
-                            </div>
-                            <div className="section-item">
-                                <div className="margin-box">
-                                    <div className="img img4"></div>
-                                    <span className="title">Thần kinh</span>
-                                </div>
-                            </div>
-                            <div className="section-item">
-                                <div className="margin-box">
-                                    <div className="img img5"></div>
-                                    <span className="title">Bệnh viêm gan</span>
-                                </div>
-                            </div>
-                            <div className="section-item">
-                                <div className="margin-box">
-                                    <div className="img img6"></div>
-                                    <span className="title">Châm cứu</span>
-                                </div>
-                            </div>
+                            {topDoctors.map((topDoctor, index) => {
+                                const image = topDoctor.image
+                                    ? Buffer.from(topDoctor.image).toString()
+                                    : "";
+                                return (
+                                    <div className="section-item" key={index}>
+                                        <div className="margin-box">
+                                            <div
+                                                className="img"
+                                                style={{
+                                                    backgroundImage: `url(${image})`,
+                                                }}
+                                            ></div>
+                                            <p className="name">{`${
+                                                language === languages.VI
+                                                    ? topDoctor.positionData
+                                                          .valueVi
+                                                    : topDoctor.positionData
+                                                          .valueEn
+                                            }, ${topDoctor.fullName}`}</p>
+                                            <span className="specialist">
+                                                Cơ xương khớp
+                                            </span>
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </Slider>
                     </div>
                 </div>
@@ -59,4 +81,17 @@ class OutstandingDoctor extends React.Component {
     }
 }
 
-export default OutstandingDoctor;
+const mapStateToProps = (state) => {
+    return {
+        language: state.app.language,
+        topDoctors: state.admin.topDoctors,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getTopDoctors: (limit) => dispatch(actions.fetchTopDoctorStart(limit)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);

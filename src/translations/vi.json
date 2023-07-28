@@ -51,5 +51,10 @@
         "avatar": "Ảnh đại diện",
         "save": "Lưu",
         "update": "Cập nhật"
+    },
+    "homepage": {
+        "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
+        "search": "Tìm kiếm",
+        "more": "Xem thêm"
     }
 }

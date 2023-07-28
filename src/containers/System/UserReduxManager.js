@@ -5,6 +5,7 @@ import Lightbox from "react-image-lightbox";
 import { FormattedMessage } from "react-intl";
 import { CRUD } from "../../utils";
 import CommonUtils from "../../utils/CommonUtils";
+import TableUser from "./TableUser";
 
 import avatar from "../../assets/avatar/avatar_default.jpg";
 
@@ -64,6 +65,10 @@ class UserReduxManager extends Component {
             });
         }
         if (prevProps.users !== this.props.users) {
+            const positions = this.props.positions;
+            const genders = this.props.genders;
+            const roles = this.props.roles;
+
             this.setState({
                 ...this.state,
                 avatarUser: avatar,
@@ -75,9 +80,10 @@ class UserReduxManager extends Component {
                     fullName: "",
                     address: "",
                     phonenumber: "",
-                    positionId: "P0",
-                    gender: "M",
-                    roleId: "R1",
+                    positionId:
+                        positions && positions.length > 0 && positions[0],
+                    gender: genders && genders.length > 0 && genders[0],
+                    roleId: roles && roles.length > 0 && roles[0],
                     image: "",
                 },
                 users: this.props.users,
@@ -128,6 +134,9 @@ class UserReduxManager extends Component {
 
     handleUpdateUser = async () => {
         await this.props.updateUser(this.state.userInfo);
+        const positions = this.props.positions;
+        const genders = this.props.genders;
+        const roles = this.props.roles;
 
         this.setState({
             ...this.state,
@@ -139,9 +148,9 @@ class UserReduxManager extends Component {
                 fullName: "",
                 address: "",
                 phonenumber: "",
-                positionId: "P0",
-                gender: "M",
-                roleId: "R1",
+                positionId: positions && positions.length > 0 && positions[0],
+                gender: genders && genders.length > 0 && genders[0],
+                roleId: roles && roles.length > 0 && roles[0],
                 image: "",
             },
         });
@@ -488,62 +497,12 @@ class UserReduxManager extends Component {
                         <FormattedMessage id="manage-user-redux.save" />
                     </button>
                 </div>
-                <div className="users-container container my-5">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <FormattedMessage id="manage-user-redux.fullname" />
-                                </th>
-                                <th>
-                                    <FormattedMessage id="manage-user-redux.email" />
-                                </th>
-                                <th>
-                                    <FormattedMessage id="manage-user-redux.address" />
-                                </th>
-                                <th>
-                                    <FormattedMessage id="manage-user-redux.phonenumber" />
-                                </th>
-                                <th>
-                                    <FormattedMessage id="manage-user-redux.update" />
-                                </th>
-                            </tr>
-                            {this.state.users &&
-                                this.state.users.map((user) => {
-                                    return (
-                                        <tr key={user.id}>
-                                            <td>{user.email}</td>
-                                            <td>{user.fullName}</td>
-                                            <td>{user.address}</td>
-                                            <td>{user.phonenumber}</td>
-                                            <td>
-                                                <button
-                                                    className="btn_edit"
-                                                    onClick={() =>
-                                                        this.handleEditUser(
-                                                            user
-                                                        )
-                                                    }
-                                                >
-                                                    <i className="fa-solid fa-pencil"></i>
-                                                </button>
-                                                <button
-                                                    className="btn_delete"
-                                                    onClick={(e) => {
-                                                        this.handleDeleteUser(
-                                                            user.id
-                                                        );
-                                                    }}
-                                                >
-                                                    <i className="fa-solid fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                        </tbody>
-                    </table>
-                </div>
+                <TableUser
+                    users={this.state.users}
+                    handleEditUser={this.handleEditUser}
+                    handleDeleteUser={this.handleDeleteUser}
+                    isEdit={true}
+                />
             </>
         );
     }

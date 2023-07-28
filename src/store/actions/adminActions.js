@@ -5,6 +5,7 @@ import {
     handleGetUsers,
     deleteUser,
     updateUser,
+    getTopDoctors,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 // import axios from "axios";
@@ -146,20 +147,20 @@ export const fetchUsersFail = () => ({
     type: actionTypes.FETCH_USERS_FAIL,
 });
 
-export const fetchTopDoctorStart = (id) => {
+export const fetchTopDoctorStart = (limit) => {
     return async (dispatch, getState) => {
         try {
-            const users = await handleGetUsers(id);
-
-            dispatch(fetchTopDoctorSuccess(users));
+            const topDoctors = await getTopDoctors(limit);
+            // console.log("check topDoctors: ", topDoctors);
+            dispatch(fetchTopDoctorSuccess(topDoctors));
         } catch (e) {
             dispatch(fetchTopDoctorFail());
         }
     };
 };
-export const fetchTopDoctorSuccess = (users) => ({
+export const fetchTopDoctorSuccess = (topDoctors) => ({
     type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
-    users: users,
+    topDoctors: topDoctors,
 });
 export const fetchTopDoctorFail = () => ({
     type: actionTypes.FETCH_TOP_DOCTOR_FAIL,
