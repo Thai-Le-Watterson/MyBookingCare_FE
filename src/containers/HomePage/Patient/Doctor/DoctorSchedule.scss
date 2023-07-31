@@ -1,0 +1,33 @@
+.schedule-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .content-left {
+        .select-container {
+            width: 100px;
+
+            .select-date {
+                margin-bottom: 10px;
+                border: none;
+                border-bottom: 1px solid #838383;
+                padding: 4px 0px;
+                color: #0087b6;
+                font-size: 15px;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+
+        .schedule_title {
+            .icon {
+                font-size: 16px;
+            }
+
+            .schedule-title {
+                font-size: 14px;
+                text-transform: uppercase;
+                margin-left: 6px;
+            }
+        }
+    }
+}

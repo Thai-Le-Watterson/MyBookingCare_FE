@@ -16,8 +16,8 @@ export const adminMenu = [
                 link: "/system/manage-doctor",
             },
             {
-                name: "menu.manage-admin.manage-admin",
-                link: "/system/manage-admin",
+                name: "menu.manage-doctor.manage-schedule",
+                link: "/system/schedule-manage",
             },
         ],
     },
@@ -48,6 +48,18 @@ export const adminMenu = [
             {
                 name: "menu.manage-handbook",
                 link: "/system/handbook-manage",
+            },
+        ],
+    },
+];
+
+export const doctorMenu = [
+    {
+        name: "menu.doctor",
+        menus: [
+            {
+                name: "menu.manage-doctor.manage-schedule",
+                link: "/system/schedule-manage",
             },
         ],
     },

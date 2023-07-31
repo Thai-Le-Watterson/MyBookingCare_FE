@@ -1,4 +1,7 @@
 import React from "react";
+import * as actions from "../../store/actions/index";
+import { connect } from "react-redux";
+
 import HomeHeader from "./HomeHeader";
 import Speciallty from "./Section/Speciallty";
 import MedicalFacility from "./Section/MedicalFacility";
@@ -6,6 +9,7 @@ import OutstandingDoctor from "./Section/OutstandingDoctor";
 import HandBook from "./Section/HandBook";
 import Media from "./Section/Media";
 import HomeFooter from "./HomeFooter";
+import HomeBanner from "./HomeBanner";
 
 import "./HomePage.scss";
 
@@ -46,6 +50,7 @@ class HomePage extends React.Component {
         return (
             <div>
                 <HomeHeader />
+                <HomeBanner />
                 <Speciallty settings={this.settings} />
                 <MedicalFacility settings={this.settings} />
                 <OutstandingDoctor settings={this.settings} />
@@ -57,4 +62,14 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+const mapStateToProps = (state) => {
+    return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        processLogout: () => dispatch(actions.processLogout()),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -36,7 +36,11 @@
         "specialy": "Chuyên khoa",
         "manage-specialy": "Quản lí chuyên khoa",
         "handbook": "Cẩm nang",
-        "manage-handbook": "Quản lí cẩm nang"
+        "manage-handbook": "Quản lí cẩm nang",
+        "doctor": "Bác sĩ",
+        "manage-doctor": {
+            "manage-schedule": "Quản lí lịch khám bệnh"
+        }
     },
     "manage-user-redux": {
         "title": "Quản lí người dùng với redux",
@@ -51,6 +55,18 @@
         "avatar": "Ảnh đại diện",
         "save": "Lưu",
         "update": "Cập nhật"
+    },
+    "manage-doctor-detail": {
+        "title": "Quản lí bác sĩ",
+        "choose-doctor": "Chọn bác sĩ",
+        "description": "Mô tả",
+        "save": "Lưu"
+    },
+    "manage-schedule": {
+        "title": "Quản lí lịch khám bệnh",
+        "choose-doctor": "Chọn bác sĩ",
+        "choose-date": "Chọn ngày",
+        "save": "Lưu"
     },
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",

@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { connect } from "react-redux";
 import { languages } from "../../../utils";
 import { FormattedMessage } from "react-intl";
+import { history } from "../../../redux";
 import * as actions from "../../../store/actions/index";
 
 import "slick-carousel/slick/slick.css";
@@ -28,6 +29,10 @@ class OutstandingDoctor extends React.Component {
         }
     };
 
+    handleRedirect = (id) => {
+        history.push(`/detail-doctor/${id}`);
+    };
+
     render() {
         let language = this.props.language;
         let topDoctors = [...this.state.topDoctors];
@@ -51,7 +56,13 @@ class OutstandingDoctor extends React.Component {
                                     ? Buffer.from(topDoctor.image).toString()
                                     : "";
                                 return (
-                                    <div className="section-item" key={index}>
+                                    <div
+                                        className="section-item"
+                                        key={index}
+                                        onClick={() =>
+                                            this.handleRedirect(topDoctor.id)
+                                        }
+                                    >
                                         <div className="margin-box">
                                             <div
                                                 className="img"

@@ -16,6 +16,7 @@ import Home from "../routes/Home";
 import Login from "../containers/Auth/Login.js";
 import System from "../routes/System";
 import HomePage from "./HomePage/HomePage";
+import DoctorDetail from "./HomePage/Patient/Doctor/DoctorDetail";
 
 import CustomScrollbars from "../components/CustomScrollbars";
 import { CustomToastCloseButton } from "../components/CustomToast";
@@ -59,6 +60,11 @@ class App extends Component {
                                         path={path.HOMEPAGE}
                                         exact
                                         component={HomePage}
+                                    />
+                                    <Route
+                                        path={path.DETAIL_DOCTOR}
+                                        exact
+                                        component={DoctorDetail}
                                     />
                                     <Route
                                         path={path.LOGIN}

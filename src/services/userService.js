@@ -79,6 +79,63 @@ const getTopDoctors = async (limit) => {
     }
 };
 
+const getAllDoctors = async () => {
+    try {
+        const data = await axios.get(`/api/all-doctors`);
+        // console.log("check data: ", data);
+        if (data && data.data && data.data.errCode === 0) {
+            if (data.data.doctors) return data.data.doctors;
+        }
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+const getDoctorDetail = async (id) => {
+    try {
+        const data = await axios.get(`/api/detail-doctor?id=${id || ""}`);
+        // console.log("check data: ", data);
+        if (data && data.data && data.data.errCode === 0) {
+            if (data.data.doctor) return data.data.doctor;
+        }
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+const createMarkdown = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.post(`api/create-markdown`, data);
+            resolve(result);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const updateMarkdown = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.put(`api/update-markdown`, data);
+            resolve(result);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const bulkCreateSchedule = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.post(`api/bulk-create-schedule`, data);
+            resolve(result);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 export {
     handleUserLogin,
     handleGetUsers,
@@ -87,4 +144,9 @@ export {
     deleteUser,
     updateUser,
     getTopDoctors,
+    getAllDoctors,
+    createMarkdown,
+    getDoctorDetail,
+    updateMarkdown,
+    bulkCreateSchedule,
 };

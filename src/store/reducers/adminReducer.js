@@ -4,8 +4,10 @@ const initialState = {
     genders: [],
     roles: [],
     positions: [],
+    times: [],
     users: [],
     topDoctors: [],
+    allDoctors: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -18,6 +20,7 @@ const adminReducer = (state = initialState, action) => {
         case actionTypes.FETCH_GENDER_FAIL:
             return {
                 ...state,
+                genders: [],
             };
         case actionTypes.FETCH_ROLE_SUCCESS:
             return {
@@ -27,6 +30,7 @@ const adminReducer = (state = initialState, action) => {
         case actionTypes.FETCH_ROLE_FAIL:
             return {
                 ...state,
+                roles: [],
             };
         case actionTypes.FETCH_POSITION_SUCCESS:
             return {
@@ -36,6 +40,27 @@ const adminReducer = (state = initialState, action) => {
         case actionTypes.FETCH_POSITION_FAIL:
             return {
                 ...state,
+                positions: [],
+            };
+        case actionTypes.FETCH_TIME_SUCCESS:
+            return {
+                ...state,
+                times: action.data,
+            };
+        case actionTypes.FETCH_TIME_FAIL:
+            return {
+                ...state,
+                times: [],
+            };
+        case actionTypes.FETCH_USERS_SUCCESS:
+            return {
+                ...state,
+                users: action.users,
+            };
+        case actionTypes.FETCH_USERS_FAIL:
+            return {
+                ...state,
+                users: [],
             };
         case actionTypes.FETCH_TOP_DOCTOR_SUCCESS:
             return {
@@ -45,12 +70,39 @@ const adminReducer = (state = initialState, action) => {
         case actionTypes.FETCH_TOP_DOCTOR_FAIL:
             return {
                 ...state,
+                topDoctors: [],
+            };
+        case actionTypes.FETCH_ALL_DOCTOR_SUCCESS:
+            return {
+                ...state,
+                allDoctors: action.allDoctors,
+            };
+        case actionTypes.FETCH_ALL_DOCTOR_FAIL:
+            return {
+                ...state,
+                allDoctors: [],
             };
         case actionTypes.CREATE_USER_SUCCCEED:
             return {
                 ...state,
             };
         case actionTypes.CREATE_USER_FAILED:
+            return {
+                ...state,
+            };
+        case actionTypes.CREATE_MARKDOWN_SUCCCEED:
+            return {
+                ...state,
+            };
+        case actionTypes.CREATE_MARKDOWN_FAILED:
+            return {
+                ...state,
+            };
+        case actionTypes.UPDATE_MARKDOWN_SUCCCEED:
+            return {
+                ...state,
+            };
+        case actionTypes.UPDATE_MARKDOWN_FAILED:
             return {
                 ...state,
             };
@@ -71,12 +123,11 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             };
-        case actionTypes.FETCH_USERS_SUCCESS:
+        case actionTypes.BULK_CREATE_SCHEDULE_SUCCESS:
             return {
                 ...state,
-                users: action.users,
             };
-        case actionTypes.FETCH_USERS_FAIL:
+        case actionTypes.BULK_CREATE_SCHEDULE_FAILED:
             return {
                 ...state,
             };

@@ -1,0 +1,41 @@
+.manage-schedule_container {
+    .title {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: 15px;
+        color: #0071ba;
+    }
+
+    .date-picker_container {
+        .form-label {
+            // display: block;
+        }
+
+        .form-control {
+            padding: 7.7px;
+        }
+    }
+
+    .btn {
+        margin-top: 20px;
+    }
+
+    .time-container {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 20px;
+
+        .btn-time {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            box-shadow: none;
+
+            &.active {
+                background-color: #aacdff;
+            }
+        }
+    }
+}

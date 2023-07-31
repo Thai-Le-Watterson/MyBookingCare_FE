@@ -81,9 +81,11 @@ class UserReduxManager extends Component {
                     address: "",
                     phonenumber: "",
                     positionId:
-                        positions && positions.length > 0 && positions[0],
-                    gender: genders && genders.length > 0 && genders[0],
-                    roleId: roles && roles.length > 0 && roles[0],
+                        positions &&
+                        positions.length > 0 &&
+                        positions[0].keyMap,
+                    gender: genders && genders.length > 0 && genders[0].keyMap,
+                    roleId: roles && roles.length > 0 && roles[0].keyMap,
                     image: "",
                 },
                 users: this.props.users,
@@ -108,6 +110,7 @@ class UserReduxManager extends Component {
     handleOnChangeInput = (e, key) => {
         const copyState = { ...this.state };
         copyState.userInfo[key] = e.target.value;
+
         this.setState({
             ...copyState,
         });
@@ -124,7 +127,7 @@ class UserReduxManager extends Component {
         if (isNotValid) {
             alert(`${isNotValid} is empty`);
         } else {
-            // console.log("check uaerInfo: ", this.state.userInfo);
+            // console.log(this.state.userInfo);
             this.props.createUser(this.state.userInfo);
             setTimeout(() => {
                 this.props.getUsers("ALL");

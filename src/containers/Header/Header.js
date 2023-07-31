@@ -3,11 +3,30 @@ import { connect } from "react-redux";
 
 import * as actions from "../../store/actions";
 import Navigator from "../../components/Navigator";
-import { adminMenu } from "./menuApp";
-import { languages } from "../../utils/constant";
+import { adminMenu, doctorMenu } from "./menuApp";
+import { languages, ROLETYPE } from "../../utils/constant";
+
 import "./Header.scss";
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            menuApp: [],
+        };
+    }
+
+    componentDidMount = () => {
+        this.setState({
+            menuApp:
+                this.props.userInfo.roleId === ROLETYPE.ADMIN
+                    ? adminMenu
+                    : this.props.userInfo.roleId === ROLETYPE.DOCTOR
+                    ? doctorMenu
+                    : [],
+        });
+    };
+
     handleChangeLanguage = (language) => {
         this.props.changeLanguage(language);
     };
@@ -19,7 +38,7 @@ class Header extends Component {
             <div className="header-container">
                 {/* thanh navigator */}
                 <div className="header-tabs-container">
-                    <Navigator menus={adminMenu} />
+                    <Navigator menus={this.state.menuApp} />
                 </div>
 
                 {/* nút logout */}
@@ -63,6 +82,7 @@ const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
+        userInfo: state.user.userInfo,
     };
 };
 

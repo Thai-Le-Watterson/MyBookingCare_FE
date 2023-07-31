@@ -6,6 +6,10 @@ import {
     deleteUser,
     updateUser,
     getTopDoctors,
+    getAllDoctors,
+    createMarkdown,
+    updateMarkdown,
+    bulkCreateSchedule,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 // import axios from "axios";
@@ -65,6 +69,25 @@ export const fetchPositionSuccess = (position) => ({
 });
 export const fetchPositionFail = () => ({
     type: actionTypes.FETCH_POSITION_FAIL,
+});
+
+export const fetchTimeStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            const data = await handleGetAllCode("time");
+
+            dispatch(fetchTimeSuccess(data));
+        } catch (e) {
+            dispatch(fetchTimeFail());
+        }
+    };
+};
+export const fetchTimeSuccess = (roles) => ({
+    type: actionTypes.FETCH_TIME_SUCCESS,
+    data: roles,
+});
+export const fetchTimeFail = () => ({
+    type: actionTypes.FETCH_TIME_FAIL,
 });
 
 export const createUserStart = (data) => {
@@ -164,4 +187,84 @@ export const fetchTopDoctorSuccess = (topDoctors) => ({
 });
 export const fetchTopDoctorFail = () => ({
     type: actionTypes.FETCH_TOP_DOCTOR_FAIL,
+});
+
+export const fetchAllDoctorStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            const allDoctors = await getAllDoctors();
+            // console.log("check topDoctors: ", topDoctors);
+            dispatch(fetchAllDoctorSuccess(allDoctors));
+        } catch (e) {
+            dispatch(fetchAllDoctorFail());
+        }
+    };
+};
+export const fetchAllDoctorSuccess = (allDoctors) => ({
+    type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
+    allDoctors: allDoctors,
+});
+export const fetchAllDoctorFail = () => ({
+    type: actionTypes.FETCH_ALL_DOCTOR_FAIL,
+});
+
+export const createMarkdownStart = (data) => {
+    return async (dispatch, getState) => {
+        console.log("Create markdown");
+        const res = await createMarkdown(data);
+        if (res && res && res.errCode === 0) {
+            dispatch(createMarkdownSucceed(res));
+            toast.success("Create markdown successfully");
+        } else {
+            dispatch(createMarkdownFail());
+            toast.error("Create markdown fail");
+        }
+    };
+};
+export const createMarkdownSucceed = (res) => ({
+    type: actionTypes.CREATE_MARKDOWN_SUCCCEED,
+    res,
+});
+export const createMarkdownFail = () => ({
+    type: actionTypes.CREATE_MARKDOWN_FAILED,
+});
+
+export const updateMarkdownStart = (data) => {
+    return async (dispatch, getState) => {
+        const res = await updateMarkdown(data);
+        if (res && res && res.errCode === 0) {
+            dispatch(updateMarkdownSucceed(res));
+            toast.success("Update markdown successfully");
+        } else {
+            dispatch(updateMarkdownFail());
+            toast.error("Update markdown fail");
+        }
+    };
+};
+export const updateMarkdownSucceed = (res) => ({
+    type: actionTypes.UPDATE_MARKDOWN_SUCCCEED,
+    res,
+});
+export const updateMarkdownFail = () => ({
+    type: actionTypes.UPDATE_MARKDOWN_FAILED,
+});
+
+export const bulkCreateScheduleStart = (data) => {
+    return async (dispatch, getState) => {
+        const res = await bulkCreateSchedule(data);
+        if (res && res.data && res.data.errCode === 0) {
+            dispatch(bulkCreateScheduleSucceed(res));
+            toast.success("Create schedule successfully");
+        } else {
+            dispatch(bulkCreateScheduleFail());
+            toast.error("Create schedule fail");
+        }
+    };
+};
+export const bulkCreateScheduleSucceed = (res) => ({
+    type: actionTypes.BULK_CREATE_SCHEDULE_SUCCESS,
+    res,
+});
+export const bulkCreateScheduleFail = () => ({
+    type: actionTypes.BULK_CREATE_SCHEDULE_FAILED,
 });

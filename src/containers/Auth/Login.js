@@ -39,14 +39,12 @@ class Login extends Component {
             this.state.password
         );
 
-        if (data) {
-            if (data.errCode !== 0) {
-                this.setState({
-                    errorMessage: data.message,
-                });
-            } else {
-                this.props.userLoginSuccess(data.user);
-            }
+        if (data && data.errCode === 0 && data.user) {
+            this.props.userLoginSuccess(data.user);
+        } else {
+            this.setState({
+                errorMessage: data.message,
+            });
         }
     };
 

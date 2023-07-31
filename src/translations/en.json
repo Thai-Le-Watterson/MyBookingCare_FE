@@ -36,7 +36,11 @@
         "specialy": "Specialy",
         "manage-specialy": "Specialy Management",
         "handbook": "Handbook",
-        "manage-handbook": "Handbook Management"
+        "manage-handbook": "Handbook Management",
+        "doctor": "Doctor",
+        "manage-doctor": {
+            "manage-schedule": "Manage schedule"
+        }
     },
     "manage-user-redux": {
         "title": "MANAGE USER BY REDUX",
@@ -51,6 +55,18 @@
         "avatar": "Avatar",
         "save": "Save",
         "update": "Update"
+    },
+    "manage-doctor-detail": {
+        "title": "Manage Doctor",
+        "choose-doctor": "Choose a doctor",
+        "description": "Description",
+        "save": "Save"
+    },
+    "manage-schedule": {
+        "title": "Manage Schedule",
+        "choose-doctor": "Choose a doctor",
+        "choose-date": "Choose date",
+        "save": "Save"
     },
     "homepage": {
         "outstanding-doctor": "Last week's featured doctor",

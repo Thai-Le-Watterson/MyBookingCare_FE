@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
+import RegisterPackageGroupOrAcc from "../containers/System/RegisterPackageGroupOrAcc";
+import { ROLETYPE } from "../utils";
+
 import UserManage from "../containers/System/UserManage";
 import UserReduxManager from "../containers/System/UserReduxManager";
-import RegisterPackageGroupOrAcc from "../containers/System/RegisterPackageGroupOrAcc";
 import Header from "../containers/Header/Header";
 import DoctorManage from "../containers/System/DoctorManage";
+import ScheduleManage from "../containers/System/ScheduleManage";
 
 class System extends Component {
     render() {
+        if (
+            this.props.userInfo.roleId !== ROLETYPE.ADMIN &&
+            this.props.userInfo.roleId !== ROLETYPE.DOCTOR
+        ) {
+            this.props.history.push("/home");
+        }
         const { systemMenuPath } = this.props;
         return (
             <>
@@ -30,6 +39,10 @@ class System extends Component {
                                 component={DoctorManage}
                             />
                             <Route
+                                path="/system/schedule-manage"
+                                component={ScheduleManage}
+                            />
+                            <Route
                                 path="/system/register-package-group-or-account"
                                 component={RegisterPackageGroupOrAcc}
                             />
@@ -49,6 +62,7 @@ class System extends Component {
 const mapStateToProps = (state) => {
     return {
         systemMenuPath: state.app.systemMenuPath,
+        userInfo: state.user.userInfo,
     };
 };
 
