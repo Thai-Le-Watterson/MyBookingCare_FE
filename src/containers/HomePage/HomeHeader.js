@@ -29,7 +29,6 @@ class HomeHeader extends React.Component {
 
     render() {
         let language = this.props.language;
-        console.log(this.props.isLoggedIn);
         return (
             <>
                 <div className="home-header_container">

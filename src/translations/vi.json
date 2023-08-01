@@ -72,5 +72,11 @@
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
         "search": "Tìm kiếm",
         "more": "Xem thêm"
+    },
+    "doctor-detail": {},
+    "doctor-schedule": {
+        "schedule": "Lịch khám",
+        "today": "Hôm nay",
+        "no-schedule": "Rất tiếc, bác sĩ không có lịch khám vào ngày này :(("
     }
 }

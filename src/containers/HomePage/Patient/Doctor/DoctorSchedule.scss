@@ -3,8 +3,10 @@
     padding-bottom: 20px;
 
     .content-left {
+        min-height: 200px;
+
         .select-container {
-            width: 100px;
+            width: 150px;
 
             .select-date {
                 margin-bottom: 10px;
@@ -14,11 +16,17 @@
                 color: #0087b6;
                 font-size: 15px;
                 outline: none;
+                text-transform: capitalize;
                 cursor: pointer;
+
+                * {
+                    text-transform: capitalize;
+                }
             }
         }
 
         .schedule_title {
+            color: #3a3a3a;
             .icon {
                 font-size: 16px;
             }
@@ -28,6 +36,36 @@
                 text-transform: uppercase;
                 margin-left: 6px;
             }
+        }
+
+        .time-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+
+            .btn-time {
+                padding: 8px 12px;
+                background-color: #ffff63;
+
+                &.vi {
+                    min-width: 120px;
+                }
+
+                &.en {
+                    min-width: 160px;
+                }
+
+                &:hover {
+                    color: #fff;
+                    background-color: #49bce2;
+                }
+            }
+        }
+
+        .no-schedule-mesage {
+            color: #585858;
+            font-style: italic;
         }
     }
 }

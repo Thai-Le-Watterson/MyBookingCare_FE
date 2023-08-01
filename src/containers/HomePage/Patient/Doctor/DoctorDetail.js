@@ -58,7 +58,7 @@ class DoctorDetail extends React.Component {
                         </div>
                     </div>
                 </div>
-                <DoctorSchedule />
+                <DoctorSchedule doctorId={doctor.id} />
                 <div className="doctor-content">
                     <div className="container">
                         <p className="text-content">

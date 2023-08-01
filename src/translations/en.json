@@ -72,5 +72,11 @@
         "outstanding-doctor": "Last week's featured doctor",
         "search": "Search",
         "more": "More"
+    },
+    "doctor-detail": {},
+    "doctor-schedule": {
+        "schedule": "Schedule",
+        "today": "Today",
+        "no-schedule": "Sorry, the doctor doesn't have an appointment for this day :(("
     }
 }

@@ -86,7 +86,12 @@ class ScheduleManage extends React.Component {
             toast.error("Missing parameter");
         } else {
             // date = moment(date, dateFormat.SEND_TO_SERVER).unix() * 1000;
-            date = moment(date, dateFormat.SEND_TO_SERVER).valueOf();
+            console.log(date);
+            date = moment
+                .utc(date, dateFormat.SEND_TO_SERVER)
+                .startOf("day")
+                .valueOf();
+            console.log(date);
             const dataSchedules = {
                 scheduleDatas: selectedTimes.map((time) => {
                     const copyTimes = {};

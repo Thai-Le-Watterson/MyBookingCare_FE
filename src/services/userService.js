@@ -125,6 +125,20 @@ const updateMarkdown = (data) => {
     });
 };
 
+const getSchedule = async (doctorId, date) => {
+    try {
+        const data = await axios.get(
+            `/api/get-schedule?doctorId=${doctorId || ""}&date=${date || ""}`
+        );
+        // console.log("check data: ", data);
+        if (data.data && data.data.errCode === 0) {
+            if (data.data.schedule) return data.data.schedule;
+        }
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 const bulkCreateSchedule = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -149,4 +163,5 @@ export {
     getDoctorDetail,
     updateMarkdown,
     bulkCreateSchedule,
+    getSchedule,
 };
