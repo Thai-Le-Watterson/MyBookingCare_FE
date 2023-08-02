@@ -114,7 +114,6 @@ class DoctorSchedule extends React.Component {
                             <div className="select-container">
                                 <select
                                     className="select-date form-select w-10"
-                                    // value={this.state.selectDate}
                                     onChange={(e) =>
                                         this.handleChangeScheduleDate(e)
                                     }

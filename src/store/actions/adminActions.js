@@ -82,12 +82,38 @@ export const fetchTimeStart = () => {
         }
     };
 };
-export const fetchTimeSuccess = (roles) => ({
+export const fetchTimeSuccess = (times) => ({
     type: actionTypes.FETCH_TIME_SUCCESS,
-    data: roles,
+    data: times,
 });
 export const fetchTimeFail = () => ({
     type: actionTypes.FETCH_TIME_FAIL,
+});
+
+export const fetchRequireDoctorInforStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            const data_price = await handleGetAllCode("price");
+            const data_payment = await handleGetAllCode("payment");
+            const data_province = await handleGetAllCode("province");
+
+            const data = {
+                data_price,
+                data_payment,
+                data_province,
+            };
+            dispatch(fetchRequireDoctorInforSuccess(data));
+        } catch (e) {
+            dispatch(fetchRequireDoctorInforFail());
+        }
+    };
+};
+export const fetchRequireDoctorInforSuccess = (requireDoctorInfor) => ({
+    type: actionTypes.FETCH_REQUIRE_DOCTOR_INFOR_SUCCESS,
+    data: requireDoctorInfor,
+});
+export const fetchRequireDoctorInforFail = () => ({
+    type: actionTypes.FETCH_REQUIRE_DOCTOR_INFOR_FAIL,
 });
 
 export const createUserStart = (data) => {

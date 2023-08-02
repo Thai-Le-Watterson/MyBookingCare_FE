@@ -8,6 +8,7 @@ const initialState = {
     users: [],
     topDoctors: [],
     allDoctors: [],
+    requireDoctorInfor: {},
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -51,6 +52,16 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
                 times: [],
+            };
+        case actionTypes.FETCH_REQUIRE_DOCTOR_INFOR_SUCCESS:
+            return {
+                ...state,
+                requireDoctorInfor: action.data,
+            };
+        case actionTypes.FETCH_REQUIRE_DOCTOR_INFOR_FAIL:
+            return {
+                ...state,
+                requireDoctorInfor: {},
             };
         case actionTypes.FETCH_USERS_SUCCESS:
             return {

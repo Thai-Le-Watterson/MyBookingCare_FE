@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import TableUser from "./TableUser";
 import { getDoctorDetail } from "../../services/userService";
-import { CRUD } from "../../utils/constant";
+import { CRUD, languages } from "../../utils/constant";
 
 import "./DoctorManage.scss";
 import "react-markdown-editor-lite/lib/index.css";
@@ -24,17 +24,32 @@ class DoctorManage extends React.Component {
             },
             doctors: [],
             action: CRUD.CREATE,
+
+            requireDoctorInfor: {},
+            payment: "",
+            price: "",
+            province: "",
+            addressClinic: "",
+            nameClinic: "",
+            note: "",
         };
     }
 
-    componentDidMount = () => {
+    componentDidMount = async () => {
         this.props.getAllDoctor();
+        await this.props.getRequireDoctorInfor();
+        console.log(this.state);
     };
 
     componentDidUpdate = (prevProps, prevState) => {
         if (prevProps.doctors !== this.props.doctors) {
             this.setState({
                 doctors: this.props.doctors,
+            });
+        }
+        if (prevProps.requireDoctorInfor !== this.props.requireDoctorInfor) {
+            this.setState({
+                requireDoctorInfor: this.props.requireDoctorInfor,
             });
         }
     };
@@ -57,10 +72,11 @@ class DoctorManage extends React.Component {
         });
     };
 
-    handleOnChangeSelect = async (selectDoctor) => {
+    handleOnChangeSelectDoctor = async (selectDoctor) => {
         const doctor = await getDoctorDetail(selectDoctor.value);
         const isNotMarkdown = this.checkValueData(doctor.MarkdownData);
         const copyState = { ...this.state };
+
         copyState.selectDoctor = selectDoctor;
         copyState.action = isNotMarkdown ? CRUD.CREATE : CRUD.UPDATE;
         copyState.contents = {
@@ -68,10 +84,30 @@ class DoctorManage extends React.Component {
             contentMarkDown: doctor.MarkdownData.contentMarkDown || "",
             description: doctor.MarkdownData.description || "",
         };
-        this.setState({
-            ...copyState,
-        });
-        console.log(this.state);
+
+        copyState.payment = doctor.doctorInforData.payment || {};
+        copyState.price = doctor.doctorInforData.price || {};
+        copyState.province = doctor.doctorInforData.province || {};
+        copyState.addressClinic = doctor.doctorInforData.addressClinic || "";
+        copyState.nameClinic = doctor.doctorInforData.nameClinic || "";
+        copyState.note = doctor.doctorInforData.note || "";
+
+        this.setState(
+            {
+                ...copyState,
+            },
+            () => console.log(this.state)
+        );
+    };
+
+    handleOnChangeSelect = async (value, actionMeta) => {
+        const stringAttr = actionMeta.name;
+        this.setState(
+            {
+                [stringAttr]: value,
+            },
+            () => console.log(this.state)
+        );
     };
 
     handleSaveMarkdown = () => {
@@ -108,11 +144,19 @@ class DoctorManage extends React.Component {
         });
     };
 
+    buildOptionSelect = (obj, value, label) => {
+        if (obj && obj.length > 0)
+            return obj.map((item) => {
+                if (item[value] && item[label])
+                    return {
+                        value: item[value],
+                        label: item[label],
+                    };
+            });
+    };
+
     render() {
         const mdParser = new MarkdownIt();
-        const options = this.state.doctors.map((doctor) => {
-            return { value: doctor.id, label: doctor.fullName };
-        });
 
         return (
             <>
@@ -122,17 +166,24 @@ class DoctorManage extends React.Component {
                     </div>
                     <div className="container">
                         <div className="row">
-                            <div className="col">
+                            <div className="col-4">
                                 <label className="form-label">
                                     <FormattedMessage id="manage-doctor-detail.choose-doctor" />
                                 </label>
                                 <Select
                                     value={this.state.doctorId}
-                                    options={options}
-                                    onChange={this.handleOnChangeSelect}
+                                    options={this.buildOptionSelect(
+                                        this.state.doctors,
+                                        "id",
+                                        "fullName"
+                                    )}
+                                    onChange={this.handleOnChangeSelectDoctor}
+                                    placeholder={
+                                        <FormattedMessage id="manage-doctor-detail.select" />
+                                    }
                                 />
                             </div>
-                            <div className="col">
+                            <div className="col-8">
                                 <label className="form-label">
                                     <FormattedMessage id="manage-doctor-detail.description" />
                                 </label>
@@ -144,6 +195,94 @@ class DoctorManage extends React.Component {
                                         this.handleOnChangeDescription(e)
                                     }
                                 ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="doctor-infor_container container">
+                        <div className="row">
+                            <div className="col-4 my-2">
+                                <label className="form-label">
+                                    <FormattedMessage id="manage-doctor-detail.extra-infor.choose-payment" />
+                                </label>
+                                <Select
+                                    name="payment"
+                                    value={this.state.payment}
+                                    options={this.buildOptionSelect(
+                                        this.state.requireDoctorInfor &&
+                                            this.state.requireDoctorInfor
+                                                .data_payment,
+                                        "keyMap",
+                                        this.props.language === languages.Vi
+                                            ? "valueVi"
+                                            : "valueEn"
+                                    )}
+                                    onChange={this.handleOnChangeSelect}
+                                    placeholder={
+                                        <FormattedMessage id="manage-doctor-detail.select" />
+                                    }
+                                />
+                            </div>
+                            <div className="col-4 my-2">
+                                <label className="form-label">
+                                    <FormattedMessage id="manage-doctor-detail.extra-infor.choose-price" />
+                                </label>
+                                <Select
+                                    value={this.state.price}
+                                    name="price"
+                                    options={this.buildOptionSelect(
+                                        this.state.requireDoctorInfor &&
+                                            this.state.requireDoctorInfor
+                                                .data_price,
+                                        "keyMap",
+                                        this.props.language === languages.Vi
+                                            ? "valueVi"
+                                            : "valueEn"
+                                    )}
+                                    onChange={this.handleOnChangeSelect}
+                                    placeholder={
+                                        <FormattedMessage id="manage-doctor-detail.select" />
+                                    }
+                                />
+                            </div>
+                            <div className="col-4 my-2">
+                                <label className="form-label">
+                                    <FormattedMessage id="manage-doctor-detail.extra-infor.choose-province" />
+                                </label>
+                                <Select
+                                    value={this.state.province}
+                                    name="province"
+                                    options={this.buildOptionSelect(
+                                        this.state.requireDoctorInfor &&
+                                            this.state.requireDoctorInfor
+                                                .data_province,
+                                        "keyMap",
+                                        this.props.language === languages.Vi
+                                            ? "valueVi"
+                                            : "valueEn"
+                                    )}
+                                    onChange={this.handleOnChangeSelect}
+                                    placeholder={
+                                        <FormattedMessage id="manage-doctor-detail.select" />
+                                    }
+                                />
+                            </div>
+                            <div className="col-4 my-2">
+                                <label className="form-label">
+                                    <FormattedMessage id="manage-doctor-detail.extra-infor.name-clinic" />
+                                </label>
+                                <input type="text" className="form-control" />
+                            </div>
+                            <div className="col-4 my-2">
+                                <label className="form-label">
+                                    <FormattedMessage id="manage-doctor-detail.extra-infor.address-clinic" />
+                                </label>
+                                <input type="text" className="form-control" />
+                            </div>
+                            <div className="col-4 my-2">
+                                <label className="form-label">
+                                    <FormattedMessage id="manage-doctor-detail.extra-infor.note" />
+                                </label>
+                                <input type="text" className="form-control" />
                             </div>
                         </div>
                     </div>
@@ -180,6 +319,7 @@ const mapStateToProps = (state) => {
     return {
         language: state.app.language,
         doctors: state.admin.allDoctors,
+        requireDoctorInfor: state.admin.requireDoctorInfor,
     };
 };
 
@@ -188,6 +328,8 @@ const mapDispatchToProps = (dispatch) => {
         getAllDoctor: () => dispatch(acitions.fetchAllDoctorStart()),
         createMarkdown: (data) => dispatch(acitions.createMarkdownStart(data)),
         updateMarkdown: (data) => dispatch(acitions.updateMarkdownStart(data)),
+        getRequireDoctorInfor: () =>
+            dispatch(acitions.fetchRequireDoctorInforStart()),
     };
 };
 

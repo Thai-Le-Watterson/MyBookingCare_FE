@@ -60,7 +60,16 @@
         "title": "Manage Doctor",
         "choose-doctor": "Choose a doctor",
         "description": "Description",
-        "save": "Save"
+        "save": "Save",
+        "select": "Select...",
+        "extra-infor": {
+            "choose-price": "Choose a price",
+            "choose-payment": "Select a payment method",
+            "choose-province": "Choose a province",
+            "address-clinic": "Clinic address",
+            "name-clinic": "Clinic name",
+            "note": "Note"
+        }
     },
     "manage-schedule": {
         "title": "Manage Schedule",

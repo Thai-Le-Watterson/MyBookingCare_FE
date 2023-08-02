@@ -60,7 +60,16 @@
         "title": "Quản lí bác sĩ",
         "choose-doctor": "Chọn bác sĩ",
         "description": "Mô tả",
-        "save": "Lưu"
+        "save": "Lưu",
+        "select": "Chọn...",
+        "extra-infor": {
+            "choose-price": "Chọn giá khám",
+            "choose-payment": "Chọn phương thức thanh toán",
+            "choose-province": "Chọn tỉnh thành",
+            "address-clinic": "Địa chỉ phòng khám",
+            "name-clinic": "Tên phòng khám",
+            "note": "Ghi chú"
+        }
     },
     "manage-schedule": {
         "title": "Quản lí lịch khám bệnh",
