@@ -1,0 +1,16 @@
+.booking-modal_header {
+    position: relative;
+    text-transform: uppercase;
+
+    .close-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border: none;
+        background-color: transparent;
+        color: #fff;
+        font-size: 22px;
+        padding: 0 12px;
+    }
+}

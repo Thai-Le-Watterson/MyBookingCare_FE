@@ -82,7 +82,15 @@
         "search": "Search",
         "more": "More"
     },
-    "doctor-detail": {},
+    "doctor-detail": {
+        "extra-infor": {
+            "address-clinic": "Address for hospital clinic",
+            "price-title": "Medical examination price",
+            "show-detail": "Show details",
+            "payment-intro": "The hospital has the following forms of payment",
+            "hide-detail": "Hide detail"
+        }
+    },
     "doctor-schedule": {
         "schedule": "Schedule",
         "today": "Today",

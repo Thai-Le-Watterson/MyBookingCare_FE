@@ -150,6 +150,28 @@ const bulkCreateSchedule = (data) => {
     });
 };
 
+const createDoctorInfor = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.post(`api/create-doctor-infor`, data);
+            resolve(result);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const updateDoctorInfor = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.put(`api/update-doctor-infor`, data);
+            resolve(result);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 export {
     handleUserLogin,
     handleGetUsers,
@@ -164,4 +186,6 @@ export {
     updateMarkdown,
     bulkCreateSchedule,
     getSchedule,
+    createDoctorInfor,
+    updateDoctorInfor,
 };

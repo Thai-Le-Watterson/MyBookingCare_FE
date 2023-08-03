@@ -6,6 +6,8 @@ import { languages } from "../../../../utils";
 
 import HomeHeader from "../../HomeHeader";
 import DoctorSchedule from "./DoctorSchedule";
+import DoctorExtraInfor from "./DoctorExtraInfor";
+import BookingModal from "./BookingModal";
 
 import "./DoctorDetail.scss";
 
@@ -14,6 +16,7 @@ class DoctorDetail extends React.Component {
         super(props);
         this.state = {
             doctor: {},
+            isOpenModal: false,
         };
     }
 
@@ -30,6 +33,12 @@ class DoctorDetail extends React.Component {
             this.state.doctor.MarkdownData?.contentHTML;
     };
 
+    toggleModal = () => {
+        this.setState({
+            isOpenModal: !this.state.isOpenModal,
+        });
+    };
+
     render() {
         const doctor = { ...this.state.doctor };
         const image = doctor.image
@@ -40,7 +49,6 @@ class DoctorDetail extends React.Component {
             this.props.language === languages.VI
                 ? doctor.positionData?.valueVi
                 : doctor?.positionData?.valueEn;
-
         return (
             <>
                 <HomeHeader />
@@ -58,7 +66,21 @@ class DoctorDetail extends React.Component {
                         </div>
                     </div>
                 </div>
-                <DoctorSchedule doctorId={doctor.id} />
+                <div className="schedule-infor_container container">
+                    <div className="row">
+                        <div className="col">
+                            <DoctorSchedule
+                                doctorId={doctor.id}
+                                handleOpenModal={this.toggleModal}
+                            />
+                        </div>
+                        <div className="col">
+                            <DoctorExtraInfor
+                                doctorInfor={doctor.doctorInforData}
+                            />
+                        </div>
+                    </div>
+                </div>
                 <div className="doctor-content">
                     <div className="container">
                         <p className="text-content">
@@ -66,6 +88,12 @@ class DoctorDetail extends React.Component {
                         </p>
                     </div>
                 </div>
+
+                <BookingModal
+                    toggle={this.toggleModal}
+                    isOpen={this.state.isOpenModal}
+                    doctor={this.state.doctor}
+                />
             </>
         );
     }

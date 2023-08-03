@@ -82,7 +82,15 @@
         "search": "Tìm kiếm",
         "more": "Xem thêm"
     },
-    "doctor-detail": {},
+    "doctor-detail": {
+        "extra-infor": {
+            "address-clinic": "Địa chỉ khám",
+            "price-title": "Giá khám",
+            "show-detail": "Xem chi tiết",
+            "payment-intro": "Bệnh viện có các hình thức thanh toán",
+            "hide-detail": "Ẩn bảng giá"
+        }
+    },
     "doctor-schedule": {
         "schedule": "Lịch khám",
         "today": "Hôm nay",

@@ -1,71 +1,66 @@
 .schedule-container {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    min-height: 200px;
 
-    .content-left {
-        min-height: 200px;
+    .select-container {
+        width: 150px;
 
-        .select-container {
-            width: 150px;
+        .select-date {
+            margin-bottom: 10px;
+            border: none;
+            border-bottom: 1px solid #838383;
+            padding: 4px 0px;
+            color: #0087b6;
+            font-size: 15px;
+            outline: none;
+            text-transform: capitalize;
+            cursor: pointer;
 
-            .select-date {
-                margin-bottom: 10px;
-                border: none;
-                border-bottom: 1px solid #838383;
-                padding: 4px 0px;
-                color: #0087b6;
-                font-size: 15px;
-                outline: none;
+            * {
                 text-transform: capitalize;
-                cursor: pointer;
-
-                * {
-                    text-transform: capitalize;
-                }
             }
         }
+    }
 
-        .schedule_title {
-            color: #3a3a3a;
-            .icon {
-                font-size: 16px;
-            }
-
-            .schedule-title {
-                font-size: 14px;
-                text-transform: uppercase;
-                margin-left: 6px;
-            }
+    .schedule_title {
+        color: #3a3a3a;
+        .icon {
+            font-size: 16px;
         }
 
-        .time-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 10px 0;
+        .schedule-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-left: 6px;
+        }
+    }
 
-            .btn-time {
-                padding: 8px 12px;
-                background-color: #ffff63;
+    .time-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 10px 0;
 
-                &.vi {
-                    min-width: 120px;
-                }
+        .btn-time {
+            padding: 8px 12px;
+            background-color: #ffff63;
 
-                &.en {
-                    min-width: 160px;
-                }
+            &.vi {
+                min-width: 120px;
+            }
 
-                &:hover {
-                    color: #fff;
-                    background-color: #49bce2;
-                }
+            &.en {
+                min-width: 160px;
+            }
+
+            &:hover {
+                color: #fff;
+                background-color: #49bce2;
             }
         }
+    }
 
-        .no-schedule-mesage {
-            color: #585858;
-            font-style: italic;
-        }
+    .no-schedule-mesage {
+        color: #585858;
+        font-style: italic;
     }
 }

@@ -45,14 +45,11 @@ class DoctorSchedule extends React.Component {
                 firstDate
             );
 
-            this.setState(
-                {
-                    dates: dateObj.dates,
-                    selectDate: firstDate,
-                    schedule: schedule || [],
-                },
-                () => console.log(this.state)
-            );
+            this.setState({
+                dates: dateObj.dates,
+                selectDate: firstDate,
+                schedule: schedule || [],
+            });
         }
     };
 
@@ -96,77 +93,76 @@ class DoctorSchedule extends React.Component {
             e.target.value
         );
 
-        this.setState(
-            {
-                selectDate: e.target.value,
-                schedule: schedule || [],
-            },
-            () => console.log(this.state)
-        );
+        this.setState({
+            selectDate: e.target.value,
+            schedule: schedule || [],
+        });
+    };
+
+    handleOpenModal = () => {
+        this.props.handleOpenModal();
     };
 
     render() {
         return (
             <>
-                <div className="schedule-container container">
+                <div className="schedule-container">
                     <div className="row">
-                        <div className="content-left col">
-                            <div className="select-container">
-                                <select
-                                    className="select-date form-select w-10"
-                                    onChange={(e) =>
-                                        this.handleChangeScheduleDate(e)
-                                    }
-                                >
-                                    {this.state.dates.map((date, index) => {
-                                        return (
-                                            <option value={date}>
-                                                {this.state.datesRender &&
-                                                    this.state.datesRender[
-                                                        index
-                                                    ]}
-                                            </option>
-                                        );
-                                    })}
-                                </select>
-                            </div>
-                            <div className="schedule_title">
-                                <i className="fa-solid fa-calendar-days icon"></i>
-                                <span className="schedule-title">
-                                    <FormattedMessage id="doctor-schedule.schedule" />
-                                </span>
-                            </div>
-                            <div className="time-container">
-                                {(this.state.schedule &&
-                                    this.state.schedule.length > 0 &&
-                                    this.state.schedule.map((schedule) => {
-                                        return (
-                                            <button
-                                                className={`btn btn-time ${
+                        <div className="select-container">
+                            <select
+                                className="select-date form-select w-10"
+                                onChange={(e) =>
+                                    this.handleChangeScheduleDate(e)
+                                }
+                            >
+                                {this.state.dates.map((date, index) => {
+                                    return (
+                                        <option value={date}>
+                                            {this.state.datesRender &&
+                                                this.state.datesRender[index]}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </div>
+                        <div className="schedule_title">
+                            <i className="fa-solid fa-calendar-days icon"></i>
+                            <span className="schedule-title">
+                                <FormattedMessage id="doctor-schedule.schedule" />
+                            </span>
+                        </div>
+                        <div className="time-container">
+                            {(this.state.schedule &&
+                                this.state.schedule.length > 0 &&
+                                this.state.schedule.map((schedule) => {
+                                    return (
+                                        <button
+                                            className={`btn btn-time ${
+                                                this.props.language ===
+                                                languages.VI
+                                                    ? "vi"
+                                                    : "en"
+                                            }`}
+                                            onClick={() =>
+                                                this.handleOpenModal()
+                                            }
+                                        >
+                                            {
+                                                schedule.timeData[
                                                     this.props.language ===
                                                     languages.VI
-                                                        ? "vi"
-                                                        : "en"
-                                                }`}
-                                            >
-                                                {
-                                                    schedule.timeData[
-                                                        this.props.language ===
-                                                        languages.VI
-                                                            ? "valueVi"
-                                                            : "valueEn"
-                                                    ]
-                                                }
-                                            </button>
-                                        );
-                                    })) || (
-                                    <div className="no-schedule-mesage">
-                                        <FormattedMessage id="doctor-schedule.no-schedule" />
-                                    </div>
-                                )}
-                            </div>
+                                                        ? "valueVi"
+                                                        : "valueEn"
+                                                ]
+                                            }
+                                        </button>
+                                    );
+                                })) || (
+                                <div className="no-schedule-mesage">
+                                    <FormattedMessage id="doctor-schedule.no-schedule" />
+                                </div>
+                            )}
                         </div>
-                        <div className="content-right col"></div>
                     </div>
                 </div>
             </>

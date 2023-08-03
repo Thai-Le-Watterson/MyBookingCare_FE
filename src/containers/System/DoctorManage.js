@@ -1,13 +1,19 @@
 import React from "react";
-import MarkdownIt from "markdown-it";
-import MdEditor from "react-markdown-editor-lite";
-import Select from "react-select";
 import * as acitions from "../../store/actions/index";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
-import TableUser from "./TableUser";
-import { getDoctorDetail } from "../../services/userService";
+import {
+    getDoctorDetail,
+    createDoctorInfor,
+    updateDoctorInfor,
+} from "../../services/userService";
 import { CRUD, languages } from "../../utils/constant";
+import _ from "lodash";
+
+import MarkdownIt from "markdown-it";
+import MdEditor from "react-markdown-editor-lite";
+import { FormattedMessage } from "react-intl";
+import Select from "react-select";
+import TableUser from "./TableUser";
 
 import "./DoctorManage.scss";
 import "react-markdown-editor-lite/lib/index.css";
@@ -32,13 +38,13 @@ class DoctorManage extends React.Component {
             addressClinic: "",
             nameClinic: "",
             note: "",
+            acitionDrInfor: CRUD.CREATE,
         };
     }
 
     componentDidMount = async () => {
         this.props.getAllDoctor();
         await this.props.getRequireDoctorInfor();
-        console.log(this.state);
     };
 
     componentDidUpdate = (prevProps, prevState) => {
@@ -72,8 +78,17 @@ class DoctorManage extends React.Component {
         });
     };
 
+    handleOnChangeText = (e, type) => {
+        const copyState = { ...this.state };
+        copyState[type] = e.target.value;
+        this.setState({
+            ...copyState,
+        });
+    };
+
     handleOnChangeSelectDoctor = async (selectDoctor) => {
         const doctor = await getDoctorDetail(selectDoctor.value);
+
         const isNotMarkdown = this.checkValueData(doctor.MarkdownData);
         const copyState = { ...this.state };
 
@@ -85,29 +100,64 @@ class DoctorManage extends React.Component {
             description: doctor.MarkdownData.description || "",
         };
 
-        copyState.payment = doctor.doctorInforData.payment || {};
-        copyState.price = doctor.doctorInforData.price || {};
-        copyState.province = doctor.doctorInforData.province || {};
-        copyState.addressClinic = doctor.doctorInforData.addressClinic || "";
-        copyState.nameClinic = doctor.doctorInforData.nameClinic || "";
-        copyState.note = doctor.doctorInforData.note || "";
+        const {
+            paymentId,
+            priceId,
+            provinceId,
+            addressClinic,
+            nameClinic,
+            note,
+        } = doctor.doctorInforData;
+        const isNotExistDoctorInforData = this.checkValueData({
+            paymentId,
+            priceId,
+            provinceId,
+            addressClinic,
+            nameClinic,
+        });
+        copyState.acitionDrInfor = isNotExistDoctorInforData
+            ? CRUD.CREATE
+            : CRUD.UPDATE;
 
-        this.setState(
-            {
-                ...copyState,
-            },
-            () => console.log(this.state)
+        let payment = this.buildOptionSelect(
+            this.state.requireDoctorInfor.data_payment.find(
+                (item) => item.keyMap === paymentId
+            ),
+            "keyMap",
+            this.props.language === languages.VI ? "valueVi" : "valueEn"
         );
+        let price = this.buildOptionSelect(
+            this.state.requireDoctorInfor.data_price.find(
+                (item) => item.keyMap === priceId
+            ),
+            "keyMap",
+            this.props.language === languages.VI ? "valueVi" : "valueEn"
+        );
+        let province = this.buildOptionSelect(
+            this.state.requireDoctorInfor.data_province.find(
+                (item) => item.keyMap === provinceId
+            ),
+            "keyMap",
+            this.props.language === languages.VI ? "valueVi" : "valueEn"
+        );
+
+        copyState.payment = payment || {};
+        copyState.price = price || {};
+        copyState.province = province || {};
+        copyState.addressClinic = addressClinic || "";
+        copyState.nameClinic = nameClinic || "";
+        copyState.note = note || "";
+
+        this.setState({
+            ...copyState,
+        });
     };
 
     handleOnChangeSelect = async (value, actionMeta) => {
         const stringAttr = actionMeta.name;
-        this.setState(
-            {
-                [stringAttr]: value,
-            },
-            () => console.log(this.state)
-        );
+        this.setState({
+            [stringAttr]: value,
+        });
     };
 
     handleSaveMarkdown = () => {
@@ -138,21 +188,54 @@ class DoctorManage extends React.Component {
         }
     };
 
+    handleSaveDoctorInfor = async () => {
+        const dataRequest = this.buildRequestDataDoctorInfor(this.state);
+        const isNotValid = this.checkValueData(dataRequest);
+        if (!isNotValid || isNotValid === "note") {
+            if (this.state.acitionDrInfor === CRUD.CREATE) {
+                const res = await createDoctorInfor(dataRequest);
+            } else if (this.state.acitionDrInfor === CRUD.UPDATE) {
+                const res = await updateDoctorInfor(dataRequest);
+            }
+        }
+    };
+
     checkValueData = (obj) => {
         return Object.keys(obj).find((item) => {
             return !obj[item];
         });
     };
 
+    buildRequestDataDoctorInfor = (obj) => {
+        return {
+            doctorId: this.state.selectDoctor.value,
+            priceId: obj.price.value,
+            provinceId: obj.province.value,
+            paymentId: obj.payment.value,
+            addressClinic: obj.addressClinic,
+            nameClinic: obj.nameClinic,
+            note: obj.note,
+        };
+    };
+
     buildOptionSelect = (obj, value, label) => {
-        if (obj && obj.length > 0)
-            return obj.map((item) => {
-                if (item[value] && item[label])
-                    return {
-                        value: item[value],
-                        label: item[label],
-                    };
-            });
+        if (Array.isArray(obj)) {
+            if (obj && obj.length > 0)
+                return obj.map((item) => {
+                    if (item[value] && item[label])
+                        return {
+                            value: item[value],
+                            label: item[label],
+                        };
+                });
+        } else {
+            if (!_.isEmpty(obj)) {
+                return {
+                    value: obj[value],
+                    label: obj[label],
+                };
+            }
+        }
     };
 
     render() {
@@ -270,19 +353,43 @@ class DoctorManage extends React.Component {
                                 <label className="form-label">
                                     <FormattedMessage id="manage-doctor-detail.extra-infor.name-clinic" />
                                 </label>
-                                <input type="text" className="form-control" />
+                                <input
+                                    value={this.state.nameClinic}
+                                    type="text"
+                                    className="form-control"
+                                    onChange={(e) =>
+                                        this.handleOnChangeText(e, "nameClinic")
+                                    }
+                                />
                             </div>
                             <div className="col-4 my-2">
                                 <label className="form-label">
                                     <FormattedMessage id="manage-doctor-detail.extra-infor.address-clinic" />
                                 </label>
-                                <input type="text" className="form-control" />
+                                <input
+                                    value={this.state.addressClinic}
+                                    type="text"
+                                    className="form-control"
+                                    onChange={(e) =>
+                                        this.handleOnChangeText(
+                                            e,
+                                            "addressClinic"
+                                        )
+                                    }
+                                />
                             </div>
                             <div className="col-4 my-2">
                                 <label className="form-label">
                                     <FormattedMessage id="manage-doctor-detail.extra-infor.note" />
                                 </label>
-                                <input type="text" className="form-control" />
+                                <input
+                                    value={this.state.note}
+                                    type="text"
+                                    className="form-control"
+                                    onChange={(e) =>
+                                        this.handleOnChangeText(e, "note")
+                                    }
+                                />
                             </div>
                         </div>
                     </div>
@@ -303,6 +410,7 @@ class DoctorManage extends React.Component {
                                 this.state.action === CRUD.CREATE
                                     ? this.handleSaveMarkdown()
                                     : this.handleUpdateMarkdown();
+                                this.handleSaveDoctorInfor();
                             }}
                         >
                             <FormattedMessage id="manage-doctor-detail.save" />
