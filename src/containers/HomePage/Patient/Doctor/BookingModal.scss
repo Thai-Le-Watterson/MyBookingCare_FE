@@ -1,6 +1,7 @@
 .booking-modal_header {
     position: relative;
     text-transform: uppercase;
+    padding: 24px !important;
 
     .close-btn {
         position: absolute;
@@ -10,7 +11,57 @@
         border: none;
         background-color: transparent;
         color: #fff;
-        font-size: 22px;
-        padding: 0 12px;
+        font-size: 28px;
+        padding: 0 18px;
+    }
+}
+
+.booking-modal_body {
+    $square-width: 80px;
+    max-height: 70vh;
+    overflow: scroll;
+
+    .row:first-child {
+        border-bottom: 1px solid #ebebeb;
+        margin-bottom: 8px;
+    }
+
+    .avatar {
+        width: $square-width;
+        height: $square-width;
+        margin: 0 auto 8px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%;
+    }
+
+    .price {
+        text-align: center;
+    }
+
+    .time {
+        font-size: 13px;
+        color: #5a5a5a;
+        text-transform: capitalize;
+    }
+
+    .book-type_container {
+        display: flex;
+
+        .form-check {
+            margin-right: 12px;
+            cursor: pointer;
+
+            * {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.booking-modal_footer {
+    .btn {
+        min-width: 70px;
     }
 }

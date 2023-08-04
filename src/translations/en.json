@@ -95,5 +95,18 @@
         "schedule": "Schedule",
         "today": "Today",
         "no-schedule": "Sorry, the doctor doesn't have an appointment for this day :(("
+    },
+    "booking-modal": {
+        "title": "Information to book a medical appointment",
+        "price": "Examination price",
+        "full-name": "Full name",
+        "phone-number": "Phone number",
+        "email": "Email",
+        "address": "Address",
+        "reason": "Medical examination reason",
+        "who": "Schedule for whom",
+        "gender": "Gender",
+        "book": "Book",
+        "cancel": "Cancel"
     }
 }

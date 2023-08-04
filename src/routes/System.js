@@ -12,6 +12,7 @@ import ScheduleManage from "../containers/System/ScheduleManage";
 
 class System extends Component {
     render() {
+        console.log(this.props.userInfo.roleId);
         if (
             this.props.userInfo.roleId !== ROLETYPE.ADMIN &&
             this.props.userInfo.roleId !== ROLETYPE.DOCTOR

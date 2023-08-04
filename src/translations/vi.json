@@ -95,5 +95,18 @@
         "schedule": "Lịch khám",
         "today": "Hôm nay",
         "no-schedule": "Rất tiếc, bác sĩ không có lịch khám vào ngày này :(("
+    },
+    "booking-modal": {
+        "title": "Thông tin đặt lịch khám bệnh",
+        "price": "Giá khám",
+        "full-name": "Họ tên",
+        "phone-number": "Số điện thoại",
+        "email": "Địa chỉ email",
+        "address": "Địa chỉ liên hệ",
+        "reason": "Lý do khám",
+        "who": "Đặt cho ai",
+        "gender": "Giới tính",
+        "book": "Đặt",
+        "cancel": "Hủy"
     }
 }

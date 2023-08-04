@@ -6,6 +6,7 @@ import { languages } from "../../../../utils/constant";
 import * as userService from "../../../../services/userService";
 
 import { FormattedMessage } from "react-intl";
+import BookingModal from "./BookingModal";
 
 import "moment/locale/vi";
 import "./DoctorSchedule.scss";
@@ -17,7 +18,9 @@ class DoctorSchedule extends React.Component {
             dates: [],
             datesRender: [],
             schedule: [],
+            selectSchedule: {},
             selectDate: "",
+            isOpenModal: false,
         };
     }
 
@@ -58,7 +61,7 @@ class DoctorSchedule extends React.Component {
             dates: [],
             datesRender: [],
         };
-        for (let i = 1; i <= day; i++) {
+        for (let i = 0; i < day; i++) {
             const date = moment(new Date())
                 .startOf("day")
                 .add(i, "d")
@@ -99,11 +102,20 @@ class DoctorSchedule extends React.Component {
         });
     };
 
-    handleOpenModal = () => {
-        this.props.handleOpenModal();
+    handleSelectSchedule = (schedule) => {
+        this.setState({
+            selectSchedule: schedule,
+        });
+    };
+
+    toggleModal = () => {
+        this.setState({
+            isOpenModal: !this.state.isOpenModal,
+        });
     };
 
     render() {
+        // console.log(this.state);
         return (
             <>
                 <div className="schedule-container">
@@ -143,9 +155,12 @@ class DoctorSchedule extends React.Component {
                                                     ? "vi"
                                                     : "en"
                                             }`}
-                                            onClick={() =>
-                                                this.handleOpenModal()
-                                            }
+                                            onClick={() => {
+                                                this.toggleModal();
+                                                this.handleSelectSchedule(
+                                                    schedule
+                                                );
+                                            }}
                                         >
                                             {
                                                 schedule.timeData[
@@ -165,6 +180,13 @@ class DoctorSchedule extends React.Component {
                         </div>
                     </div>
                 </div>
+                <BookingModal
+                    toggle={this.toggleModal}
+                    isOpen={this.state.isOpenModal}
+                    doctorId={this.props.doctorId}
+                    isShowDescription={false}
+                    schedule={this.state.selectSchedule}
+                />
             </>
         );
     }

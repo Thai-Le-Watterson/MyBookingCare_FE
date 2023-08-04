@@ -7,7 +7,6 @@ import { languages } from "../../../../utils";
 import HomeHeader from "../../HomeHeader";
 import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfor from "./DoctorExtraInfor";
-import BookingModal from "./BookingModal";
 
 import "./DoctorDetail.scss";
 
@@ -16,7 +15,6 @@ class DoctorDetail extends React.Component {
         super(props);
         this.state = {
             doctor: {},
-            isOpenModal: false,
         };
     }
 
@@ -31,12 +29,6 @@ class DoctorDetail extends React.Component {
 
         document.querySelector(".doctor-content .text-content").innerHTML =
             this.state.doctor.MarkdownData?.contentHTML;
-    };
-
-    toggleModal = () => {
-        this.setState({
-            isOpenModal: !this.state.isOpenModal,
-        });
     };
 
     render() {
@@ -88,12 +80,6 @@ class DoctorDetail extends React.Component {
                         </p>
                     </div>
                 </div>
-
-                <BookingModal
-                    toggle={this.toggleModal}
-                    isOpen={this.state.isOpenModal}
-                    doctor={this.state.doctor}
-                />
             </>
         );
     }
@@ -106,9 +92,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        // getDoctorDetail: () => dispatch(),
-    };
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DoctorDetail);

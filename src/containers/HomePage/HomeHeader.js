@@ -27,6 +27,10 @@ class HomeHeader extends React.Component {
         this.props.changeLanguage(language);
     };
 
+    handleRedirectToHome = () => {
+        history.push("/home");
+    };
+
     render() {
         let language = this.props.language;
         return (
@@ -35,7 +39,10 @@ class HomeHeader extends React.Component {
                     <div className="home-header_content">
                         <div className="logo-container">
                             <i className="fa-solid fa-bars"></i>
-                            <div className="logo"></div>
+                            <div
+                                className="logo"
+                                onClick={() => this.handleRedirectToHome()}
+                            ></div>
                         </div>
                         <ul className="menu">
                             <li>

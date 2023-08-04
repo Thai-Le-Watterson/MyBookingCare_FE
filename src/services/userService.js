@@ -172,6 +172,17 @@ const updateDoctorInfor = (data) => {
     });
 };
 
+const createBooking = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const res = await axios.post("/api/create-booking", data);
+            resolve(res);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 export {
     handleUserLogin,
     handleGetUsers,
@@ -188,4 +199,5 @@ export {
     getSchedule,
     createDoctorInfor,
     updateDoctorInfor,
+    createBooking,
 };
