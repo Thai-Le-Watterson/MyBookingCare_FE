@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { languages } from "../../../../utils";
 import _ from "lodash";
+import * as userService from "../../../../services/userService";
 
 import { FormattedMessage } from "react-intl";
 import { NumericFormat } from "react-number-format";
@@ -17,10 +18,22 @@ class DoctorExtraInfor extends React.Component {
         };
     }
 
-    componentDidUpdate = (prevProps) => {
-        if (prevProps.doctorInfor !== this.props.doctorInfor) {
+    componentDidMount = async () => {
+        const doctor = await userService.getDoctorDetail(this.props.doctorId);
+
+        this.setState({
+            doctorInfor: doctor,
+        });
+    };
+
+    componentDidUpdate = async (prevProps) => {
+        if (prevProps.doctorId !== this.props.doctorId) {
+            const doctor = await userService.getDoctorDetail(
+                this.props.doctorId
+            );
+
             this.setState({
-                doctorInfor: this.props.doctorInfor,
+                doctorInfor: doctor,
             });
         }
     };
@@ -32,7 +45,7 @@ class DoctorExtraInfor extends React.Component {
     };
 
     render() {
-        const doctorInfor = this.state.doctorInfor;
+        const doctorInfor = this.state.doctorInfor?.doctorInforData;
         const price =
             doctorInfor?.priceData &&
             !_.isEmpty(doctorInfor.priceData) &&

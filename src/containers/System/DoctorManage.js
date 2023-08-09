@@ -35,6 +35,8 @@ class DoctorManage extends React.Component {
             payment: "",
             price: "",
             province: "",
+            clinic: "",
+            specialty: "",
             addressClinic: "",
             nameClinic: "",
             note: "",
@@ -88,7 +90,7 @@ class DoctorManage extends React.Component {
 
     handleOnChangeSelectDoctor = async (selectDoctor) => {
         const doctor = await getDoctorDetail(selectDoctor.value);
-
+        console.log(doctor);
         const isNotMarkdown = this.checkValueData(doctor.MarkdownData);
         const copyState = { ...this.state };
 
@@ -107,6 +109,10 @@ class DoctorManage extends React.Component {
             addressClinic,
             nameClinic,
             note,
+            specialtyData,
+            paymentData,
+            priceData,
+            provinceData,
         } = doctor.doctorInforData;
         const isNotExistDoctorInforData = this.checkValueData({
             paymentId,
@@ -120,30 +126,26 @@ class DoctorManage extends React.Component {
             : CRUD.UPDATE;
 
         let payment = this.buildOptionSelect(
-            this.state.requireDoctorInfor.data_payment.find(
-                (item) => item.keyMap === paymentId
-            ),
+            paymentData,
             "keyMap",
             this.props.language === languages.VI ? "valueVi" : "valueEn"
         );
         let price = this.buildOptionSelect(
-            this.state.requireDoctorInfor.data_price.find(
-                (item) => item.keyMap === priceId
-            ),
+            priceData,
             "keyMap",
             this.props.language === languages.VI ? "valueVi" : "valueEn"
         );
         let province = this.buildOptionSelect(
-            this.state.requireDoctorInfor.data_province.find(
-                (item) => item.keyMap === provinceId
-            ),
+            provinceData,
             "keyMap",
             this.props.language === languages.VI ? "valueVi" : "valueEn"
         );
+        let specialty = this.buildOptionSelect(specialtyData, "id", "name");
 
         copyState.payment = payment || {};
         copyState.price = price || {};
         copyState.province = province || {};
+        copyState.specialty = specialty || {};
         copyState.addressClinic = addressClinic || "";
         copyState.nameClinic = nameClinic || "";
         copyState.note = note || "";
@@ -162,7 +164,6 @@ class DoctorManage extends React.Component {
 
     handleSaveMarkdown = () => {
         const isNotValid = this.checkValueData(this.state.contents);
-
         if (!isNotValid) {
             const dataRequest = {
                 contentHTML: this.state.contents.contentHTML,
@@ -191,7 +192,14 @@ class DoctorManage extends React.Component {
     handleSaveDoctorInfor = async () => {
         const dataRequest = this.buildRequestDataDoctorInfor(this.state);
         const isNotValid = this.checkValueData(dataRequest);
-        if (!isNotValid || isNotValid === "note") {
+        console.log("check dataRequest: ", dataRequest);
+        console.log("check isNotValid: ", isNotValid);
+        if (
+            !isNotValid ||
+            isNotValid === "note" ||
+            isNotValid === "specialtyId" ||
+            isNotValid === "clinicId"
+        ) {
             if (this.state.acitionDrInfor === CRUD.CREATE) {
                 const res = await createDoctorInfor(dataRequest);
             } else if (this.state.acitionDrInfor === CRUD.UPDATE) {
@@ -212,6 +220,8 @@ class DoctorManage extends React.Component {
             priceId: obj.price.value,
             provinceId: obj.province.value,
             paymentId: obj.payment.value,
+            specialtyId: obj.specialty.value,
+            clinicId: obj.clinic.value,
             addressClinic: obj.addressClinic,
             nameClinic: obj.nameClinic,
             note: obj.note,
@@ -388,6 +398,46 @@ class DoctorManage extends React.Component {
                                     className="form-control"
                                     onChange={(e) =>
                                         this.handleOnChangeText(e, "note")
+                                    }
+                                />
+                            </div>
+                            <div className="col-4 my-2">
+                                <label className="form-label">
+                                    <FormattedMessage id="manage-doctor-detail.extra-infor.choose-specialty" />
+                                </label>
+                                <Select
+                                    value={this.state.specialty}
+                                    name="specialty"
+                                    options={this.buildOptionSelect(
+                                        this.state.requireDoctorInfor &&
+                                            this.state.requireDoctorInfor
+                                                .data_specialties,
+                                        "id",
+                                        "name"
+                                    )}
+                                    onChange={this.handleOnChangeSelect}
+                                    placeholder={
+                                        <FormattedMessage id="manage-doctor-detail.select" />
+                                    }
+                                />
+                            </div>
+                            <div className="col-4 my-2">
+                                <label className="form-label">
+                                    <FormattedMessage id="manage-doctor-detail.extra-infor.choose-clinic" />
+                                </label>
+                                <Select
+                                    value={this.state.clinic}
+                                    name="clinic"
+                                    options={this.buildOptionSelect(
+                                        this.state.requireDoctorInfor &&
+                                            this.state.requireDoctorInfor
+                                                .data_clinic,
+                                        "id",
+                                        "name"
+                                    )}
+                                    onChange={this.handleOnChangeSelect}
+                                    placeholder={
+                                        <FormattedMessage id="manage-doctor-detail.select" />
                                     }
                                 />
                             </div>

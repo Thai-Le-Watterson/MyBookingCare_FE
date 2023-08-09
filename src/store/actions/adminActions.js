@@ -10,6 +10,7 @@ import {
     createMarkdown,
     updateMarkdown,
     bulkCreateSchedule,
+    getAllSpecialties,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 // import axios from "axios";
@@ -96,11 +97,13 @@ export const fetchRequireDoctorInforStart = () => {
             const data_price = await handleGetAllCode("price");
             const data_payment = await handleGetAllCode("payment");
             const data_province = await handleGetAllCode("province");
+            const data_specialties = await getAllSpecialties();
 
             const data = {
                 data_price,
                 data_payment,
                 data_province,
+                data_specialties,
             };
             dispatch(fetchRequireDoctorInforSuccess(data));
         } catch (e) {

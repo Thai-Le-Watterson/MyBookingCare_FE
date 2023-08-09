@@ -33,8 +33,8 @@
         },
         "clinic": "Clinic",
         "manage-clinic": "Clinic Management",
-        "specialy": "Specialy",
-        "manage-specialy": "Specialy Management",
+        "specialty": "Specialy",
+        "manage-specialty": "Specialy Management",
         "handbook": "Handbook",
         "manage-handbook": "Handbook Management",
         "doctor": "Doctor",
@@ -66,6 +66,8 @@
             "choose-price": "Choose a price",
             "choose-payment": "Select a payment method",
             "choose-province": "Choose a province",
+            "choose-clinic": "Choose a clinic",
+            "choose-specialty": "Choose a specialty",
             "address-clinic": "Clinic address",
             "name-clinic": "Clinic name",
             "note": "Note"
@@ -75,6 +77,18 @@
         "title": "Manage Schedule",
         "choose-doctor": "Choose a doctor",
         "choose-date": "Choose date",
+        "save": "Save"
+    },
+    "manage-clinic": {
+        "title": "Manage Clinic",
+        "name": "Name",
+        "address": "Address",
+        "image": "Image",
+        "introduce": "Introduce",
+        "professional": "Professional",
+        "equipment": "Equipment",
+        "location": "Location",
+        "procedure": "Procedure",
         "save": "Save"
     },
     "homepage": {
@@ -108,5 +122,8 @@
         "gender": "Gender",
         "book": "Book",
         "cancel": "Cancel"
+    },
+    "profile-doctor": {
+        "more": "More"
     }
 }

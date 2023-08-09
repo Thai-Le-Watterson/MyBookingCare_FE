@@ -33,8 +33,8 @@
         },
         "clinic": "Phòng khám",
         "manage-clinic": "Quản lí phòng khám",
-        "specialy": "Chuyên khoa",
-        "manage-specialy": "Quản lí chuyên khoa",
+        "specialty": "Chuyên khoa",
+        "manage-specialty": "Quản lí chuyên khoa",
         "handbook": "Cẩm nang",
         "manage-handbook": "Quản lí cẩm nang",
         "doctor": "Bác sĩ",
@@ -66,6 +66,8 @@
             "choose-price": "Chọn giá khám",
             "choose-payment": "Chọn phương thức thanh toán",
             "choose-province": "Chọn tỉnh thành",
+            "choose-clinic": "Chọn phòng khám",
+            "choose-specialty": "Chọn chuyên khoa",
             "address-clinic": "Địa chỉ phòng khám",
             "name-clinic": "Tên phòng khám",
             "note": "Ghi chú"
@@ -76,6 +78,18 @@
         "choose-doctor": "Chọn bác sĩ",
         "choose-date": "Chọn ngày",
         "save": "Lưu"
+    },
+    "manage-clinic": {
+        "title": "Quản Lý Phòng Khám",
+        "name": "Tên phòng khám",
+        "address": "Địa chỉ phòng khám",
+        "image": "Ảnh phòng khám",
+        "introduce": "Giới thiệu",
+        "professional": "Thế mạnh chuyên môn",
+        "equipment": "Trang thiết bị",
+        "location": "Vị trí",
+        "procedure": "Quy trình đi khám",
+        "save": "Lưu thông tin"
     },
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
@@ -108,5 +122,8 @@
         "gender": "Giới tính",
         "book": "Đặt",
         "cancel": "Hủy"
+    },
+    "profile-doctor": {
+        "more": "Xem thêm"
     }
 }

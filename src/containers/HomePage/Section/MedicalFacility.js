@@ -1,11 +1,35 @@
 import React from "react";
 import Slider from "react-slick";
+import { connect } from "react-redux";
+import * as userService from "../../../services/userService";
+import { FormattedMessage } from "react-intl";
+import { history } from "../../../redux";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 class MedicalFacility extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            clinics: [],
+        };
+    }
+
+    componentDidMount = async () => {
+        const clinics = await userService.getAllClinic();
+        this.setState({
+            clinics,
+        });
+    };
+
+    redirectToClinicDetail = (id) => {
+        history.push(`/detail-clinic/${id}`);
+    };
+
     render() {
+        console.log("check clinics: ", this.state);
+        const { clinics } = this.state;
         return (
             <>
                 <div className="section-overlay section-bg">
@@ -15,30 +39,34 @@ class MedicalFacility extends React.Component {
                             <button className="button">Tìm Kiếm</button>
                         </div>
                         <Slider {...this.props.settings}>
-                            <div className="section-item">
-                                <div className="img img1"></div>
-                                <span className="title">Cơ xương khớp</span>
-                            </div>
-                            <div className="section-item">
-                                <div className="img img2"></div>
-                                <span className="title">Tim mạch</span>
-                            </div>
-                            <div className="section-item">
-                                <div className="img img3"></div>
-                                <span className="title">Cột sống</span>
-                            </div>
-                            <div className="section-item">
-                                <div className="img img4"></div>
-                                <span className="title">Thần kinh</span>
-                            </div>
-                            <div className="section-item">
-                                <div className="img img5"></div>
-                                <span className="title">Bệnh viêm gan</span>
-                            </div>
-                            <div className="section-item">
-                                <div className="img img6"></div>
-                                <span className="title">Châm cứu</span>
-                            </div>
+                            {clinics &&
+                                clinics.map((clinic, index) => {
+                                    const image = Buffer.from(
+                                        clinic.image
+                                    ).toString();
+                                    return (
+                                        <div
+                                            className="section-item"
+                                            key={index}
+                                            onClick={() =>
+                                                this.redirectToClinicDetail(
+                                                    clinic.id
+                                                )
+                                            }
+                                        >
+                                            <div
+                                                className="img"
+                                                style={{
+                                                    backgroundImage: `url(${image})`,
+                                                    backgroundSize: "contain",
+                                                }}
+                                            ></div>
+                                            <span className="title">
+                                                {clinic.name}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
                         </Slider>
                     </div>
                 </div>

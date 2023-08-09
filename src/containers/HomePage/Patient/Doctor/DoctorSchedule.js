@@ -24,7 +24,26 @@ class DoctorSchedule extends React.Component {
         };
     }
 
-    componentDidMount = async () => {};
+    componentDidMount = async () => {
+        const dateObj = this.getDays();
+
+        this.setState({
+            dates: dateObj.dates,
+            datesRender: dateObj.datesRender,
+        });
+
+        const firstDate = dateObj.dates[0];
+        const schedule = await userService.getSchedule(
+            this.props.doctorId,
+            firstDate
+        );
+
+        this.setState({
+            dates: dateObj.dates,
+            selectDate: firstDate,
+            schedule: schedule || [],
+        });
+    };
 
     componentDidUpdate = async (prevProps) => {
         if (prevProps.language !== this.props.language) {
@@ -122,7 +141,7 @@ class DoctorSchedule extends React.Component {
                     <div className="row">
                         <div className="select-container">
                             <select
-                                className="select-date form-select w-10"
+                                className="select-date form-select"
                                 onChange={(e) =>
                                     this.handleChangeScheduleDate(e)
                                 }

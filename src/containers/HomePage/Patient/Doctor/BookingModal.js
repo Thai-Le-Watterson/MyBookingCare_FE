@@ -8,6 +8,7 @@ import moment from "moment";
 import * as actions from "../../../../store/actions/index";
 import { history } from "../../../../redux";
 import { createBooking } from "../../../../services/userService";
+import { toast } from "react-toastify";
 
 import Select from "react-select";
 import DatePicker from "../../../../components/Input/DatePicker";
@@ -96,23 +97,30 @@ class BookingModal extends React.Component {
         }
         const { doctor, bookingType, fullName, gender, reason, dateBirth } =
             this.state;
-        const { schedule, userInfor } = this.props;
+        const { schedule, userInfor, language } = this.props;
         const date = moment(schedule.date).format("DD/MM/YYYY");
         const dataRequest = {
-            statusId: "NEW",
+            statusId: "R1",
             doctorId: doctor.id,
+            doctorName: doctor.fullName,
             patientEmail: userInfor.email,
             fullName,
             gender,
             dateBirth,
             date,
             timeType: schedule.timeType,
+            timeData:
+                schedule.timeData[
+                    language === languages.VI ? "valueVi" : "valueEn"
+                ],
             reason,
+            language,
         };
 
         const isNotValid = this.checkEmptyData(dataRequest);
         if (!isNotValid) {
             try {
+                console.log(dataRequest);
                 const res = await createBooking(dataRequest);
                 if (res.errCode === 0) {
                     this.setState({
@@ -122,11 +130,15 @@ class BookingModal extends React.Component {
                         reason: "",
                         dateBirth: "",
                     });
+                    toast.success(res.message);
+                } else {
+                    toast.error(res.message);
                 }
-                console.log(res);
             } catch (e) {
                 console.log(e);
             }
+        } else {
+            toast.error("Missing parameter");
         }
     };
 

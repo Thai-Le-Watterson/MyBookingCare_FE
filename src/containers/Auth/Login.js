@@ -42,7 +42,6 @@ class Login extends Component {
 
         if (data && data.errCode === 0 && data.user) {
             this.props.userLoginSuccess(data.user);
-            history.goBack();
         } else {
             this.setState({
                 errorMessage: data.message,

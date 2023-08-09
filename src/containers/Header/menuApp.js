@@ -22,7 +22,7 @@ export const adminMenu = [
         ],
     },
     {
-        //hệ thống
+        //Phòng khám
         name: "menu.clinic",
         menus: [
             {
@@ -32,17 +32,17 @@ export const adminMenu = [
         ],
     },
     {
-        //hệ thống
-        name: "menu.specialy",
+        //Chuyên khoa
+        name: "menu.specialty",
         menus: [
             {
-                name: "menu.manage-specialy",
-                link: "/system/specialy-manage",
+                name: "menu.manage-specialty",
+                link: "/system/specialty-manage",
             },
         ],
     },
     {
-        //hệ thống
+        //Cẩm nang
         name: "menu.handbook",
         menus: [
             {

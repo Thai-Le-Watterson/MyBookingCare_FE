@@ -135,6 +135,7 @@
             }
 
             .img {
+                background-color: #fff;
                 background-repeat: no-repeat;
                 background-position: center;
                 background-size: cover;
@@ -178,7 +179,7 @@
             .specialist,
             .title {
                 color: #111;
-                padding: 5px 0;
+                padding: 5px 0 4px;
                 font-size: 13px;
                 font-weight: 100;
                 text-transform: capitalize;

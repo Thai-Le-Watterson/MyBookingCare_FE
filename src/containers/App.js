@@ -17,6 +17,9 @@ import Login from "../containers/Auth/Login.js";
 import System from "../routes/System";
 import HomePage from "./HomePage/HomePage";
 import DoctorDetail from "./HomePage/Patient/Doctor/DoctorDetail";
+import SpecialtyDetail from "./HomePage/Patient/Doctor/SpecialtyDetail";
+import ClinicDetail from "./HomePage/Patient/Doctor/ClinicDetail";
+import VerifySchedule from "./HomePage/Patient/Doctor/VerifySchedule";
 
 import CustomScrollbars from "../components/CustomScrollbars";
 import { CustomToastCloseButton } from "../components/CustomToast";
@@ -65,6 +68,21 @@ class App extends Component {
                                         path={path.DETAIL_DOCTOR}
                                         exact
                                         component={DoctorDetail}
+                                    />
+                                    <Route
+                                        path={path.DETAIL_SPECIALTY}
+                                        exact
+                                        component={SpecialtyDetail}
+                                    />
+                                    <Route
+                                        path={path.DETAIL_CLINIC}
+                                        exact
+                                        component={ClinicDetail}
+                                    />
+                                    <Route
+                                        path={path.VERIFY_SCHEDULE}
+                                        exact
+                                        component={VerifySchedule}
                                     />
                                     <Route
                                         path={path.LOGIN}

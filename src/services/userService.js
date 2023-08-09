@@ -1,4 +1,3 @@
-// import { symbolName } from "typescript";
 import axios from "../axios";
 
 const handleUserLogin = async (email, password) => {
@@ -85,6 +84,36 @@ const getAllDoctors = async () => {
         // console.log("check data: ", data);
         if (data && data.data && data.data.errCode === 0) {
             if (data.data.doctors) return data.data.doctors;
+        }
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+const getDoctorInforBySpecialty = async (id, provinceId) => {
+    try {
+        const data = await axios.get(
+            `/api/doctors-by-specialty?id=${id || ""}&provinceId=${
+                provinceId || ""
+            }`
+        );
+        // console.log("check data: ", data);
+        if (data && data.errCode === 0) {
+            if (data.doctorsInfor) return data.doctorsInfor;
+        }
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+const getDoctorInforByClinic = async (clinicId) => {
+    try {
+        const data = await axios.get(
+            `/api/doctors-by-clinic?id=${clinicId || ""}`
+        );
+        // console.log("check data: ", data);
+        if (data && data.errCode === 0) {
+            if (data.doctorsInfor) return data.doctorsInfor;
         }
     } catch (e) {
         console.log(e);
@@ -183,6 +212,75 @@ const createBooking = (data) => {
     });
 };
 
+const createSpecialty = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.post(`api/create-specialty`, data);
+            resolve(result);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const getSpecialty = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.get(`api/get-specialty?id=${id}`);
+            if (result && result.errCode === 0) resolve(result.specialties);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const getAllSpecialties = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.get(`api/get-all-specialties`);
+            // console.log(result);
+            if (result && result.errCode === 0) resolve(result.specialties);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const getAllClinic = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.get(`api/get-all-clinic`);
+            if (result && result.errCode === 0)
+                if (result.clinics) resolve(result.clinics);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const getClinic = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.get(`api/get-clinic?id=${id}`);
+            if (result && result.errCode === 0)
+                if (result.clinic) resolve(result.clinic);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const createClinic = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.post(`api/create-clinic`, data);
+            resolve(result);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 export {
     handleUserLogin,
     handleGetUsers,
@@ -200,4 +298,12 @@ export {
     createDoctorInfor,
     updateDoctorInfor,
     createBooking,
+    createSpecialty,
+    getAllSpecialties,
+    getSpecialty,
+    getDoctorInforBySpecialty,
+    getDoctorInforByClinic,
+    createClinic,
+    getAllClinic,
+    getClinic,
 };

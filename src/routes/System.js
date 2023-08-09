@@ -9,10 +9,12 @@ import UserReduxManager from "../containers/System/UserReduxManager";
 import Header from "../containers/Header/Header";
 import DoctorManage from "../containers/System/DoctorManage";
 import ScheduleManage from "../containers/System/ScheduleManage";
+import SpecialtyManage from "../containers/System/SpecialtyManage";
+import ClinicManage from "../containers/System/ClinicManage";
 
 class System extends Component {
     render() {
-        console.log(this.props.userInfo.roleId);
+        // console.log(this.props.userInfo.roleId);
         if (
             this.props.userInfo.roleId !== ROLETYPE.ADMIN &&
             this.props.userInfo.roleId !== ROLETYPE.DOCTOR
@@ -42,6 +44,14 @@ class System extends Component {
                             <Route
                                 path="/system/schedule-manage"
                                 component={ScheduleManage}
+                            />
+                            <Route
+                                path="/system/clinic-manage"
+                                component={ClinicManage}
+                            />
+                            <Route
+                                path="/system/specialty-manage"
+                                component={SpecialtyManage}
                             />
                             <Route
                                 path="/system/register-package-group-or-account"

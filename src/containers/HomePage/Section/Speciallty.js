@@ -1,11 +1,33 @@
 import React from "react";
 import Slider from "react-slick";
+import * as userService from "../../../services/userService";
+import _ from "lodash";
+import { history } from "../../../redux";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Speciallty.scss";
 
 class Speciallty extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { specialties: [] };
+    }
+
+    componentDidMount = async () => {
+        const specialties = await userService.getAllSpecialties();
+        // console.log("check specialties: ", specialties);
+        if (specialties && !_.isEmpty(specialties)) {
+            this.setState({
+                specialties,
+            });
+        }
+    };
+
+    redirectToSpecialtyDetail = (specialtyId) => {
+        history.push(`/detail-specialty/${specialtyId}`);
+    };
+
     render() {
         return (
             <>
@@ -16,30 +38,35 @@ class Speciallty extends React.Component {
                             <button className="button">Xem Thêm</button>
                         </div>
                         <Slider {...this.props.settings}>
-                            <div className="section-item">
-                                <div className="img img1"></div>
-                                <span className="title">Cơ xương khớp</span>
-                            </div>
-                            <div className="section-item">
-                                <div className="img img2"></div>
-                                <span className="title">Tim mạch</span>
-                            </div>
-                            <div className="section-item">
-                                <div className="img img3"></div>
-                                <span className="title">Cột sống</span>
-                            </div>
-                            <div className="section-item">
-                                <div className="img img4"></div>
-                                <span className="title">Thần kinh</span>
-                            </div>
-                            <div className="section-item">
-                                <div className="img img5"></div>
-                                <span className="title">Bệnh viêm gan</span>
-                            </div>
-                            <div className="section-item">
-                                <div className="img img6"></div>
-                                <span className="title">Châm cứu</span>
-                            </div>
+                            {this.state.specialties &&
+                                this.state.specialties.map(
+                                    (specialty, index) => {
+                                        const image = Buffer.from(
+                                            specialty.image
+                                        ).toString();
+                                        return (
+                                            <div
+                                                className="section-item"
+                                                key={index}
+                                                onClick={() =>
+                                                    this.redirectToSpecialtyDetail(
+                                                        specialty.id
+                                                    )
+                                                }
+                                            >
+                                                <div
+                                                    className="img"
+                                                    style={{
+                                                        backgroundImage: `url(${image})`,
+                                                    }}
+                                                ></div>
+                                                <span className="title">
+                                                    {specialty.name}
+                                                </span>
+                                            </div>
+                                        );
+                                    }
+                                )}
                         </Slider>
                     </div>
                 </div>

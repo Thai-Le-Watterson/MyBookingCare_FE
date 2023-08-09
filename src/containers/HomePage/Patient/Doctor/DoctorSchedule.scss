@@ -2,13 +2,13 @@
     min-height: 200px;
 
     .select-container {
-        width: 150px;
+        width: fit-content;
 
         .select-date {
             margin-bottom: 10px;
             border: none;
             border-bottom: 1px solid #838383;
-            padding: 4px 0px;
+            padding: 4px 30px 4px 8px;
             color: #0087b6;
             font-size: 15px;
             outline: none;

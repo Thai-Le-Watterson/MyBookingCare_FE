@@ -1,0 +1,38 @@
+.doctor-intro {
+    display: flex;
+    gap: 20px;
+
+    .left {
+        text-align: center;
+
+        .doctor-avatar {
+            width: 120px;
+            min-width: 120px;
+            height: 120px;
+            min-height: 120px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            margin: 10px 0;
+        }
+
+        .more-text {
+            color: #45c3d2;
+            text-decoration: none;
+        }
+    }
+
+    .intro-content {
+        .doctor-name {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .description {
+            color: #555;
+            font-size: 14px;
+        }
+    }
+}

@@ -7,6 +7,7 @@ import { languages } from "../../../../utils";
 import HomeHeader from "../../HomeHeader";
 import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfor from "./DoctorExtraInfor";
+import ProfileDoctor from "./ProfileDoctor";
 
 import "./DoctorDetail.scss";
 
@@ -44,19 +45,8 @@ class DoctorDetail extends React.Component {
         return (
             <>
                 <HomeHeader />
-                <div className="doctor-intro">
-                    <div className="container">
-                        <div
-                            className="doctor-avatar"
-                            style={{ backgroundImage: `url(${image})` }}
-                        ></div>
-                        <div className="intro-content">
-                            <h3 className="doctor-name">{`${position} || ${doctor.fullName}`}</h3>
-                            <span className="description">
-                                {`${doctor.MarkdownData?.description}`}
-                            </span>
-                        </div>
-                    </div>
+                <div className="container">
+                    <ProfileDoctor doctorId={doctor.id} />
                 </div>
                 <div className="schedule-infor_container container">
                     <div className="row">
@@ -67,9 +57,7 @@ class DoctorDetail extends React.Component {
                             />
                         </div>
                         <div className="col">
-                            <DoctorExtraInfor
-                                doctorInfor={doctor.doctorInforData}
-                            />
+                            <DoctorExtraInfor doctorId={doctor.id} />
                         </div>
                     </div>
                 </div>
