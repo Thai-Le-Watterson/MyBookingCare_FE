@@ -26,6 +26,7 @@ class DoctorSchedule extends React.Component {
 
     componentDidMount = async () => {
         const dateObj = this.getDays();
+        // console.log("dateObj: ", dateObj);
 
         this.setState({
             dates: dateObj.dates,
@@ -33,6 +34,7 @@ class DoctorSchedule extends React.Component {
         });
 
         const firstDate = dateObj.dates[0];
+        // console.log(firstDate);
         const schedule = await userService.getSchedule(
             this.props.doctorId,
             firstDate
@@ -110,6 +112,7 @@ class DoctorSchedule extends React.Component {
     };
 
     handleChangeScheduleDate = async (e) => {
+        // console.log(e.target.value);
         const schedule = await userService.getSchedule(
             this.props.doctorId,
             e.target.value

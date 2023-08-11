@@ -61,6 +61,10 @@ export const doctorMenu = [
                 name: "menu.manage-doctor.manage-schedule",
                 link: "/system/schedule-manage",
             },
+            {
+                name: "menu.manage-doctor.manage-confirm-schedule",
+                link: "/system/schedule-confirm-manage",
+            },
         ],
     },
 ];

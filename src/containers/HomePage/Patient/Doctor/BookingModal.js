@@ -9,6 +9,7 @@ import * as actions from "../../../../store/actions/index";
 import { history } from "../../../../redux";
 import { createBooking } from "../../../../services/userService";
 import { toast } from "react-toastify";
+import { dateFormat } from "../../../../utils";
 
 import Select from "react-select";
 import DatePicker from "../../../../components/Input/DatePicker";
@@ -83,7 +84,7 @@ class BookingModal extends React.Component {
     };
 
     handleChangeDatePicker = (arg) => {
-        const date = moment(arg[0]).format("DD/MM/YYYY");
+        const date = moment(arg[0]).format(dateFormat.SEND_TO_SERVER);
         this.setState({
             dateBirth: date,
         });
@@ -98,7 +99,13 @@ class BookingModal extends React.Component {
         const { doctor, bookingType, fullName, gender, reason, dateBirth } =
             this.state;
         const { schedule, userInfor, language } = this.props;
-        const date = moment(schedule.date).format("DD/MM/YYYY");
+        let date = moment(schedule.date).format("DD/MM/YYYY");
+        // console.log("check date: ", date);
+        // date = moment
+        //     .utc(date, dateFormat.SEND_TO_SERVER)
+        //     .startOf("day")
+        //     .valueOf();
+        // console.log("check date: ", date);
         const dataRequest = {
             statusId: "R1",
             doctorId: doctor.id,
@@ -118,9 +125,9 @@ class BookingModal extends React.Component {
         };
 
         const isNotValid = this.checkEmptyData(dataRequest);
+        console.log(dataRequest);
         if (!isNotValid) {
             try {
-                console.log(dataRequest);
                 const res = await createBooking(dataRequest);
                 if (res.errCode === 0) {
                     this.setState({

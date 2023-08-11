@@ -9,6 +9,7 @@ import UserReduxManager from "../containers/System/UserReduxManager";
 import Header from "../containers/Header/Header";
 import DoctorManage from "../containers/System/DoctorManage";
 import ScheduleManage from "../containers/System/ScheduleManage";
+import ScheduleConfirmManage from "../containers/System/ScheduleConfirmManage";
 import SpecialtyManage from "../containers/System/SpecialtyManage";
 import ClinicManage from "../containers/System/ClinicManage";
 
@@ -52,6 +53,10 @@ class System extends Component {
                             <Route
                                 path="/system/specialty-manage"
                                 component={SpecialtyManage}
+                            />
+                            <Route
+                                path="/system/schedule-confirm-manage"
+                                component={ScheduleConfirmManage}
                             />
                             <Route
                                 path="/system/register-package-group-or-account"

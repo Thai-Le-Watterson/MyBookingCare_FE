@@ -1,0 +1,44 @@
+.users-container {
+    table {
+        border-collapse: collapse;
+        background-color: #fff;
+        width: 100%;
+
+        tr {
+            &:nth-child(even) {
+                background-color: #ebebeb;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background-color: #cdcdcd;
+            }
+
+            th,
+            td {
+                text-align: left;
+                padding: 8px;
+
+                button {
+                    background-color: transparent;
+                    border: none;
+                    margin-left: 10px;
+                    padding: 0 12px;
+                }
+
+                .btn_edit {
+                    color: #0071ba;
+                }
+
+                .btn_delete {
+                    color: #04aa6d;
+                }
+            }
+
+            th {
+                background-color: #04aa6d;
+                color: white;
+            }
+        }
+    }
+}

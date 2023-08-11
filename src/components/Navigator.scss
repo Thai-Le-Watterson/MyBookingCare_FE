@@ -4,6 +4,7 @@
     display: flex;
     margin: 0;
     padding: 0;
+
     &.list-unstyled,
     .list-unstyled {
         list-style-type: none;
@@ -17,6 +18,7 @@
             line-height: 40px;
             padding: 0 15px;
             border-right: 1px solid $border;
+
             &:first-child {
                 border-left: 1px solid $border;
             }
@@ -29,6 +31,7 @@
             color: $text-in-light;
             position: absolute;
             padding: 0;
+
             .menu {
                 line-height: 35px;
                 text-transform: none;
@@ -41,7 +44,7 @@
                     display: inline-block;
                     text-decoration: none;
                     color: $text-in-light;
-                    width: 205px;
+                    min-width: 205px;
                     padding: 0 15px;
                     height: 35px;
                 }

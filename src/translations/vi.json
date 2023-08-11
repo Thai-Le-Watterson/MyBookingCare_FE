@@ -39,7 +39,8 @@
         "manage-handbook": "Quản lí cẩm nang",
         "doctor": "Bác sĩ",
         "manage-doctor": {
-            "manage-schedule": "Quản lí lịch khám bệnh"
+            "manage-schedule": "Quản lí lịch khám bệnh",
+            "manage-confirm-schedule": "Quản lí xác nhận hoàn thành lịch hẹn"
         }
     },
     "manage-user-redux": {
@@ -76,8 +77,21 @@
     "manage-schedule": {
         "title": "Quản lí lịch khám bệnh",
         "choose-doctor": "Chọn bác sĩ",
+        "doctor-name": "Tên bác sĩ",
         "choose-date": "Chọn ngày",
-        "save": "Lưu"
+        "save": "Lưu",
+        "manage-confirm": {
+            "title": "Quản lí xác nhận lịch hẹn",
+            "email": "Email",
+            "full-name": "Tên đầy đủ",
+            "gender": "Giới tính",
+            "date": "Ngày khám",
+            "time": "Giờ khám",
+            "reason": "Lý do khám",
+            "confirm": "Xác nhận hoàn thành",
+            "confirm-btn": "Xác nhận",
+            "no-data": "Không có lịch hẹn vào ngày này"
+        }
     },
     "manage-clinic": {
         "title": "Quản Lý Phòng Khám",

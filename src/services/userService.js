@@ -281,6 +281,22 @@ const createClinic = (data) => {
     });
 };
 
+const getAllBookingByDoctor = async (doctorId, date) => {
+    try {
+        const data = await axios.get(
+            `/api/get-all-booking-doctor?doctorId=${doctorId || ""}&date=${
+                date || ""
+            }`
+        );
+        // console.log("check data: ", data);
+        if (data.data && data.data.errCode === 0) {
+            if (data.data.bookings) return data.data.bookings;
+        }
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 export {
     handleUserLogin,
     handleGetUsers,
@@ -306,4 +322,5 @@ export {
     createClinic,
     getAllClinic,
     getClinic,
+    getAllBookingByDoctor,
 };

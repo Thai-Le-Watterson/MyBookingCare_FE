@@ -39,7 +39,8 @@
         "manage-handbook": "Handbook Management",
         "doctor": "Doctor",
         "manage-doctor": {
-            "manage-schedule": "Manage schedule"
+            "manage-schedule": "Manage schedule",
+            "manage-confirm-schedule": "Manage confirm schedule"
         }
     },
     "manage-user-redux": {
@@ -76,8 +77,21 @@
     "manage-schedule": {
         "title": "Manage Schedule",
         "choose-doctor": "Choose a doctor",
+        "doctor-name": "Doctor name",
         "choose-date": "Choose date",
-        "save": "Save"
+        "save": "Save",
+        "manage-confirm": {
+            "title": "Manage confirm schedule",
+            "email": "Email",
+            "full-name": "Full name",
+            "gender": "Gender",
+            "date": "Date",
+            "time": "Time",
+            "reason": "Reason",
+            "confirm": "Confirm",
+            "confirm-btn": "Confirm",
+            "no-data": "No appointments for this date"
+        }
     },
     "manage-clinic": {
         "title": "Manage Clinic",

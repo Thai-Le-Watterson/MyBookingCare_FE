@@ -27,6 +27,12 @@ class ScheduleManage extends React.Component {
     componentDidMount = () => {
         this.props.getAllDoctor();
         this.props.getAllTime();
+        const { userInfor } = this.props;
+        if (userInfor.roleId === "R2") {
+            this.setState({
+                selectDoctorId: userInfor.id,
+            });
+        }
     };
 
     componentDidUpdate = (prevProps) => {
@@ -52,6 +58,7 @@ class ScheduleManage extends React.Component {
     };
 
     handleChangeDatePicker = (arg) => {
+        console.log(moment(arg[0]).format(dateFormat.SEND_TO_SERVER));
         this.setState({
             date: moment(arg[0]).format(dateFormat.SEND_TO_SERVER),
         });
@@ -86,12 +93,12 @@ class ScheduleManage extends React.Component {
             toast.error("Missing parameter");
         } else {
             // date = moment(date, dateFormat.SEND_TO_SERVER).unix() * 1000;
-            console.log(date);
+            // console.log(date);
             date = moment
                 .utc(date, dateFormat.SEND_TO_SERVER)
                 .startOf("day")
                 .valueOf();
-            console.log(date);
+            // console.log(date);
             const dataSchedules = {
                 scheduleDatas: selectedTimes.map((time) => {
                     const copyTimes = {};
@@ -113,6 +120,8 @@ class ScheduleManage extends React.Component {
         const options = this.state.doctors.map((doctor) => {
             return { value: doctor.id, label: doctor.fullName };
         });
+        const { userInfor } = this.props;
+        // console.log("check userInfor: ", userInfor);
 
         return (
             <>
@@ -123,14 +132,30 @@ class ScheduleManage extends React.Component {
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                                <label className="form-label">
-                                    <FormattedMessage id="manage-schedule.choose-doctor" />
-                                </label>
-                                <Select
-                                    value={this.state.doctorId}
-                                    options={options}
-                                    onChange={this.handleOnChangeSelect}
-                                />
+                                {userInfor.roleId === "R2" ? (
+                                    <>
+                                        <label className="form-label">
+                                            <FormattedMessage id="manage-schedule.doctor-name" />
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={userInfor?.fullName}
+                                            disabled
+                                            className="form-control"
+                                        />
+                                    </>
+                                ) : (
+                                    <>
+                                        <label className="form-label">
+                                            <FormattedMessage id="manage-schedule.choose-doctor" />
+                                        </label>
+                                        <Select
+                                            value={this.state.doctorId}
+                                            options={options}
+                                            onChange={this.handleOnChangeSelect}
+                                        />
+                                    </>
+                                )}
                             </div>
                             <div className="date-picker_container col">
                                 <label className="form-label">
@@ -188,6 +213,7 @@ const mapStateToProps = (state) => {
         doctors: state.admin.allDoctors,
         times: state.admin.times,
         language: state.app.language,
+        userInfor: state.user.userInfo,
     };
 };
 
