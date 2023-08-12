@@ -5,11 +5,14 @@ import avatar from "../../../../assets/avatar/avatar_default.jpg";
 import { languages } from "../../../../utils";
 
 import HomeHeader from "../../HomeHeader";
+import HomeFooter from "../../HomeFooter";
 import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfor from "./DoctorExtraInfor";
 import ProfileDoctor from "./ProfileDoctor";
+import Comment from "../../SocialPlugin/Comment";
 
 import "./DoctorDetail.scss";
+require("dotenv").config();
 
 class DoctorDetail extends React.Component {
     constructor(props) {
@@ -28,8 +31,8 @@ class DoctorDetail extends React.Component {
             doctor,
         });
 
-        document.querySelector(".doctor-content .text-content").innerHTML =
-            this.state.doctor.MarkdownData?.contentHTML;
+        // document.querySelector(".doctor-content .text-content").innerHTML =
+        //     this.state.doctor.MarkdownData?.contentHTML;
     };
 
     render() {
@@ -42,11 +45,26 @@ class DoctorDetail extends React.Component {
             this.props.language === languages.VI
                 ? doctor.positionData?.valueVi
                 : doctor?.positionData?.valueEn;
+
+        const currentHref =
+            process.env.REACT_APP_IS_LOCALHOST === "0"
+                ? window.location.href
+                : "https://www.facebook.com/";
+        // console.log(
+        //     "currentHref: ",
+        //     currentHref,
+        //     "isLocal: ",
+        //     process.env.REACT_APP_IS_LOCALHOST
+        // );
         return (
             <>
                 <HomeHeader />
                 <div className="container">
-                    <ProfileDoctor doctorId={doctor.id} />
+                    <ProfileDoctor
+                        doctorId={doctor.id}
+                        isShowLikeShare={true}
+                        currentHref={currentHref}
+                    />
                 </div>
                 <div className="schedule-infor_container container">
                     <div className="row">
@@ -63,11 +81,16 @@ class DoctorDetail extends React.Component {
                 </div>
                 <div className="doctor-content">
                     <div className="container">
-                        <p className="text-content">
-                            {doctor.MarkdownData?.contentHTML}
-                        </p>
+                        <p
+                            className="text-content"
+                            dangerouslySetInnerHTML={{
+                                __html: doctor.MarkdownData?.contentHTML,
+                            }}
+                        ></p>
                     </div>
                 </div>
+                {/* <Comment href={currentHref} /> */}
+                <HomeFooter />
             </>
         );
     }

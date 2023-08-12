@@ -157,7 +157,7 @@ class BookingModal extends React.Component {
     };
 
     buildOptionGenderSelect = () => {
-        return this.props.genders.map((gender) => {
+        return this.props?.genders?.map((gender) => {
             return {
                 value: gender.keyMap,
                 label:

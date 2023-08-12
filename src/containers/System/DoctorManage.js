@@ -89,17 +89,17 @@ class DoctorManage extends React.Component {
     };
 
     handleOnChangeSelectDoctor = async (selectDoctor) => {
-        const doctor = await getDoctorDetail(selectDoctor.value);
+        const doctor = await getDoctorDetail(selectDoctor?.value);
         console.log(doctor);
-        const isNotMarkdown = this.checkValueData(doctor.MarkdownData);
+        const isNotMarkdown = this.checkValueData(doctor?.MarkdownData);
         const copyState = { ...this.state };
 
         copyState.selectDoctor = selectDoctor;
         copyState.action = isNotMarkdown ? CRUD.CREATE : CRUD.UPDATE;
         copyState.contents = {
-            contentHTML: doctor.MarkdownData.contentHTML || "",
-            contentMarkDown: doctor.MarkdownData.contentMarkDown || "",
-            description: doctor.MarkdownData.description || "",
+            contentHTML: doctor?.MarkdownData?.contentHTML || "",
+            contentMarkDown: doctor?.MarkdownData?.contentMarkDown || "",
+            description: doctor?.MarkdownData?.description || "",
         };
 
         const {
@@ -113,7 +113,7 @@ class DoctorManage extends React.Component {
             paymentData,
             priceData,
             provinceData,
-        } = doctor.doctorInforData;
+        } = doctor?.doctorInforData || {};
         const isNotExistDoctorInforData = this.checkValueData({
             paymentId,
             priceId,
@@ -149,7 +149,7 @@ class DoctorManage extends React.Component {
         copyState.addressClinic = addressClinic || "";
         copyState.nameClinic = nameClinic || "";
         copyState.note = note || "";
-
+        console.log("check copy state: ", copyState);
         this.setState({
             ...copyState,
         });
@@ -164,6 +164,7 @@ class DoctorManage extends React.Component {
 
     handleSaveMarkdown = () => {
         const isNotValid = this.checkValueData(this.state.contents);
+        console.log("check isNotValid: ", isNotValid);
         if (!isNotValid) {
             const dataRequest = {
                 contentHTML: this.state.contents.contentHTML,
@@ -192,8 +193,8 @@ class DoctorManage extends React.Component {
     handleSaveDoctorInfor = async () => {
         const dataRequest = this.buildRequestDataDoctorInfor(this.state);
         const isNotValid = this.checkValueData(dataRequest);
-        console.log("check dataRequest: ", dataRequest);
-        console.log("check isNotValid: ", isNotValid);
+        // console.log("check dataRequest: ", dataRequest);
+        // console.log("check isNotValid: ", isNotValid);
         if (
             !isNotValid ||
             isNotValid === "note" ||
@@ -209,9 +210,11 @@ class DoctorManage extends React.Component {
     };
 
     checkValueData = (obj) => {
-        return Object.keys(obj).find((item) => {
-            return !obj[item];
-        });
+        if (obj) {
+            return Object.keys(obj).find((item) => {
+                return !obj[item];
+            });
+        }
     };
 
     buildRequestDataDoctorInfor = (obj) => {
@@ -445,7 +448,7 @@ class DoctorManage extends React.Component {
                     </div>
                     <div className="markdown-container container">
                         <MdEditor
-                            value={this.state.contents.contentMarkDown}
+                            value={this.state?.contents?.contentMarkDown}
                             style={{ height: "400px" }}
                             renderHTML={(text) => mdParser.render(text)}
                             onChange={this.handleEditorChange}

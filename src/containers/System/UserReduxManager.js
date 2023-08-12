@@ -39,10 +39,10 @@ class UserReduxManager extends Component {
     }
 
     async componentDidMount() {
-        this.props.getGender();
-        this.props.getRole();
-        this.props.getPosition();
-        this.props.getUsers("ALL");
+        await this.props.getGender();
+        await this.props.getRole();
+        await this.props.getPosition();
+        await this.props.getUsers("ALL");
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -199,6 +199,7 @@ class UserReduxManager extends Component {
     };
 
     render() {
+        console.log("check state: ", this.state);
         return (
             <>
                 {this.state.isOpen && (

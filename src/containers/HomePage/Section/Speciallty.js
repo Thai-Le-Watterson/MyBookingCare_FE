@@ -38,12 +38,14 @@ class Speciallty extends React.Component {
                             <button className="button">Xem Thêm</button>
                         </div>
                         <Slider {...this.props.settings}>
-                            {this.state.specialties &&
+                            {this.state?.specialties &&
                                 this.state.specialties.map(
                                     (specialty, index) => {
-                                        const image = Buffer.from(
-                                            specialty.image
-                                        ).toString();
+                                        const image =
+                                            specialty.image &&
+                                            Buffer.from(
+                                                specialty.image
+                                            ).toString();
                                         return (
                                             <div
                                                 className="section-item"

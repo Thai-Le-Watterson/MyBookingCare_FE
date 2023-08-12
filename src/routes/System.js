@@ -16,12 +16,12 @@ import ClinicManage from "../containers/System/ClinicManage";
 class System extends Component {
     render() {
         // console.log(this.props.userInfo.roleId);
-        if (
-            this.props.userInfo.roleId !== ROLETYPE.ADMIN &&
-            this.props.userInfo.roleId !== ROLETYPE.DOCTOR
-        ) {
-            this.props.history.push("/home");
-        }
+        // if (
+        //     this.props.userInfo.roleId !== ROLETYPE.ADMIN &&
+        //     this.props.userInfo.roleId !== ROLETYPE.DOCTOR
+        // ) {
+        //     this.props.history.push("/home");
+        // }
         const { systemMenuPath } = this.props;
         return (
             <>
@@ -62,11 +62,11 @@ class System extends Component {
                                 path="/system/register-package-group-or-account"
                                 component={RegisterPackageGroupOrAcc}
                             />
-                            <Route
+                            {/* <Route
                                 component={() => {
                                     return <Redirect to={systemMenuPath} />;
                                 }}
-                            />
+                            /> */}
                         </Switch>
                     </div>
                 </div>

@@ -11,6 +11,8 @@ import * as userService from "../../services/userService";
 
 import { FormattedMessage } from "react-intl";
 import DatePicker from "../../components/Input/DatePicker";
+import ConfirmScheduleModal from "./ConfirmScheduleModal";
+import { RingLoader } from "react-spinners";
 
 import "./ScheduleConfirmManage.scss";
 
@@ -20,7 +22,10 @@ class ScheduleConfirmManage extends React.Component {
         this.state = {
             bookings: [],
             doctors: [],
+            seletedBooking: {},
             selectDoctorId: "",
+            isOpenModal: false,
+            isLoading: false,
             date: moment(new Date()).format(dateFormat.SEND_TO_SERVER),
         };
     }
@@ -66,10 +71,70 @@ class ScheduleConfirmManage extends React.Component {
         });
     };
 
-    handleShowModal = () => {};
+    handleConfirmSchedule = async (imageBase64) => {
+        this.toogleLoading();
+        const dataRequest = {
+            doctorId: this.state.seletedBooking.doctorId,
+            doctorName: this.state.seletedBooking.doctorData.fullName,
+            image: imageBase64,
+            patientEmail: this.state.seletedBooking.patientEmail,
+            patientName: this.state.seletedBooking.fullName,
+            date: moment(this.state.seletedBooking.date).format("DD/MM/YYYY"),
+            reason: this.state.seletedBooking.reason,
+            time: this.state.seletedBooking.timeBookingData[
+                this.props.language === languages.VI ? "valueVi" : "valueEn"
+            ],
+        };
+
+        const emptyData = this.checkEmptyData(dataRequest);
+
+        if (!emptyData) {
+            // console.log("check dataRequest: ", dataRequest);
+            const res = await userService.confirmBooking(dataRequest);
+            if (res.errCode === 0) {
+                toast.success(res.message);
+
+                const bookings = await userService.getAllBookingByDoctor(
+                    this.state.selectDoctorId,
+                    this.state.date
+                );
+                this.setState({
+                    bookings: bookings || [],
+                });
+            } else toast.error(res.message);
+        } else {
+            toast.error(`${emptyData} is empty`);
+        }
+        this.toogleLoading();
+    };
+
+    handleShowModal = (booking) => {
+        this.setState({
+            seletedBooking: booking,
+            isOpenModal: true,
+        });
+    };
+
+    toogleLoading = () => {
+        this.setState({
+            isLoading: !this.state.isLoading,
+        });
+    };
+
+    toggle = () => {
+        this.setState({
+            isOpenModal: false,
+        });
+    };
+
+    checkEmptyData = (obj) => {
+        return Object.keys(obj).find((item) => {
+            return !obj[item];
+        });
+    };
 
     render() {
-        console.log("check state: ", this.state);
+        // console.log("check state: ", this.state);
         const options = this.state.doctors.map((doctor) => {
             return { value: doctor.id, label: doctor.fullName };
         });
@@ -198,7 +263,7 @@ class ScheduleConfirmManage extends React.Component {
                                                                 className="btn_edit"
                                                                 onClick={(e) =>
                                                                     this.handleShowModal(
-                                                                        booking.id
+                                                                        booking
                                                                     )
                                                                 }
                                                             >
@@ -224,6 +289,21 @@ class ScheduleConfirmManage extends React.Component {
                         </div>
                     </div>
                 </div>
+                <ConfirmScheduleModal
+                    isOpen={this.state.isOpenModal}
+                    toggle={this.toggle}
+                    booking={this.state.seletedBooking}
+                    handleConfirmSchedule={this.handleConfirmSchedule}
+                />
+                {this.state.isLoading && (
+                    <div className="loader">
+                        <RingLoader
+                            color={"#00fff1"}
+                            loading={this.state.isLoading}
+                            size={150}
+                        />
+                    </div>
+                )}
             </>
         );
     }

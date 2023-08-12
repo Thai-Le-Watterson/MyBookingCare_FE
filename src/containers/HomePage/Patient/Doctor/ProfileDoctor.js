@@ -5,6 +5,7 @@ import avatar from "../../../../assets/avatar/avatar_default.jpg";
 import { languages } from "../../../../utils";
 import { Link } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
+import LikeShare from "../../SocialPlugin/LikeShare";
 
 import "./ProfileDoctor.scss";
 
@@ -66,9 +67,14 @@ class ProfileDoctor extends React.Component {
                     </div>
                     <div className="intro-content right">
                         <h3 className="doctor-name">{`${position} || ${doctor.fullName}`}</h3>
-                        <span className="description">
+                        <span className="description mb-2">
                             {`${doctor.MarkdownData?.description}`}
                         </span>
+                        {this.props.isShowLikeShare && (
+                            <>
+                                {/* <LikeShare href={this.props.currentHref} /> */}
+                            </>
+                        )}
                     </div>
                 </div>
             </>

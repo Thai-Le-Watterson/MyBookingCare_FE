@@ -1,4 +1,5 @@
 import axios from "../axios";
+import _ from "lodash";
 
 const handleUserLogin = async (email, password) => {
     try {
@@ -297,6 +298,21 @@ const getAllBookingByDoctor = async (doctorId, date) => {
     }
 };
 
+const confirmBooking = async (dataRequest) => {
+    try {
+        const data = await axios.put(
+            `/api/confirm-booking-doctor`,
+            dataRequest
+        );
+        console.log("check data: ", data);
+        if (data && !_.isEmpty(data)) {
+            if (data) return data;
+        }
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 export {
     handleUserLogin,
     handleGetUsers,
@@ -323,4 +339,5 @@ export {
     getAllClinic,
     getClinic,
     getAllBookingByDoctor,
+    confirmBooking,
 };

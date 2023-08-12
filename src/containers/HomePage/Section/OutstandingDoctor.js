@@ -35,9 +35,10 @@ class OutstandingDoctor extends React.Component {
 
     render() {
         let language = this.props.language;
-        let topDoctors = [...this.state.topDoctors];
-        if (topDoctors.length < 4)
-            topDoctors = topDoctors.concat(topDoctors).concat(topDoctors);
+        let topDoctors = this.state.topDoctors &&
+            this.state.topDoctors.length > 0 && [...this.state.topDoctors];
+        // if (topDoctors && topDoctors.length < 4 && topDoctors.length > 0)
+        //     topDoctors = topDoctors?.concat(topDoctors)?.concat(topDoctors);
         return (
             <>
                 <div className="section-overlay style-circle-img">
@@ -51,39 +52,45 @@ class OutstandingDoctor extends React.Component {
                             </button>
                         </div>
                         <Slider {...this.props.settings}>
-                            {topDoctors.map((topDoctor, index) => {
-                                const image = topDoctor.image
-                                    ? Buffer.from(topDoctor.image).toString()
-                                    : "";
-                                return (
-                                    <div
-                                        className="section-item"
-                                        key={index}
-                                        onClick={() =>
-                                            this.handleRedirect(topDoctor.id)
-                                        }
-                                    >
-                                        <div className="margin-box">
-                                            <div
-                                                className="img"
-                                                style={{
-                                                    backgroundImage: `url(${image})`,
-                                                }}
-                                            ></div>
-                                            <p className="name">{`${
-                                                language === languages.VI
-                                                    ? topDoctor.positionData
-                                                          .valueVi
-                                                    : topDoctor.positionData
-                                                          .valueEn
-                                            }, ${topDoctor.fullName}`}</p>
-                                            <span className="specialist">
-                                                Cơ xương khớp
-                                            </span>
+                            {topDoctors &&
+                                topDoctors.length > 0 &&
+                                topDoctors.map((topDoctor, index) => {
+                                    const image = topDoctor.image
+                                        ? Buffer.from(
+                                              topDoctor.image
+                                          ).toString()
+                                        : "";
+                                    return (
+                                        <div
+                                            className="section-item"
+                                            key={index}
+                                            onClick={() =>
+                                                this.handleRedirect(
+                                                    topDoctor.id
+                                                )
+                                            }
+                                        >
+                                            <div className="margin-box">
+                                                <div
+                                                    className="img"
+                                                    style={{
+                                                        backgroundImage: `url(${image})`,
+                                                    }}
+                                                ></div>
+                                                <p className="name">{`${
+                                                    language === languages.VI
+                                                        ? topDoctor.positionData
+                                                              .valueVi
+                                                        : topDoctor.positionData
+                                                              .valueEn
+                                                }, ${topDoctor.fullName}`}</p>
+                                                <span className="specialist">
+                                                    Cơ xương khớp
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })}
                         </Slider>
                     </div>
                 </div>
