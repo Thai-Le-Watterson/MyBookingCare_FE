@@ -5,6 +5,9 @@ import { languages } from "../../../utils";
 import { FormattedMessage } from "react-intl";
 import { history } from "../../../redux";
 import * as actions from "../../../store/actions/index";
+import _ from "lodash";
+
+import ContentLoader from "react-content-loader";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,11 +17,20 @@ class OutstandingDoctor extends React.Component {
         super(props);
         this.state = {
             topDoctors: [],
+            isLoadContent: false,
         };
     }
 
-    componentDidMount() {
-        this.props.getTopDoctors("");
+    async componentDidMount() {
+        this.setState({
+            isLoadContent: true,
+        });
+
+        await this.props.getTopDoctors("");
+
+        this.setState({
+            isLoadContent: false,
+        });
     }
 
     componentDidUpdate = (prevProps, prevState) => {
@@ -33,10 +45,56 @@ class OutstandingDoctor extends React.Component {
         history.push(`/detail-doctor/${id}`);
     };
 
+    contentLoader = (quantity) => {
+        const result = [];
+
+        if (Number.isInteger(quantity) && quantity > 0)
+            for (let i = 1; i <= quantity; i++) {
+                result.push(
+                    <ContentLoader
+                        width={300}
+                        height={200}
+                        viewBox="0 0 450 400"
+                        backgroundColor="#f0f0f0"
+                        foregroundColor="#dedede"
+                    >
+                        <rect
+                            x="43"
+                            y="304"
+                            rx="4"
+                            ry="4"
+                            width="271"
+                            height="9"
+                        />
+                        <rect
+                            x="44"
+                            y="323"
+                            rx="3"
+                            ry="3"
+                            width="119"
+                            height="6"
+                        />
+                        <rect
+                            x="42"
+                            y="77"
+                            rx="10"
+                            ry="10"
+                            width="388"
+                            height="217"
+                        />
+                    </ContentLoader>
+                );
+            }
+
+        return result;
+    };
+
     render() {
         let language = this.props.language;
-        let topDoctors = this.state.topDoctors &&
-            this.state.topDoctors.length > 0 && [...this.state.topDoctors];
+        const { isLoadContent } = this.state;
+        let topDoctors = this.state?.topDoctors?.length > 0 && [
+            ...this.state.topDoctors,
+        ];
         // if (topDoctors && topDoctors.length < 4 && topDoctors.length > 0)
         //     topDoctors = topDoctors?.concat(topDoctors)?.concat(topDoctors);
         return (
@@ -51,10 +109,14 @@ class OutstandingDoctor extends React.Component {
                                 <FormattedMessage id="homepage.search" />
                             </button>
                         </div>
-                        <Slider {...this.props.settings}>
-                            {topDoctors &&
-                                topDoctors.length > 0 &&
-                                topDoctors.map((topDoctor, index) => {
+
+                        {isLoadContent ? (
+                            this.contentLoader(
+                                this.props.settings?.slidesToShow
+                            )
+                        ) : topDoctors?.length > 0 ? (
+                            <Slider {...this.props.settings}>
+                                {topDoctors.map((topDoctor, index) => {
                                     const image = topDoctor.image
                                         ? Buffer.from(
                                               topDoctor.image
@@ -91,7 +153,12 @@ class OutstandingDoctor extends React.Component {
                                         </div>
                                     );
                                 })}
-                        </Slider>
+                            </Slider>
+                        ) : (
+                            <h3 className="text-center my-4">
+                                Không có bác sĩ
+                            </h3>
+                        )}
                     </div>
                 </div>
             </>

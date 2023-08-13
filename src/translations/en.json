@@ -8,7 +8,12 @@
         "chooseDoctor": "Choose a good doctor",
         "examinationPackage": "Examination package",
         "healthCheck": "General health check",
-        "support": "Support"
+        "support": "Support",
+        "userOption": {
+            "logout": "Log Out",
+            "goToAdmin": "Go to the admin page",
+            "goToHome": "Go to the home page"
+        }
     },
     "homeBanner": {
         "title1": "HEALTH FACILITIES",
@@ -21,7 +26,8 @@
         "option6": "Examination dentistry",
         "option7": "Package Surgery",
         "option8": "Product Medical",
-        "option9": "Test Health"
+        "option9": "Test Health",
+        "search": "Search"
     },
     "menu": {
         "admin": "Admin",

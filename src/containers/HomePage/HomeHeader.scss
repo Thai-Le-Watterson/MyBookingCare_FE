@@ -121,28 +121,4 @@
             }
         }
     }
-
-    .user-container {
-        display: flex;
-        align-items: center;
-
-        .btn-login,
-        .btn-logout {
-            color: #8b8b8b;
-            line-height: 40px;
-            height: 40px;
-            padding: 0 10px;
-            // position: absolute;
-            // right: 20px;
-            // top: 50%;
-            // transform: translateY(-50%);
-
-            &:hover {
-                color: #9a9a9a;
-            }
-            i {
-                font-size: $base-size + 1px;
-            }
-        }
-    }
 }

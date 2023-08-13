@@ -8,7 +8,12 @@
         "chooseDoctor": "Chọn bác sĩ giỏi",
         "examinationPackage": "Gói khám",
         "healthCheck": "Khám sức khỏe tổng quát",
-        "support": "Hỗ trợ"
+        "support": "Hỗ trợ",
+        "userOption": {
+            "logout": "Đăng xuất",
+            "goToAdmin": "Đi đến trang quản lý",
+            "goToHome": "Đi đến trang chủ"
+        }
     },
     "homeBanner": {
         "title1": "NỀN TẢNG Y TẾ",
@@ -21,7 +26,8 @@
         "option6": "Khám nha khoa",
         "option7": "Gói Phẫu thuật",
         "option8": "Sản phẩm Y tế",
-        "option9": "Bài Test Sức khỏe"
+        "option9": "Bài Test Sức khỏe",
+        "search": "Tìm kiếm"
     },
     "menu": {
         "admin": "Người dùng",

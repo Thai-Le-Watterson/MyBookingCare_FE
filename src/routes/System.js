@@ -16,12 +16,12 @@ import ClinicManage from "../containers/System/ClinicManage";
 class System extends Component {
     render() {
         // console.log(this.props.userInfo.roleId);
-        // if (
-        //     this.props.userInfo.roleId !== ROLETYPE.ADMIN &&
-        //     this.props.userInfo.roleId !== ROLETYPE.DOCTOR
-        // ) {
-        //     this.props.history.push("/home");
-        // }
+        if (
+            this.props.userInfo.roleId !== ROLETYPE.ADMIN &&
+            this.props.userInfo.roleId !== ROLETYPE.DOCTOR
+        ) {
+            this.props.history.push("/home");
+        }
         const { systemMenuPath } = this.props;
         return (
             <>

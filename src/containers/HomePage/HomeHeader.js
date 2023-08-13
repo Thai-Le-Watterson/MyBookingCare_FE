@@ -5,6 +5,8 @@ import { languages } from "../../utils/constant";
 import * as actions from "../../store/actions";
 import { history } from "../../redux";
 
+import UserOption from "./Patient/User/UserOption";
+
 import "./HomeHeader.scss";
 
 class HomeHeader extends React.Component {
@@ -32,7 +34,8 @@ class HomeHeader extends React.Component {
     };
 
     render() {
-        let language = this.props.language;
+        let { language, userInfo } = this.props;
+        console.log("check userInfo: ", userInfo);
         return (
             <>
                 <div className="home-header_container">
@@ -127,23 +130,7 @@ class HomeHeader extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="user-container">
-                        {this.props.isLoggedIn ? (
-                            <div
-                                className="btn btn-logout"
-                                onClick={() => this.props.processLogout()}
-                            >
-                                <i className="fas fa-sign-out-alt"></i>
-                            </div>
-                        ) : (
-                            <div className="btn btn-login">
-                                <i
-                                    className="fa-solid fa-circle-user"
-                                    onClick={() => history.push("/login")}
-                                ></i>
-                            </div>
-                        )}
-                    </div>
+                    <UserOption />
                 </div>
             </>
         );

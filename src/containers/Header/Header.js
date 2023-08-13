@@ -6,6 +6,8 @@ import Navigator from "../../components/Navigator";
 import { adminMenu, doctorMenu } from "./menuApp";
 import { languages, ROLETYPE } from "../../utils/constant";
 
+import UserOption from "../HomePage/Patient/User/UserOption";
+
 import "./Header.scss";
 
 class Header extends Component {
@@ -32,7 +34,8 @@ class Header extends Component {
     };
 
     render() {
-        const { processLogout } = this.props;
+        const { processLogout, userInfo, language } = this.props;
+        const image = userInfo?.image && Buffer.from(userInfo.image).toString();
 
         return (
             <div className="header-container">
@@ -69,9 +72,10 @@ class Header extends Component {
                             EN
                         </span>
                     </div>
-                    <div className="btn btn-logout" onClick={processLogout}>
+                    <UserOption color="white" isAminPage={true} />
+                    {/* <div className="btn btn-logout" onClick={processLogout}>
                         <i className="fas fa-sign-out-alt"></i>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );
