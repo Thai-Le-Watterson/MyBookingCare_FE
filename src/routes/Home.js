@@ -6,7 +6,7 @@ import { path } from "../utils";
 class Home extends Component {
     render() {
         const { isLoggedIn } = this.props;
-        let linkToRedirect = isLoggedIn ? path.HOMEPAGE : path.SYSTEM; //path.LOGIN;
+        let linkToRedirect = isLoggedIn ? path.HOMEPAGE : path.HOMEPAGE; //path.LOGIN;
 
         return <Redirect to={linkToRedirect} />;
     }
