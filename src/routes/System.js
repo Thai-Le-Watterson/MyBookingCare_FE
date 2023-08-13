@@ -62,11 +62,11 @@ class System extends Component {
                                 path="/system/register-package-group-or-account"
                                 component={RegisterPackageGroupOrAcc}
                             />
-                            {/* <Route
+                            <Route
                                 component={() => {
                                     return <Redirect to={systemMenuPath} />;
                                 }}
-                            /> */}
+                            />
                         </Switch>
                     </div>
                 </div>
