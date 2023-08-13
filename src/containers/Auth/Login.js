@@ -5,7 +5,7 @@ import { history } from "../../redux";
 import * as actions from "../../store/actions";
 import * as userService from "../../services/userService";
 import "./Login.scss";
-import "../../assets/fontawesome-free-6.2.0-web/css/all.min.css";
+// import "../../assets/fontawesome-free-6.2.0-web/css/all.min.css";
 
 class Login extends Component {
     constructor(props) {
