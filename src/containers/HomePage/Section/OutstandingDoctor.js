@@ -83,11 +83,6 @@ class OutstandingDoctor extends React.Component {
                             height="217"
                         />
                     </ContentLoader>
-                    // <RingLoader
-                    //     color={"#00fff1"}
-                    //     loading={this.state.isLoading}
-                    //     size={50}
-                    // />
                 );
             }
 
@@ -115,13 +110,13 @@ class OutstandingDoctor extends React.Component {
                             </button>
                         </div>
 
-                        {isLoadContent ? (
-                            this.contentLoader(
-                                this.props.settings?.slidesToShow
-                            )
-                        ) : topDoctors?.length > 0 ? (
-                            <Slider {...this.props.settings}>
-                                {topDoctors.map((topDoctor, index) => {
+                        <Slider {...this.props.settings}>
+                            {isLoadContent ? (
+                                this.contentLoader(
+                                    this.props.settings?.slidesToShow
+                                )
+                            ) : topDoctors?.length > 0 ? (
+                                topDoctors.map((topDoctor, index) => {
                                     const image = topDoctor.image
                                         ? Buffer.from(
                                               topDoctor.image
@@ -157,13 +152,13 @@ class OutstandingDoctor extends React.Component {
                                             </div>
                                         </div>
                                     );
-                                })}
-                            </Slider>
-                        ) : (
-                            <h3 className="text-center my-4">
-                                Không có bác sĩ
-                            </h3>
-                        )}
+                                })
+                            ) : (
+                                <h3 className="text-center my-4">
+                                    Không có bác sĩ
+                                </h3>
+                            )}
+                        </Slider>
                     </div>
                 </div>
             </>

@@ -33,6 +33,7 @@ export const adminMenu = [
     },
     {
         //Chuyên khoa
+
         name: "menu.specialty",
         menus: [
             {
@@ -43,8 +44,13 @@ export const adminMenu = [
     },
     {
         //Cẩm nang
+
         name: "menu.handbook",
         menus: [
+            {
+                name: "menu.manage-category_handbook",
+                link: "/system/category_handbook-manage",
+            },
             {
                 name: "menu.manage-handbook",
                 link: "/system/handbook-manage",

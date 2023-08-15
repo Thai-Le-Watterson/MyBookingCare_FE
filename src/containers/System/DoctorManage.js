@@ -90,7 +90,7 @@ class DoctorManage extends React.Component {
 
     handleOnChangeSelectDoctor = async (selectDoctor) => {
         const doctor = await getDoctorDetail(selectDoctor?.value);
-        console.log(doctor);
+        console.log("check doctor: ", doctor);
         const isNotMarkdown = this.checkValueData(doctor?.MarkdownData);
         const copyState = { ...this.state };
 
@@ -106,20 +106,23 @@ class DoctorManage extends React.Component {
             paymentId,
             priceId,
             provinceId,
-            addressClinic,
-            nameClinic,
+            // addressClinic,
+            // nameClinic,
             note,
             specialtyData,
+            clinicData,
             paymentData,
             priceData,
             provinceData,
         } = doctor?.doctorInforData || {};
+        const { nameClinic, addressClinic } =
+            doctor?.doctorInforData?.clinicData;
         const isNotExistDoctorInforData = this.checkValueData({
             paymentId,
             priceId,
             provinceId,
-            addressClinic,
-            nameClinic,
+            // addressClinic,
+            // nameClinic,
         });
         copyState.acitionDrInfor = isNotExistDoctorInforData
             ? CRUD.CREATE
@@ -141,13 +144,15 @@ class DoctorManage extends React.Component {
             this.props.language === languages.VI ? "valueVi" : "valueEn"
         );
         let specialty = this.buildOptionSelect(specialtyData, "id", "name");
+        let clinic = this.buildOptionSelect(clinicData, "id", "name");
 
         copyState.payment = payment || {};
         copyState.price = price || {};
         copyState.province = province || {};
         copyState.specialty = specialty || {};
-        copyState.addressClinic = addressClinic || "";
-        copyState.nameClinic = nameClinic || "";
+        copyState.clinic = clinic || {};
+        // copyState.addressClinic = addressClinic || "";
+        // copyState.nameClinic = nameClinic || "";
         copyState.note = note || "";
         console.log("check copy state: ", copyState);
         this.setState({
@@ -164,7 +169,7 @@ class DoctorManage extends React.Component {
 
     handleSaveMarkdown = () => {
         const isNotValid = this.checkValueData(this.state.contents);
-        console.log("check isNotValid: ", isNotValid);
+        // console.log("check isNotValid: ", isNotValid);
         if (!isNotValid) {
             const dataRequest = {
                 contentHTML: this.state.contents.contentHTML,
@@ -225,8 +230,8 @@ class DoctorManage extends React.Component {
             paymentId: obj.payment.value,
             specialtyId: obj.specialty.value,
             clinicId: obj.clinic.value,
-            addressClinic: obj.addressClinic,
-            nameClinic: obj.nameClinic,
+            // addressClinic: obj.addressClinic,
+            // nameClinic: obj.nameClinic,
             note: obj.note,
         };
     };
@@ -252,6 +257,7 @@ class DoctorManage extends React.Component {
     };
 
     render() {
+        // console.log("check state: ", this.state);
         const mdParser = new MarkdownIt();
 
         return (
@@ -362,7 +368,7 @@ class DoctorManage extends React.Component {
                                     }
                                 />
                             </div>
-                            <div className="col-4 my-2">
+                            {/* <div className="col-4 my-2">
                                 <label className="form-label">
                                     <FormattedMessage id="manage-doctor-detail.extra-infor.name-clinic" />
                                 </label>
@@ -390,7 +396,7 @@ class DoctorManage extends React.Component {
                                         )
                                     }
                                 />
-                            </div>
+                            </div> */}
                             <div className="col-4 my-2">
                                 <label className="form-label">
                                     <FormattedMessage id="manage-doctor-detail.extra-infor.note" />
@@ -434,7 +440,7 @@ class DoctorManage extends React.Component {
                                     options={this.buildOptionSelect(
                                         this.state.requireDoctorInfor &&
                                             this.state.requireDoctorInfor
-                                                .data_clinic,
+                                                .data_clinics,
                                         "id",
                                         "name"
                                     )}

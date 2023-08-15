@@ -52,6 +52,7 @@ class DoctorExtraInfor extends React.Component {
             doctorInfor.priceData[
                 this.props.language === languages.VI ? "valueVi" : "valueEn"
             ];
+        console.log("check doctorInfor: ", doctorInfor);
         return (
             <>
                 <div className="extra-infor_container">
@@ -61,10 +62,10 @@ class DoctorExtraInfor extends React.Component {
                             <FormattedMessage id="doctor-detail.extra-infor.address-clinic" />
                         </div>
                         <div className="clinic-name">
-                            {doctorInfor?.nameClinic}
+                            {doctorInfor?.clinicData?.name}
                         </div>
                         <div className="clinic-address">
-                            {doctorInfor?.addressClinic}
+                            {doctorInfor?.clinicData?.address}
                         </div>
                     </div>
                     <div className="price-container">

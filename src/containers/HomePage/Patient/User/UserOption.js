@@ -43,7 +43,9 @@ class UserOption extends React.Component {
                                 ></div>
                             </div>
 
-                            <ul className="user-option">
+                            <ul
+                                className={`user-option ${this.props.className}`}
+                            >
                                 {userInfo?.roleId === "R1" ||
                                 userInfo?.roleId === "R2" ? (
                                     <>

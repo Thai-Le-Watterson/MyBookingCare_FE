@@ -35,7 +35,7 @@ class HomeHeader extends React.Component {
 
     render() {
         let { language, userInfo } = this.props;
-        console.log("check userInfo: ", userInfo);
+        // console.log("check userInfo: ", userInfo);
         return (
             <>
                 <div className="home-header_container">

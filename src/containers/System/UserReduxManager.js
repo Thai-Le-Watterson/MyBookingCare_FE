@@ -107,18 +107,18 @@ class UserReduxManager extends Component {
         }
     };
 
+    handleOpenLightBox = () => {
+        this.setState({
+            isOpen: true,
+        });
+    };
+
     handleOnChangeInput = (e, key) => {
         const copyState = { ...this.state };
         copyState.userInfo[key] = e.target.value;
 
         this.setState({
             ...copyState,
-        });
-    };
-
-    handleOpenLightBox = () => {
-        this.setState({
-            isOpen: true,
         });
     };
 

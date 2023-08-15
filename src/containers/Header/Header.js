@@ -72,7 +72,11 @@ class Header extends Component {
                             EN
                         </span>
                     </div>
-                    <UserOption color="white" isAminPage={true} />
+                    <UserOption
+                        color="white"
+                        isAminPage={true}
+                        className="top-40"
+                    />
                     {/* <div className="btn btn-logout" onClick={processLogout}>
                         <i className="fas fa-sign-out-alt"></i>
                     </div> */}

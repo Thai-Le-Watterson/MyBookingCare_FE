@@ -24,6 +24,7 @@ import VerifySchedule from "./HomePage/Patient/Doctor/VerifySchedule";
 import CustomScrollbars from "../components/CustomScrollbars";
 import { CustomToastCloseButton } from "../components/CustomToast";
 import ConfirmModal from "../components/ConfirmModal";
+import { RingLoader } from "react-spinners";
 
 class App extends Component {
     handlePersistorState = () => {
@@ -47,6 +48,18 @@ class App extends Component {
     render() {
         return (
             <Fragment>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
                 <Router history={history}>
                     <div className="main-container">
                         <ConfirmModal />
@@ -110,18 +123,16 @@ class App extends Component {
                             draggable={false}
                             closeButton={<CustomToastCloseButton />}
                         /> */}
-                        <ToastContainer
-                            position="top-right"
-                            autoClose={3000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                            theme="light"
-                        />
+
+                        {this.props.isLoading && (
+                            <div className="loader">
+                                <RingLoader
+                                    color={"#00fff1"}
+                                    loading={this.props.isLoading}
+                                    size={150}
+                                />
+                            </div>
+                        )}
                     </div>
                 </Router>
             </Fragment>
@@ -132,6 +143,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         started: state.app.started,
+        isLoading: state.app.isLoading,
         isLoggedIn: state.user.isLoggedIn,
     };
 };

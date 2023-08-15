@@ -313,6 +313,70 @@ const confirmBooking = async (dataRequest) => {
     }
 };
 
+const getAllCategoryHandbook = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.get(`api/get-all-handbook-category`);
+            if (result && result.errCode === 0)
+                if (result.categories) resolve(result.categories);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const createCategoryHandbook = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.post(
+                `api/create-handbook-category`,
+                data
+            );
+            if (result && !_.isEmpty(result)) resolve(result);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const updateCategoryHandbook = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.post(
+                `api/update-handbook-category`,
+                data
+            );
+            if (result && !_.isEmpty(result)) resolve(result);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const deleteCategoryHandbook = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.delete(`api/delete-handbook-category`, {
+                data: { id },
+            });
+            if (result && !_.isEmpty(result)) resolve(result);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const createHandbook = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.post(`api/create-handbook`, data);
+            if (result && !_.isEmpty(result)) resolve(result);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 export {
     handleUserLogin,
     handleGetUsers,
@@ -340,4 +404,9 @@ export {
     getClinic,
     getAllBookingByDoctor,
     confirmBooking,
+    getAllCategoryHandbook,
+    createCategoryHandbook,
+    deleteCategoryHandbook,
+    updateCategoryHandbook,
+    createHandbook,
 };

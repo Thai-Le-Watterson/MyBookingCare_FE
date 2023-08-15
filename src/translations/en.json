@@ -42,6 +42,7 @@
         "specialty": "Specialy",
         "manage-specialty": "Specialy Management",
         "handbook": "Handbook",
+        "manage-category_handbook": "Handbook Category Management",
         "manage-handbook": "Handbook Management",
         "doctor": "Doctor",
         "manage-doctor": {
@@ -110,6 +111,27 @@
         "location": "Location",
         "procedure": "Procedure",
         "save": "Save"
+    },
+    "manage-handbook": {
+        "title": "Manage Handbook",
+        "name": "Handbook name",
+        "doctor": "Doctor",
+        "category": "Category",
+        "select-category": "Select category...",
+        "publication-date": "Publication date",
+        "update-day": "Update day",
+        "image": "Image",
+        "content": "Content",
+        "save": "Save",
+        "update": "Update"
+    },
+    "manage-handbook-category": {
+        "title": "Handbook Category Manage",
+        "name": "Name",
+        "image": "Image",
+        "save": "Save",
+        "number": "Cardinal Numbers",
+        "update": "Update"
     },
     "homepage": {
         "outstanding-doctor": "Last week's featured doctor",

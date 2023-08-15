@@ -12,6 +12,8 @@ import ScheduleManage from "../containers/System/ScheduleManage";
 import ScheduleConfirmManage from "../containers/System/ScheduleConfirmManage";
 import SpecialtyManage from "../containers/System/SpecialtyManage";
 import ClinicManage from "../containers/System/ClinicManage";
+import HandbookCategoryManage from "../containers/System/HandbookCategoryManage";
+import HandbookManage from "../containers/System/HandbookManage";
 
 class System extends Component {
     render() {
@@ -53,6 +55,14 @@ class System extends Component {
                             <Route
                                 path="/system/specialty-manage"
                                 component={SpecialtyManage}
+                            />
+                            <Route
+                                path="/system/category_handbook-manage"
+                                component={HandbookCategoryManage}
+                            />
+                            <Route
+                                path="/system/handbook-manage"
+                                component={HandbookManage}
                             />
                             <Route
                                 path="/system/schedule-confirm-manage"

@@ -76,11 +76,6 @@ class Speciallty extends React.Component {
                             height="217"
                         />
                     </ContentLoader>
-                    // <RingLoader
-                    //     color={"#00fff1"}
-                    //     loading={this.state.isLoading}
-                    //     size={50}
-                    // />
                 );
             }
 
@@ -96,13 +91,13 @@ class Speciallty extends React.Component {
                             <h1 className="title">Chuyên khoa phổ biến</h1>
                             <button className="button">Xem Thêm</button>
                         </div>
-                        {this.state.isLoadContent ? (
-                            this.contentLoader(
-                                this.props.settings?.slidesToShow
-                            )
-                        ) : this.state?.specialties?.length > 0 ? (
-                            <Slider {...this.props.settings}>
-                                {this.state.specialties.map(
+                        <Slider {...this.props.settings}>
+                            {this.state.isLoadContent ? (
+                                this.contentLoader(
+                                    this.props.settings?.slidesToShow
+                                )
+                            ) : this.state?.specialties?.length > 0 ? (
+                                this.state.specialties.map(
                                     (specialty, index) => {
                                         const image =
                                             specialty.image &&
@@ -131,13 +126,13 @@ class Speciallty extends React.Component {
                                             </div>
                                         );
                                     }
-                                )}
-                            </Slider>
-                        ) : (
-                            <h3 className="text-center my-4">
-                                Không có chuyên khoa
-                            </h3>
-                        )}
+                                )
+                            ) : (
+                                <h3 className="text-center my-4">
+                                    Không có chuyên khoa
+                                </h3>
+                            )}
+                        </Slider>
                     </div>
                 </div>
             </>

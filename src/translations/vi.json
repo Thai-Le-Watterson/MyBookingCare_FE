@@ -42,6 +42,7 @@
         "specialty": "Chuyên khoa",
         "manage-specialty": "Quản lí chuyên khoa",
         "handbook": "Cẩm nang",
+        "manage-category_handbook": "Quản lí danh mục cẩm nang",
         "manage-handbook": "Quản lí cẩm nang",
         "doctor": "Bác sĩ",
         "manage-doctor": {
@@ -110,6 +111,27 @@
         "location": "Vị trí",
         "procedure": "Quy trình đi khám",
         "save": "Lưu thông tin"
+    },
+    "manage-handbook": {
+        "title": "Quản lí cẩm nang",
+        "name": "Tên cẩm nang",
+        "doctor": "Bác sĩ",
+        "category": "Danh mục",
+        "select-category": "Chọn danh mục...",
+        "publication-date": "Ngày xuất bản",
+        "update-day": "Ngày cập nhật",
+        "image": "Hình ảnh",
+        "content": "Nội dung",
+        "save": "Lưu",
+        "update": "Cập nhật"
+    },
+    "manage-handbook-category": {
+        "title": "Quản Lý Danh Mục Cẩm Nang",
+        "name": "Tên danh mục",
+        "image": "Ảnh danh mục",
+        "save": "Lưu thông tin",
+        "number": "STT",
+        "update": "Cập nhật"
     },
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",

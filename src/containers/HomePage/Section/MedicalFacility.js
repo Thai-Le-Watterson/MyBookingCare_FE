@@ -79,11 +79,6 @@ class MedicalFacility extends React.Component {
                             height="217"
                         />
                     </ContentLoader>
-                    // <RingLoader
-                    //     color={"#00fff1"}
-                    //     loading={this.state.isLoading}
-                    //     size={50}
-                    // />
                 );
             }
 
@@ -102,13 +97,13 @@ class MedicalFacility extends React.Component {
                             <button className="button">Tìm Kiếm</button>
                         </div>
 
-                        {isLoadContent ? (
-                            this.contentLoader(
-                                this.props.settings?.slidesToShow
-                            )
-                        ) : clinics?.length > 0 ? (
-                            <Slider {...this.props.settings}>
-                                {clinics.map((clinic, index) => {
+                        <Slider {...this.props.settings}>
+                            {isLoadContent ? (
+                                this.contentLoader(
+                                    this.props.settings?.slidesToShow
+                                )
+                            ) : clinics?.length > 0 ? (
+                                clinics.map((clinic, index) => {
                                     const image = Buffer.from(
                                         clinic.image
                                     ).toString();
@@ -134,13 +129,13 @@ class MedicalFacility extends React.Component {
                                             </span>
                                         </div>
                                     );
-                                })}
-                            </Slider>
-                        ) : (
-                            <h3 className="text-center my-4">
-                                Không có cơ sở y tế
-                            </h3>
-                        )}
+                                })
+                            ) : (
+                                <h3 className="text-center my-4">
+                                    Không có cơ sở y tế
+                                </h3>
+                            )}
+                        </Slider>
                     </div>
                 </div>
             </>

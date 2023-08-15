@@ -105,3 +105,75 @@ html {
         }
     }
 }
+
+.table-container {
+    table {
+        border-collapse: collapse;
+        background-color: #fff;
+        width: 100%;
+
+        tbody {
+            display: block;
+            max-height: 70vh;
+            overflow: auto;
+        }
+
+        tr {
+            display: table;
+            width: 100%;
+
+            &:nth-child(even) {
+                background-color: #ebebeb;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background-color: #cdcdcd;
+            }
+
+            &.no-hover {
+                cursor: default;
+                background-color: #fff;
+            }
+
+            th,
+            td {
+                text-align: left;
+                padding: 8px;
+
+                button {
+                    background-color: transparent;
+                    border: none;
+                    margin-left: 10px;
+                    padding: 0 12px;
+                }
+
+                .btn_edit {
+                    color: #0071ba;
+                }
+
+                .btn_delete {
+                    color: #04aa6d;
+                }
+            }
+
+            th {
+                background-color: #04aa6d;
+                color: white;
+            }
+        }
+    }
+}
+
+.loader {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+}
