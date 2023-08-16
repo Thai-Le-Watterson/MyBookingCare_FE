@@ -29,8 +29,8 @@ class HandbookManage extends React.Component {
             contentHTML: "",
             contentMarkDown: "",
             isOpen: false,
-            category: {},
-            doctor: {},
+            category: "",
+            doctor: "",
             allCategory: [],
             allDoctor: [],
             date: moment(new Date()).format(dateFormat.SEND_TO_SERVER),
@@ -88,12 +88,15 @@ class HandbookManage extends React.Component {
         });
     };
 
-    handleChangeDatePicker = (arg) => {
+    handleChangeDatePicker = (arg, name) => {
         // console.log(moment(arg[0]).format(dateFormat.SEND_TO_SERVER));
 
         this.setState({
-            date: moment(arg[0]).format(dateFormat.SEND_TO_SERVER),
+            [name]: moment(arg[0]).format(dateFormat.SEND_TO_SERVER),
         });
+
+        console.log("check date: ", this.state.date);
+        console.log("check updateDate: ", this.state.updateDate);
     };
 
     handleOnChangeSelect = async (value, actionMeta) => {
@@ -104,7 +107,7 @@ class HandbookManage extends React.Component {
         // console.log(actionMeta);
     };
 
-    handleSaveSpecialty = async () => {
+    handleSaveHandbook = async () => {
         const dataRequest = this.buildDataRequest();
         const emptyData = this.checkValueData(dataRequest);
         // console.log("check dataRequest: ", dataRequest);
@@ -268,7 +271,7 @@ class HandbookManage extends React.Component {
                                 <DatePicker
                                     value={date}
                                     onChange={(arg) =>
-                                        this.handleChangeDatePicker(arg)
+                                        this.handleChangeDatePicker(arg, "date")
                                     }
                                     className="form-control"
                                 />
@@ -280,7 +283,10 @@ class HandbookManage extends React.Component {
                                 <DatePicker
                                     value={updateDate}
                                     onChange={(arg) =>
-                                        this.handleChangeDatePicker(arg)
+                                        this.handleChangeDatePicker(
+                                            arg,
+                                            "updateDate"
+                                        )
                                     }
                                     className="form-control"
                                 />
@@ -335,7 +341,7 @@ class HandbookManage extends React.Component {
                     </div>
                     <button
                         className="btn btn-primary mb-5"
-                        onClick={() => this.handleSaveSpecialty()}
+                        onClick={() => this.handleSaveHandbook()}
                     >
                         <FormattedMessage id="manage-handbook.save" />
                     </button>

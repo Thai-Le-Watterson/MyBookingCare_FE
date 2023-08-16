@@ -4,6 +4,7 @@ import * as userService from "../../../services/userService";
 import _ from "lodash";
 import { history } from "../../../redux";
 
+import { FormattedMessage } from "react-intl";
 import ContentLoader from "react-content-loader";
 
 import "slick-carousel/slick/slick.css";
@@ -45,10 +46,11 @@ class Speciallty extends React.Component {
             for (let i = 1; i <= quantity; i++) {
                 result.push(
                     <ContentLoader
+                        key={i}
                         width={300}
                         height={200}
                         viewBox="0 0 450 400"
-                        backgroundColor="#f0f0f0"
+                        backgroundColor="#ededed"
                         foregroundColor="#dedede"
                     >
                         <rect
@@ -88,8 +90,12 @@ class Speciallty extends React.Component {
                 <div className="section-overlay">
                     <div className="section-container">
                         <div className="section-title">
-                            <h1 className="title">Chuyên khoa phổ biến</h1>
-                            <button className="button">Xem Thêm</button>
+                            <h1 className="title">
+                                <FormattedMessage id="homepage.specialty" />
+                            </h1>
+                            <button className="button">
+                                <FormattedMessage id="homepage.more" />
+                            </button>
                         </div>
                         <Slider {...this.props.settings}>
                             {this.state.isLoadContent ? (
@@ -129,7 +135,7 @@ class Speciallty extends React.Component {
                                 )
                             ) : (
                                 <h3 className="text-center my-4">
-                                    Không có chuyên khoa
+                                    <FormattedMessage id="homepage.no-specialty" />
                                 </h3>
                             )}
                         </Slider>

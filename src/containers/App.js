@@ -19,6 +19,8 @@ import HomePage from "./HomePage/HomePage";
 import DoctorDetail from "./HomePage/Patient/Doctor/DoctorDetail";
 import SpecialtyDetail from "./HomePage/Patient/Doctor/SpecialtyDetail";
 import ClinicDetail from "./HomePage/Patient/Doctor/ClinicDetail";
+import HandbookDetail from "./HomePage/Patient/Handbook/HandbookDetail";
+import HandbookPage from "./HomePage/Patient/Handbook/HandbookPage";
 import VerifySchedule from "./HomePage/Patient/Doctor/VerifySchedule";
 
 import CustomScrollbars from "../components/CustomScrollbars";
@@ -78,6 +80,11 @@ class App extends Component {
                                         component={HomePage}
                                     />
                                     <Route
+                                        path={path.HANDBOOK_PAGE}
+                                        exact
+                                        component={HandbookPage}
+                                    />
+                                    <Route
                                         path={path.DETAIL_DOCTOR}
                                         exact
                                         component={DoctorDetail}
@@ -91,6 +98,11 @@ class App extends Component {
                                         path={path.DETAIL_CLINIC}
                                         exact
                                         component={ClinicDetail}
+                                    />
+                                    <Route
+                                        path={path.DETAIL_HANDBOOK}
+                                        exact
+                                        component={HandbookDetail}
                                     />
                                     <Route
                                         path={path.VERIFY_SCHEDULE}

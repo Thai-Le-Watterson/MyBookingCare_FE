@@ -1,12 +1,14 @@
 export const path = {
     HOME: "/",
     HOMEPAGE: "/home",
+    HANDBOOK_PAGE: "/handbook",
     LOGIN: "/login",
     LOG_OUT: "/logout",
     SYSTEM: "/system",
     DETAIL_DOCTOR: "/detail-doctor/:id",
     DETAIL_SPECIALTY: "/detail-specialty/:id",
     DETAIL_CLINIC: "/detail-clinic/:id",
+    DETAIL_HANDBOOK: "/detail-handbook/:id",
     VERIFY_SCHEDULE: "/verify-schedule",
 };
 

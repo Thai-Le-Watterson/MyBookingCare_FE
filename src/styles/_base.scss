@@ -64,6 +64,21 @@ html {
     font-family: $fontmain;
 }
 
+.loading-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px 0;
+
+    &.bg-white {
+        background-color: #fff;
+    }
+
+    .loading-title {
+        color: #636363;
+    }
+}
+
 .content-container {
     .title {
         text-align: center;

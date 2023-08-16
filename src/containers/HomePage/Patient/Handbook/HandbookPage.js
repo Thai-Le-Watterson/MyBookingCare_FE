@@ -1,17 +1,13 @@
 import React from "react";
-import * as actions from "../../store/actions/index";
+import * as actions from "../../../../store/actions/index";
 import { connect } from "react-redux";
 
-import HomeHeader from "./HomeHeader";
-import Speciallty from "./Section/Speciallty";
-import MedicalFacility from "./Section/MedicalFacility";
-import OutstandingDoctor from "./Section/OutstandingDoctor";
-import HandBook from "./Section/HandBook";
-import Media from "./Section/Media";
-import HomeFooter from "./HomeFooter";
-import HomeBanner from "./HomeBanner";
+import HomeHeader from "../../HomeHeader";
+import HomeFooter from "../../HomeFooter";
+import HandBook from "../../Section/HandBook";
+import HandbookFour from "../../Section/HandBookFour";
 
-import "./HomePage.scss";
+import "./HandbookPage.scss";
 
 class SampleNextArrow extends React.Component {
     // { className, style, onClick } = this.props;
@@ -35,7 +31,7 @@ class SamplePrevArrow extends React.Component {
     }
 }
 
-class HomePage extends React.Component {
+class HandbookPage extends React.Component {
     settings = {
         dots: false,
         infinite: false,
@@ -50,15 +46,14 @@ class HomePage extends React.Component {
         return (
             <div>
                 <HomeHeader />
-                <HomeBanner />
-                <Speciallty settings={this.settings} />
-                <MedicalFacility settings={this.settings} />
-                <OutstandingDoctor settings={this.settings} />
-                <HandBook
-                    bg={true}
-                    settings={{ ...this.settings, slidesToShow: 2 }}
-                />
-                <Media />
+                <div className="handbook-page_overlay">
+                    <HandbookFour newHandbook={true} />
+                    <HandBook
+                        settings={{ ...this.settings, slidesToShow: 2 }}
+                        outstandingHandbook={true}
+                        isShowContentHead={true}
+                    />
+                </div>
                 <HomeFooter />
             </div>
         );
@@ -75,4 +70,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HandbookPage);

@@ -48,10 +48,11 @@ class MedicalFacility extends React.Component {
             for (let i = 1; i <= quantity; i++) {
                 result.push(
                     <ContentLoader
+                        key={i}
                         width={300}
                         height={200}
                         viewBox="0 0 450 400"
-                        backgroundColor="#f0f0f0"
+                        backgroundColor="#ededed"
                         foregroundColor="#dedede"
                     >
                         <rect
@@ -93,8 +94,12 @@ class MedicalFacility extends React.Component {
                 <div className="section-overlay section-bg">
                     <div className="section-container">
                         <div className="section-title">
-                            <h1 className="title">Cơ sở y tế nổi bật</h1>
-                            <button className="button">Tìm Kiếm</button>
+                            <h1 className="title">
+                                <FormattedMessage id="homepage.clinic" />
+                            </h1>
+                            <button className="button">
+                                <FormattedMessage id="homepage.search" />
+                            </button>
                         </div>
 
                         <Slider {...this.props.settings}>
@@ -132,7 +137,7 @@ class MedicalFacility extends React.Component {
                                 })
                             ) : (
                                 <h3 className="text-center my-4">
-                                    Không có cơ sở y tế
+                                    <FormattedMessage id="homepage.no-clinic" />
                                 </h3>
                             )}
                         </Slider>

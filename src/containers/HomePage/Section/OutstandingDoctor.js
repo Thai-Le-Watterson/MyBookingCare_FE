@@ -52,10 +52,11 @@ class OutstandingDoctor extends React.Component {
             for (let i = 1; i <= quantity; i++) {
                 result.push(
                     <ContentLoader
+                        key={i}
                         width={300}
                         height={200}
                         viewBox="0 0 450 400"
-                        backgroundColor="#f0f0f0"
+                        backgroundColor="#ededed"
                         foregroundColor="#dedede"
                     >
                         <rect

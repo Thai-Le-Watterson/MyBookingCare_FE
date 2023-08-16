@@ -366,6 +366,48 @@ const deleteCategoryHandbook = (id) => {
     });
 };
 
+const getAllHandbook = (limit, orderBy) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.get(
+                `api/get-all-handbook?limit=${limit}&orderBy=${orderBy}`
+            );
+            if (result && result.errCode === 0)
+                if (result.handbooks) resolve(result.handbooks);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const getAllHandbookByCategory = (categoryId, limit) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.get(
+                `api/get-all-handbook-by-category?categoryId=${categoryId}&limit=${limit}`
+            );
+            if (result && result.errCode === 0)
+                if (result.handbooks) resolve(result.handbooks);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const getHandbook = (id, isIncreaseViews) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.get(
+                `api/get-handbook?id=${id}&isIncreaseViews=${isIncreaseViews}`
+            );
+            if (result && result.errCode === 0)
+                if (result.handbook) resolve(result.handbook);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 const createHandbook = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -408,5 +450,8 @@ export {
     createCategoryHandbook,
     deleteCategoryHandbook,
     updateCategoryHandbook,
+    getAllHandbook,
+    getAllHandbookByCategory,
+    getHandbook,
     createHandbook,
 };

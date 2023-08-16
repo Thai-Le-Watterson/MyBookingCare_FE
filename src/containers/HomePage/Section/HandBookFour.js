@@ -1,16 +1,41 @@
 import React from "react";
 import * as userService from "../../../services/userService";
 import _ from "lodash";
+import moment from "moment";
 
 import Slider from "react-slick";
 import ContentLoader from "react-content-loader";
 import { FormattedMessage } from "react-intl";
 import { withRouter } from "react-router-dom";
 
+import "./HandBookFour.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { dateFormat } from "../../../utils";
 
-class HandBook extends React.Component {
+class SampleNextArrow extends React.Component {
+    // { className, style, onClick } = this.props;
+    render() {
+        return (
+            <div className={this.props.className} onClick={this.props.onClick}>
+                <i className="fa-solid fa-angle-right"></i>
+            </div>
+        );
+    }
+}
+
+class SamplePrevArrow extends React.Component {
+    // { className, style, onClick } = this.props;
+    render() {
+        return (
+            <div className={this.props.className} onClick={this.props.onClick}>
+                <i className="fa-solid fa-angle-left"></i>
+            </div>
+        );
+    }
+}
+
+class HandBookFour extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,22 +45,7 @@ class HandBook extends React.Component {
     }
 
     componentDidMount = async () => {
-        if (this.props.outstandingHandbook === true) {
-            this.setState({
-                isLoadContent: true,
-            });
-
-            const handbooks = await userService.getAllHandbook(5, "views");
-
-            if (handbooks && !_.isEmpty(handbooks)) {
-                this.setState({
-                    handbooks,
-                });
-            }
-            this.setState({
-                isLoadContent: false,
-            });
-        } else {
+        if (this.props.newHandbook === true) {
             this.setState({
                 isLoadContent: true,
             });
@@ -50,6 +60,76 @@ class HandBook extends React.Component {
             this.setState({
                 isLoadContent: false,
             });
+        } else if (this.props.outstandingHandbook === true) {
+            this.setState({
+                isLoadContent: true,
+            });
+
+            const handbooks = await userService.getAllHandbook(5, "views");
+
+            if (handbooks && !_.isEmpty(handbooks)) {
+                this.setState({
+                    handbooks,
+                });
+            }
+            this.setState({
+                isLoadContent: false,
+            });
+        }
+    };
+
+    componentDidUpdate = async (prevProps, prevState) => {
+        if (prevProps.categoryId !== this.props.categoryId) {
+            this.setState({
+                isLoadContent: true,
+            });
+            const handbooks = await userService.getAllHandbookByCategory(
+                this.props.categoryId
+            );
+            if (handbooks && !_.isEmpty(handbooks)) {
+                this.setState({
+                    handbooks,
+                });
+            }
+            this.setState({
+                isLoadContent: false,
+            });
+        } else if (prevProps.newHandbook !== this.props.newHandbook) {
+            if (this.props.newHandbook === true) {
+                this.setState({
+                    isLoadContent: true,
+                });
+
+                const handbooks = await userService.getAllHandbook(10);
+
+                if (handbooks && !_.isEmpty(handbooks)) {
+                    this.setState({
+                        handbooks,
+                    });
+                }
+                this.setState({
+                    isLoadContent: false,
+                });
+            }
+        } else if (
+            prevProps.outstandingHandbook !== this.props.outstandingHandbook
+        ) {
+            if (this.props.outstandingHandbook === true) {
+                this.setState({
+                    isLoadContent: true,
+                });
+
+                const handbooks = await userService.getAllHandbook(10, "views");
+
+                if (handbooks && !_.isEmpty(handbooks)) {
+                    this.setState({
+                        handbooks,
+                    });
+                }
+                this.setState({
+                    isLoadContent: false,
+                });
+            }
         }
     };
 
@@ -262,44 +342,43 @@ class HandBook extends React.Component {
         return result;
     };
 
-    handleGetContentHeader = (handbook) => {
-        const contentHTML = handbook.contentHTML;
-        let contentHeader = contentHTML.slice(
-            contentHTML.search("<h1>"),
-            contentHTML.search("</h1>")
-        );
-        contentHeader = contentHeader.replace("<h1>", "").replace("</h1>", "");
-        console.log(contentHeader);
-        return contentHeader;
+    buildSettingSlider = () => {
+        return {
+            dots: false,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+        };
     };
 
     render() {
+        // console.log("check props new: ", this.props);
         // console.log("check state: ", this.state);
-        // console.log("check props: ", this.props);
         const { handbooks, isLoadContent } = this.state;
+        // console.log("check handbooks: ", handbooks);
+        const settings = {
+            dots: false,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+        };
 
         return (
             <>
-                <div
-                    className={`section-overlay ${
-                        (this.props.bg && "section-bg") || ""
-                    } style-flex`}
-                >
-                    <div className="section-container">
-                        <div className="section-title">
+                <div className="section-overlay section-bg style-flex">
+                    <div className="section-container section-handbook-container">
+                        <div className="section-title border-b">
                             <h1 className="title">
-                                <FormattedMessage id="homepage.handbook" />
+                                <FormattedMessage id="handbook-detail.handbook-related" />
                             </h1>
-                            <button
-                                className="button"
-                                onClick={() =>
-                                    this.props.history.push("/handbook")
-                                }
-                            >
-                                <FormattedMessage id="homepage.all" />
-                            </button>
                         </div>
-                        <Slider {...this.props.settings}>
+                        <Slider {...settings}>
                             {isLoadContent ? (
                                 this.contentLoader(
                                     this.props.settings?.slidesToShow
@@ -311,7 +390,7 @@ class HandBook extends React.Component {
                                         Buffer.from(handbook.image).toString();
                                     return (
                                         <div
-                                            className="section-item"
+                                            className="section-item section-handbook-item"
                                             key={index}
                                             onClick={() =>
                                                 this.props.history.push(
@@ -319,22 +398,25 @@ class HandBook extends React.Component {
                                                 )
                                             }
                                         >
-                                            <div className="margin-box">
-                                                {/* <div className="img img1"></div> */}
-                                                <img src={image} />
-                                                <div className="handbook-content">
-                                                    <span className="title">
-                                                        {handbook.name}
-                                                    </span>
-                                                    {this.props
-                                                        .isShowContentHead && (
-                                                        <p>
-                                                            {this.handleGetContentHeader(
-                                                                handbook
-                                                            )}
-                                                        </p>
+                                            <img src={image} width={"100%"} />
+                                            <div className="handbook-title">
+                                                <p className="title">
+                                                    {handbook.name}
+                                                </p>
+                                                <p className="date">
+                                                    Xuất bản{" "}
+                                                    {moment(
+                                                        handbook.publicationDate
+                                                    ).format(
+                                                        dateFormat.SEND_TO_SERVER
+                                                    )}{" "}
+                                                    | Cập nhật lần cuối{" "}
+                                                    {moment(
+                                                        handbook.updateDate
+                                                    ).format(
+                                                        dateFormat.SEND_TO_SERVER
                                                     )}
-                                                </div>
+                                                </p>
                                             </div>
                                         </div>
                                     );
@@ -352,4 +434,4 @@ class HandBook extends React.Component {
     }
 }
 
-export default withRouter(HandBook);
+export default withRouter(HandBookFour);

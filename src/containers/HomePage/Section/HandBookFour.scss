@@ -1,0 +1,35 @@
+@import "../../../styles/variables";
+
+.section-handbook-container {
+    .slick-track {
+        transform: translate3d(0, 0, 0) !important;
+    }
+
+    .section-handbook-item {
+        display: block;
+        width: 90% !important;
+        margin: 8px;
+        background-color: #fff;
+        background-origin: content-box;
+        border-radius: 4px;
+        box-shadow: 1px 1px 8px #ccc;
+
+        .handbook-title {
+            text-align: left;
+            padding: 10px;
+
+            .title {
+                text-align: inherit;
+                margin: 0;
+                font-weight: bold !important;
+                font-size: 16px !important;
+            }
+
+            .date {
+                font-size: 12px !important;
+                margin: 0;
+                color: inherit;
+            }
+        }
+    }
+}

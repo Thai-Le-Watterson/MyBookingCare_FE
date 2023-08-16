@@ -135,8 +135,16 @@
     },
     "homepage": {
         "outstanding-doctor": "Last week's featured doctor",
+        "no-outstanding-doctor": "There is no doctor",
+        "specialty": "Popular specialties",
+        "no-specialty": "There is no specialty",
+        "clinic": "Outstanding medical facility",
+        "no-clinic": "No medical facility",
+        "handbook": "Handbook",
+        "no-handbook": "There is no handbook",
         "search": "Search",
-        "more": "More"
+        "more": "More",
+        "all": "All posts"
     },
     "doctor-detail": {
         "extra-infor": {
@@ -151,6 +159,19 @@
         "schedule": "Schedule",
         "today": "Today",
         "no-schedule": "Sorry, the doctor doesn't have an appointment for this day :(("
+    },
+    "doctor-specialty": {
+        "more": "See more",
+        "hide": "Hide",
+        "no-specialty": "No doctors found in this area! :(("
+    },
+    "handbook-detail": {
+        "product": "Product of",
+        "name": "My BookingCare",
+        "date": "Publish",
+        "update-date": "Last update",
+        "main-content": "Main content",
+        "handbook-related": "Related Posts"
     },
     "booking-modal": {
         "title": "Information to book a medical appointment",

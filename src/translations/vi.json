@@ -135,8 +135,16 @@
     },
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
+        "no-outstanding-doctor": "Không có bác sĩ",
+        "specialty": "Chuyên khoa phổ biến",
+        "no-specialty": "Không có chuyên khoa",
+        "clinic": "Cơ sở y tế nổi bật",
+        "no-clinic": "Không có cơ sở y tế",
+        "handbook": "Cẩm nang",
+        "no-handbook": "Không có cẩm nang",
         "search": "Tìm kiếm",
-        "more": "Xem thêm"
+        "more": "Xem thêm",
+        "all": "Tất cả bài viết"
     },
     "doctor-detail": {
         "extra-infor": {
@@ -151,6 +159,19 @@
         "schedule": "Lịch khám",
         "today": "Hôm nay",
         "no-schedule": "Rất tiếc, bác sĩ không có lịch khám vào ngày này :(("
+    },
+    "doctor-specialty": {
+        "more": "Xem thêm",
+        "hide": "Ẩn bớt",
+        "no-specialty": "Không tìm thấy bác sĩ nào thuộc khu vực này! :(("
+    },
+    "handbook-detail": {
+        "product": "Sản phẩm của",
+        "name": "My BookingCare",
+        "date": "Xuất bản",
+        "update-date": "Cập nhật lần cuối",
+        "main-content": "Nội dung chính",
+        "handbook-related": "Bài viết liên quan"
     },
     "booking-modal": {
         "title": "Thông tin đặt lịch khám bệnh",
