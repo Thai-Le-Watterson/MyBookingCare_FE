@@ -37,8 +37,9 @@ class MedicalFacility extends React.Component {
         });
     };
 
-    redirectToClinicDetail = (id) => {
-        history.push(`/detail-clinic/${id}`);
+    redirectToClinicDetail = (id, nameClinic) => {
+        nameClinic = nameClinic.replaceAll(" ", "-");
+        history.push(`/detail-clinic/${id}/${nameClinic}`);
     };
 
     contentLoader = (quantity) => {
@@ -118,7 +119,8 @@ class MedicalFacility extends React.Component {
                                             key={index}
                                             onClick={() =>
                                                 this.redirectToClinicDetail(
-                                                    clinic.id
+                                                    clinic.id,
+                                                    clinic.name
                                                 )
                                             }
                                         >

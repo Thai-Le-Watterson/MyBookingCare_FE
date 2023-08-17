@@ -60,6 +60,19 @@
         $section-height: 200px;
         padding: 20px 0 30px 0;
 
+        &.height-160 {
+            .slick-track {
+                height: 160px;
+            }
+        }
+
+        &.arrow-position-remote {
+            .slick-next,
+            .slick-prev {
+                right: -36px;
+            }
+        }
+
         .slick-arrow {
             height: 60px;
             width: 30px;
@@ -86,13 +99,9 @@
             }
         }
 
-        .slick-next {
-            right: -10px;
-            z-index: 99;
-        }
-
+        .slick-next,
         .slick-prev {
-            left: -10px;
+            right: -10px;
             z-index: 99;
         }
 

@@ -39,7 +39,7 @@ class HandbookManage extends React.Component {
     }
 
     componentDidMount = async () => {
-        const allCategory = await userService.getAllCategoryHandbook();
+        const allCategory = await userService.getAllCategoryHandbook("-1", "0");
         const allDoctor = await userService.getAllDoctors();
 
         if (allCategory && !_.isEmpty(allCategory)) {

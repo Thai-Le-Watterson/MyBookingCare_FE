@@ -1,0 +1,104 @@
+@import "../../../../styles/variables";
+
+.category_container {
+    .head {
+        margin: 20px 0;
+
+        .search-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c2c2c;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .list-char {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            position: sticky;
+            position: -webkit-sticky;
+            top: 100px;
+
+            .item {
+                $width: 46px;
+                width: $width;
+                height: $width;
+                // padding: 8px 16px;
+                text-decoration: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                font-size: 16px;
+                border: 1px solid #eeeeee;
+                border-radius: 4px;
+                color: #494949;
+                transition: all linear 0.1s;
+                box-sizing: border-box;
+
+                &:hover {
+                    color: $main-color;
+                    border-color: $main-color;
+                    cursor: pointer;
+                }
+
+                &.active {
+                    color: #fff;
+                    background-color: $main-color;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .body {
+        .list-category {
+            position: relative;
+
+            .char {
+                font-size: 28px;
+                font-weight: bold;
+                width: 50px;
+                height: 50px;
+                background-color: $main-color;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                border-radius: 6px;
+                margin: 20px 0;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 60px;
+                    right: 0;
+                    left: 0;
+                    border: 1px solid #e5e5e5;
+                }
+            }
+
+            .list-item {
+                .item {
+                    font-size: 16px;
+                    font-weight: bold;
+                    margin-top: 10px;
+                    transition: all linear 0.1s;
+                    box-sizing: border-box;
+
+                    &:hover {
+                        cursor: pointer;
+                        color: $main-color;
+                    }
+
+                    .text {
+                        display: block;
+                        padding: 10px;
+                        border-bottom: 2px solid #eeeeee;
+                    }
+                }
+            }
+        }
+    }
+}

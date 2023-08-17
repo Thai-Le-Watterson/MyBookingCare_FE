@@ -313,12 +313,28 @@ const confirmBooking = async (dataRequest) => {
     }
 };
 
-const getAllCategoryHandbook = () => {
+const getAllCategoryHandbook = (limit, haveImg) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const result = await axios.get(`api/get-all-handbook-category`);
+            const result = await axios.get(
+                `api/get-all-handbook-category?limit=${limit}&haveImg=${haveImg}`
+            );
             if (result && result.errCode === 0)
                 if (result.categories) resolve(result.categories);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const getHandbookCategory = (categoryId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.get(
+                `api/get-handbook-category?categoryId=${categoryId}`
+            );
+            if (result && result.errCode === 0)
+                if (result.category) resolve(result.category);
         } catch (e) {
             reject(e);
         }
@@ -370,7 +386,9 @@ const getAllHandbook = (limit, orderBy) => {
     return new Promise(async (resolve, reject) => {
         try {
             const result = await axios.get(
-                `api/get-all-handbook?limit=${limit}&orderBy=${orderBy}`
+                `api/get-all-handbook?limit=${limit}${
+                    (orderBy && `&orderBy=${orderBy}`) || ""
+                }`
             );
             if (result && result.errCode === 0)
                 if (result.handbooks) resolve(result.handbooks);
@@ -388,6 +406,26 @@ const getAllHandbookByCategory = (categoryId, limit) => {
             );
             if (result && result.errCode === 0)
                 if (result.handbooks) resolve(result.handbooks);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+const getAllHandbookByCategoryPG = (categoryId, page, limit) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const result = await axios.get(
+                `api/get-all-handbook-by-category-pagination?categoryId=${categoryId}&page=${page}&limit=${limit}`
+            );
+            if (result && result.errCode === 0) {
+                if (result.handbooks)
+                    resolve({
+                        handbooks: result.handbooks,
+                        count: result.count,
+                    });
+            }
+            resolve();
         } catch (e) {
             reject(e);
         }
@@ -447,11 +485,13 @@ export {
     getAllBookingByDoctor,
     confirmBooking,
     getAllCategoryHandbook,
+    getHandbookCategory,
     createCategoryHandbook,
     deleteCategoryHandbook,
     updateCategoryHandbook,
     getAllHandbook,
     getAllHandbookByCategory,
+    getAllHandbookByCategoryPG,
     getHandbook,
     createHandbook,
 };

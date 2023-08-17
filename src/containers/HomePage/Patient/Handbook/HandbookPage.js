@@ -6,6 +6,7 @@ import HomeHeader from "../../HomeHeader";
 import HomeFooter from "../../HomeFooter";
 import HandBook from "../../Section/HandBook";
 import HandbookFour from "../../Section/HandBookFour";
+import CategoryHandbook from "../../Section/CategoryHandbook";
 
 import "./HandbookPage.scss";
 
@@ -52,7 +53,10 @@ class HandbookPage extends React.Component {
                         settings={{ ...this.settings, slidesToShow: 2 }}
                         outstandingHandbook={true}
                         isShowContentHead={true}
+                        height={true}
+                        arrowPositionRemote={true}
                     />
+                    <CategoryHandbook onlyHaveImg={true} />
                 </div>
                 <HomeFooter />
             </div>

@@ -41,8 +41,9 @@ class OutstandingDoctor extends React.Component {
         }
     };
 
-    handleRedirect = (id) => {
-        history.push(`/detail-doctor/${id}`);
+    handleRedirect = (id, nameDoctor) => {
+        nameDoctor = nameDoctor.replaceAll(" ", "-");
+        history.push(`/detail-doctor/${id}/${nameDoctor}`);
     };
 
     contentLoader = (quantity) => {
@@ -129,7 +130,8 @@ class OutstandingDoctor extends React.Component {
                                             key={index}
                                             onClick={() =>
                                                 this.handleRedirect(
-                                                    topDoctor.id
+                                                    topDoctor.id,
+                                                    topDoctor.fullName
                                                 )
                                             }
                                         >

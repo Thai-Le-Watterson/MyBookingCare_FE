@@ -1,50 +1,83 @@
 import React from "react";
 import * as userService from "../../../services/userService";
 import _ from "lodash";
+import moment from "moment";
+import { withRouter } from "react-router-dom";
 
 import Slider from "react-slick";
 import ContentLoader from "react-content-loader";
 import { FormattedMessage } from "react-intl";
-import { withRouter } from "react-router-dom";
 
+import "./CategoryHandbook.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { dateFormat } from "../../../utils";
 
-class HandBook extends React.Component {
+class SampleNextArrow extends React.Component {
+    // { className, style, onClick } = this.props;
+    render() {
+        return (
+            <div className={this.props.className} onClick={this.props.onClick}>
+                <i className="fa-solid fa-angle-right"></i>
+            </div>
+        );
+    }
+}
+
+class SamplePrevArrow extends React.Component {
+    // { className, style, onClick } = this.props;
+    render() {
+        return (
+            <div className={this.props.className} onClick={this.props.onClick}>
+                <i className="fa-solid fa-angle-left"></i>
+            </div>
+        );
+    }
+}
+
+class CategoryHandbook extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            handbooks: [],
+            handbookCategories: [],
             isLoadContent: false,
         };
     }
 
     componentDidMount = async () => {
-        if (this.props.outstandingHandbook === true) {
+        if (this.props.onlyHaveImg === true) {
             this.setState({
                 isLoadContent: true,
             });
 
-            const handbooks = await userService.getAllHandbook(5, "views");
+            const handbookCategories = await userService.getAllCategoryHandbook(
+                6,
+                "1"
+            );
 
-            if (handbooks && !_.isEmpty(handbooks)) {
+            if (handbookCategories && !_.isEmpty(handbookCategories)) {
                 this.setState({
-                    handbooks,
+                    handbookCategories,
                 });
             }
             this.setState({
                 isLoadContent: false,
             });
-        } else {
+        }
+    };
+
+    componentDidUpdate = async (prevProps, prevState) => {
+        if (prevProps.categoryId !== this.props.categoryId) {
             this.setState({
                 isLoadContent: true,
             });
-
-            const handbooks = await userService.getAllHandbook(5);
-
-            if (handbooks && !_.isEmpty(handbooks)) {
+            const handbookCategories =
+                await userService.getAllHandbookByCategory(
+                    this.props.categoryId
+                );
+            if (handbookCategories && !_.isEmpty(handbookCategories)) {
                 this.setState({
-                    handbooks,
+                    handbookCategories,
                 });
             }
             this.setState({
@@ -262,95 +295,128 @@ class HandBook extends React.Component {
         return result;
     };
 
-    handleGetContentHeader = (handbook) => {
-        const contentHTML = handbook.contentHTML;
-        let contentHeader = contentHTML.slice(
-            contentHTML.search("<h1>"),
-            contentHTML.search("</h1>")
-        );
-        contentHeader = contentHeader.replace("<h1>", "").replace("</h1>", "");
-        // console.log(contentHeader);
-        return contentHeader;
+    buildSettingSlider = () => {
+        return {
+            dots: false,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+        };
+    };
+
+    contentLoader = (quantity) => {
+        const result = [];
+
+        if (Number.isInteger(quantity) && quantity > 0)
+            for (let i = 1; i <= quantity; i++) {
+                result.push(
+                    <ContentLoader
+                        key={i}
+                        width={300}
+                        height={200}
+                        viewBox="0 0 450 400"
+                        backgroundColor="#ededed"
+                        foregroundColor="#dedede"
+                    >
+                        <rect
+                            x="43"
+                            y="304"
+                            rx="4"
+                            ry="4"
+                            width="271"
+                            height="9"
+                        />
+                        <rect
+                            x="44"
+                            y="323"
+                            rx="3"
+                            ry="3"
+                            width="119"
+                            height="6"
+                        />
+                        <rect
+                            x="42"
+                            y="77"
+                            rx="10"
+                            ry="10"
+                            width="388"
+                            height="217"
+                        />
+                    </ContentLoader>
+                );
+            }
+
+        return result;
     };
 
     render() {
+        // console.log("check props new: ", this.props);
         // console.log("check state: ", this.state);
-        // console.log("check props: ", this.props);
-        const { handbooks, isLoadContent } = this.state;
+        const { handbookCategories, isLoadContent } = this.state;
+        // console.log("check handbookCategories: ", handbookCategories);
+        const settings = {
+            dots: false,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 6,
+            slidesToScroll: 2,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+        };
 
         return (
             <>
-                <div
-                    className={`section-overlay ${
-                        (this.props.bg && "section-bg") || ""
-                    } style-flex`}
-                >
-                    <div
-                        className={`section-container ${
-                            this.props.height && "height-160"
-                        } ${
-                            this.props.arrowPositionRemote &&
-                            "arrow-position-remote"
-                        }`}
-                    >
-                        <div className="section-title">
+                <div className="section-overlay section-bg style-flex">
+                    <div className="section-container section-handbook-container">
+                        <div className="section-title border-b">
                             <h1 className="title">
-                                {(this.props.outstandingHandbook === true && (
-                                    <FormattedMessage id="handbook-detail.featured" />
-                                )) || (
-                                    <FormattedMessage id="homepage.handbook" />
-                                )}
+                                <FormattedMessage id="handbook-detail.category" />
                             </h1>
-                            {this.props.outstandingHandbook !== true && (
-                                <button
-                                    className="button"
-                                    onClick={() =>
-                                        this.props.history.push("/handbook")
-                                    }
-                                >
-                                    <FormattedMessage id="homepage.all" />
-                                </button>
-                            )}
+                            <button
+                                className="button"
+                                onClick={() =>
+                                    this.props.history.push("/category")
+                                }
+                            >
+                                <FormattedMessage id="homepage.more" />
+                            </button>
                         </div>
-                        <Slider {...this.props.settings}>
+                        <Slider {...settings}>
                             {isLoadContent ? (
-                                this.contentLoader(
-                                    this.props.settings?.slidesToShow
-                                )
-                            ) : handbooks && !_.isEmpty(handbooks) ? (
-                                handbooks.map((handbook, index) => {
+                                this.contentLoader(settings?.slidesToShow)
+                            ) : handbookCategories &&
+                              !_.isEmpty(handbookCategories) ? (
+                                handbookCategories.map((category, index) => {
                                     const image =
-                                        handbook.image &&
-                                        Buffer.from(handbook.image).toString();
-                                    const handbookName =
-                                        handbook.name.replaceAll(" ", "-");
+                                        category.image &&
+                                        Buffer.from(category.image).toString();
                                     return (
                                         <div
-                                            className="section-item"
+                                            className="section-category_item"
                                             key={index}
                                             onClick={() =>
                                                 this.props.history.push(
-                                                    `/detail-handbook/${handbook.id}/${handbookName}`
+                                                    `/detail-category/${
+                                                        category.id
+                                                    }/${category.name.replaceAll(
+                                                        " ",
+                                                        "-"
+                                                    )}`
                                                 )
                                             }
                                         >
-                                            <div className="margin-box">
-                                                {/* <div className="img img1"></div> */}
-                                                <img src={image} />
-                                                <div className="handbook-content">
-                                                    <span className="title">
-                                                        {handbook.name}
-                                                    </span>
-                                                    {this.props
-                                                        .isShowContentHead && (
-                                                        <p>
-                                                            {this.handleGetContentHeader(
-                                                                handbook
-                                                            )}
-                                                        </p>
-                                                    )}
-                                                </div>
-                                            </div>
+                                            <div
+                                                className="img"
+                                                style={{
+                                                    backgroundImage: `url(${image})`,
+                                                }}
+                                            ></div>
+                                            <p className="category-name">
+                                                {category.name}
+                                            </p>
                                         </div>
                                     );
                                 })
@@ -367,4 +433,4 @@ class HandBook extends React.Component {
     }
 }
 
-export default withRouter(HandBook);
+export default withRouter(CategoryHandbook);

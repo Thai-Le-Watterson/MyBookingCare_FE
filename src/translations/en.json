@@ -171,7 +171,14 @@
         "date": "Publish",
         "update-date": "Last update",
         "main-content": "Main content",
-        "handbook-related": "Related Posts"
+        "handbook-related": "Related Posts",
+        "handbook-new": "New Posts",
+        "featured": "Featured Posts"
+    },
+    "category": {
+        "category": "Category",
+        "more": "See more",
+        "no-handbook": "There are no articles in this category! :(("
     },
     "booking-modal": {
         "title": "Information to book a medical appointment",

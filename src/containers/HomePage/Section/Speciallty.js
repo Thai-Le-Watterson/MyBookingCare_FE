@@ -35,8 +35,9 @@ class Speciallty extends React.Component {
         });
     };
 
-    redirectToSpecialtyDetail = (specialtyId) => {
-        history.push(`/detail-specialty/${specialtyId}`);
+    redirectToSpecialtyDetail = (specialtyId, nameSpecialty) => {
+        nameSpecialty = nameSpecialty.replaceAll(" ", "-");
+        history.push(`/detail-specialty/${specialtyId}/${nameSpecialty}`);
     };
 
     contentLoader = (quantity) => {
@@ -116,7 +117,8 @@ class Speciallty extends React.Component {
                                                 key={index}
                                                 onClick={() =>
                                                     this.redirectToSpecialtyDetail(
-                                                        specialty.id
+                                                        specialty.id,
+                                                        specialty.name
                                                     )
                                                 }
                                             >

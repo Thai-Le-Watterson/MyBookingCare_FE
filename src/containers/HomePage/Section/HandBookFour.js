@@ -2,11 +2,11 @@ import React from "react";
 import * as userService from "../../../services/userService";
 import _ from "lodash";
 import moment from "moment";
+import { withRouter } from "react-router-dom";
 
 import Slider from "react-slick";
 import ContentLoader from "react-content-loader";
 import { FormattedMessage } from "react-intl";
-import { withRouter } from "react-router-dom";
 
 import "./HandBookFour.scss";
 import "slick-carousel/slick/slick.css";
@@ -354,6 +354,51 @@ class HandBookFour extends React.Component {
         };
     };
 
+    contentLoader = (quantity) => {
+        const result = [];
+
+        if (Number.isInteger(quantity) && quantity > 0)
+            for (let i = 1; i <= quantity; i++) {
+                result.push(
+                    <ContentLoader
+                        key={i}
+                        width={300}
+                        height={200}
+                        viewBox="0 0 450 400"
+                        backgroundColor="#ededed"
+                        foregroundColor="#dedede"
+                    >
+                        <rect
+                            x="43"
+                            y="304"
+                            rx="4"
+                            ry="4"
+                            width="271"
+                            height="9"
+                        />
+                        <rect
+                            x="44"
+                            y="323"
+                            rx="3"
+                            ry="3"
+                            width="119"
+                            height="6"
+                        />
+                        <rect
+                            x="42"
+                            y="77"
+                            rx="10"
+                            ry="10"
+                            width="388"
+                            height="217"
+                        />
+                    </ContentLoader>
+                );
+            }
+
+        return result;
+    };
+
     render() {
         // console.log("check props new: ", this.props);
         // console.log("check state: ", this.state);
@@ -375,26 +420,26 @@ class HandBookFour extends React.Component {
                     <div className="section-container section-handbook-container">
                         <div className="section-title border-b">
                             <h1 className="title">
-                                <FormattedMessage id="handbook-detail.handbook-related" />
+                                <FormattedMessage id="handbook-detail.handbook-new" />
                             </h1>
                         </div>
                         <Slider {...settings}>
                             {isLoadContent ? (
-                                this.contentLoader(
-                                    this.props.settings?.slidesToShow
-                                )
+                                this.contentLoader(settings?.slidesToShow)
                             ) : handbooks && !_.isEmpty(handbooks) ? (
                                 handbooks.map((handbook, index) => {
                                     const image =
                                         handbook.image &&
                                         Buffer.from(handbook.image).toString();
+                                    const handbookName =
+                                        handbook.name.replaceAll(" ", "-");
                                     return (
                                         <div
                                             className="section-item section-handbook-item"
                                             key={index}
                                             onClick={() =>
                                                 this.props.history.push(
-                                                    `/detail-handbook/${handbook.id}`
+                                                    `/detail-handbook/${handbook.id}/${handbookName}`
                                                 )
                                             }
                                         >

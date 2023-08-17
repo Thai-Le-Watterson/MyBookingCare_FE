@@ -171,7 +171,15 @@
         "date": "Xuất bản",
         "update-date": "Cập nhật lần cuối",
         "main-content": "Nội dung chính",
-        "handbook-related": "Bài viết liên quan"
+        "handbook-related": "Bài viết liên quan",
+        "handbook-new": "Bài viết mới nhất",
+        "featured": "Bài viết nổi bật",
+        "category": "Danh mục"
+    },
+    "category": {
+        "category": "Danh mục",
+        "more": "Xem thêm",
+        "no-handbook": "Không có bài viết nào thuộc danh mục này! :(("
     },
     "booking-modal": {
         "title": "Thông tin đặt lịch khám bệnh",
