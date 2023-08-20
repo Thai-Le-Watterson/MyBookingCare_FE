@@ -1,3 +1,94 @@
+@media (max-width: 576px) {
+    .clinic-intro {
+        gap: 10px;
+
+        .clinic-img {
+            margin: 0;
+        }
+
+        .clinic-describe {
+            .clinic-name {
+                font-size: 18px;
+            }
+            .clinic-address {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .navigate-clinic-page {
+        display: none;
+    }
+
+    .clinic-detail_overlay {
+        .content-container {
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .clinic-intro {
+        gap: 10px;
+
+        .clinic-img {
+            margin: 0;
+        }
+
+        .clinic-describe {
+            .clinic-name {
+                font-size: 18px;
+            }
+            .clinic-address {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .navigate-clinic-page {
+        display: none;
+    }
+
+    .clinic-detail_overlay {
+        .content-container {
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .clinic-detail_overlay {
+        .clinic-intro {
+            gap: 40px;
+
+            .clinic-img {
+                margin-left: 20px;
+            }
+
+            .clinic-describe {
+                .clinic-name {
+                }
+                .clinic-address {
+                }
+            }
+        }
+
+        .navigate-clinic-page {
+            display: flex;
+        }
+
+        .content-container {
+            img {
+                width: 500px;
+            }
+        }
+    }
+}
+
 .clinic-detail_overlay {
     .clinic-intro {
         margin-top: 40px;
@@ -5,12 +96,10 @@
         box-shadow: 0px 2px 4px #a9a9a9;
         display: flex;
         align-items: center;
-        gap: 40px;
 
         .clinic-img {
             width: 160px;
             height: 110px;
-            margin-left: 20px;
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
@@ -26,7 +115,6 @@
     }
 
     .navigate-clinic-page {
-        display: flex;
         justify-content: space-around;
         background-color: #fff;
         box-shadow: 1px 2px 4px #a9a9a9;
@@ -112,8 +200,8 @@
             text-transform: capitalize;
         }
 
-        img {
-            width: 500px;
+        .introduce {
+            text-align: justify;
         }
     }
 }

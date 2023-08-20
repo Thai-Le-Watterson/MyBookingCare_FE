@@ -9,6 +9,9 @@
         "examinationPackage": "Gói khám",
         "healthCheck": "Khám sức khỏe tổng quát",
         "support": "Hỗ trợ",
+        "language": "Ngôn ngữ",
+        "vietnamese": "Tiếng Việt",
+        "english": "Tiếng Anh",
         "userOption": {
             "logout": "Đăng xuất",
             "goToAdmin": "Đi đến trang quản lý",

@@ -418,7 +418,7 @@ class CategoryDetail extends React.Component {
                                     categories.map((category, index) => {
                                         return (
                                             <div
-                                                className="col-3 item"
+                                                className="col-4 col-md-3 item"
                                                 key={index}
                                                 onClick={() =>
                                                     this.props.history.push(

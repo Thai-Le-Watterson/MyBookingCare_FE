@@ -41,10 +41,24 @@ class HandBookFour extends React.Component {
         this.state = {
             handbooks: [],
             isLoadContent: false,
+            settings: {
+                dots: false,
+                infinite: false,
+                speed: 500,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                nextArrow: <SampleNextArrow />,
+                prevArrow: <SamplePrevArrow />,
+            },
         };
     }
 
     componentDidMount = async () => {
+        window.onresize = (e) =>
+            this.handleResponsiveSection(e.target.innerWidth);
+
+        this.handleResponsiveSection(window.innerWidth);
+
         if (this.props.newHandbook === true) {
             this.setState({
                 isLoadContent: true,
@@ -399,20 +413,45 @@ class HandBookFour extends React.Component {
         return result;
     };
 
+    handleResponsiveSection = (screenWidth) => {
+        if (screenWidth >= 1200) {
+            const copyState = { ...this.state };
+            copyState.screenWidth = screenWidth;
+            copyState.settings.slidesToShow = 4;
+
+            this.setState({ ...copyState });
+        } else if (screenWidth >= 992) {
+            const copyState = { ...this.state };
+            copyState.screenWidth = screenWidth;
+            copyState.settings.slidesToShow = 3;
+
+            this.setState({ ...copyState });
+        } else if (screenWidth >= 768) {
+            const copyState = { ...this.state };
+            copyState.screenWidth = screenWidth;
+            copyState.settings.slidesToShow = 3;
+
+            this.setState({ ...copyState });
+        } else if (screenWidth >= 576) {
+            const copyState = { ...this.state };
+            copyState.screenWidth = screenWidth;
+            copyState.settings.slidesToShow = 2;
+
+            this.setState({ ...copyState });
+        } else if (screenWidth < 576) {
+            const copyState = { ...this.state };
+            copyState.screenWidth = screenWidth;
+            copyState.settings.slidesToShow = 1;
+
+            this.setState({ ...copyState });
+        }
+    };
+
     render() {
         // console.log("check props new: ", this.props);
         // console.log("check state: ", this.state);
-        const { handbooks, isLoadContent } = this.state;
+        const { handbooks, isLoadContent, settings } = this.state;
         // console.log("check handbooks: ", handbooks);
-        const settings = {
-            dots: false,
-            infinite: false,
-            speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            nextArrow: <SampleNextArrow />,
-            prevArrow: <SamplePrevArrow />,
-        };
 
         return (
             <>

@@ -28,7 +28,7 @@ class HomeBanner extends React.Component {
                             />
                         </div>
                     </div>
-                    <ul className="option-container">
+                    <ul className="option-container row">
                         <li className="option">
                             <i className="fa-solid fa-hospital"></i>
                             <FormattedMessage id={"homeBanner.option1"} />

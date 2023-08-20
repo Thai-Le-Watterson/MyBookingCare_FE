@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-import { history } from "../../redux";
+// import { history } from "../../redux";
 import * as actions from "../../store/actions";
 import * as userService from "../../services/userService";
+
 import "./Login.scss";
 
 class Login extends Component {

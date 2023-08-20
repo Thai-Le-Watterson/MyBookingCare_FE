@@ -1,5 +1,33 @@
 @import "../../../../styles//variables";
 
+@media (max-width: 576px) {
+    .category-container {
+        .category-handbook {
+            .category-handbook_item {
+                flex-direction: column;
+
+                .category-handbook_item-img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 577px) {
+    .category-container {
+        .category-handbook {
+            .category-handbook_item {
+                flex-direction: row;
+
+                .category-handbook_item-img {
+                    width: 300px;
+                }
+            }
+        }
+    }
+}
+
 .category-container {
     min-height: 81vh;
     padding: 0;

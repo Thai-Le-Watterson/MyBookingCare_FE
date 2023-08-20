@@ -1,3 +1,90 @@
+@media (max-width: 576px) {
+    .doctor-intro {
+        margin-bottom: 20px;
+
+        .doctor-avatar {
+            $width: 80px;
+            width: $width;
+            min-width: $width;
+            height: $width;
+            min-height: $width;
+        }
+
+        .intro-content {
+            .doctor-name {
+                font-size: 18px;
+            }
+            .description {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .doctor-intro {
+        margin-bottom: 20px;
+
+        .doctor-avatar {
+            $width: 80px;
+            width: $width;
+            min-width: $width;
+            height: $width;
+            min-height: $width;
+        }
+
+        .intro-content {
+            .doctor-name {
+                font-size: 18px;
+            }
+            .description {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .doctor-intro {
+        .doctor-avatar {
+            $width: 120px;
+            width: $width;
+            min-width: $width;
+            height: $width;
+            min-height: $width;
+        }
+
+        .intro-content {
+            .doctor-name {
+                font-size: 20px;
+            }
+            .description {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .doctor-intro {
+        .doctor-avatar {
+            $width: 120px;
+            width: $width;
+            min-width: $width;
+            height: $width;
+            min-height: $width;
+        }
+
+        .intro-content {
+            .doctor-name {
+                font-size: 24px;
+            }
+            .description {
+            }
+        }
+    }
+}
+
 .doctor-intro {
     display: flex;
     gap: 20px;
@@ -6,10 +93,6 @@
         text-align: center;
 
         .doctor-avatar {
-            width: 120px;
-            min-width: 120px;
-            height: 120px;
-            min-height: 120px;
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -27,10 +110,14 @@
     .intro-content {
         .doctor-name {
             margin-top: 20px;
-            font-size: 24px;
             font-weight: bold;
         }
         .description {
+            &.show {
+                display: block;
+            }
+
+            text-align: justify;
             color: #555;
             font-size: 14px;
         }

@@ -1,5 +1,109 @@
+@import "../../styles/variables";
+
+@media (max-width: 576px) {
+    .search-container {
+        h1 {
+            font-size: 24px;
+        }
+
+        .search {
+            i {
+            }
+
+            input {
+                width: auto;
+            }
+        }
+    }
+
+    .option-container {
+        margin: 0;
+        .option {
+            width: 120px;
+            font-size: 12px;
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .search-container {
+        h1 {
+            font-size: 24px;
+        }
+
+        .search {
+            i {
+            }
+
+            input {
+                width: auto;
+            }
+        }
+    }
+
+    .option-container {
+        margin: 0;
+        .option {
+            width: 120px;
+            font-size: 12px;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .search-container {
+        h1 {
+            font-size: 32px;
+        }
+
+        .search {
+            i {
+            }
+
+            input {
+                width: 380px;
+            }
+        }
+    }
+
+    .option-container {
+        margin: 40px 0 0 0;
+
+        .option {
+            width: 150px;
+            font-size: 16px;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .search-container {
+        h1 {
+            font-size: 32px;
+        }
+
+        .search {
+            i {
+            }
+
+            input {
+                width: 380px;
+            }
+        }
+    }
+
+    .option-container {
+        margin: 0;
+
+        .option {
+            width: 150px;
+            font-size: 16px;
+        }
+    }
+}
+
 .home-header_banner {
-    height: 600px;
+    // height: 600px;
     margin-bottom: 20px;
     background: url("../../assets/images/bookingcare-cover-4.jpg") center
         no-repeat;
@@ -21,7 +125,6 @@
             color: #fff;
             text-shadow: 1px 1px 1px #000;
             margin-bottom: 20px;
-            font-size: 32px;
 
             p {
                 font-weight: bold;
@@ -42,7 +145,7 @@
 
             input {
                 margin-left: 10px;
-                width: 380px;
+                // width: 380px;
                 border: none;
                 background-color: transparent;
                 outline: none;
@@ -51,10 +154,9 @@
     }
 
     .option-container {
-        display: flex;
+        // display: flex;
         justify-content: center;
         gap: 20px;
-        margin: 0;
         padding: 0;
         background-image: linear-gradient(
             180deg,
@@ -64,14 +166,12 @@
         );
 
         .option {
-            width: 150px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             padding: 5px;
             list-style: none;
-            font-size: 16px;
             font-weight: bold;
             color: #3d3d3d;
             box-sizing: border-box;

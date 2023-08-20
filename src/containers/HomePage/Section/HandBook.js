@@ -275,7 +275,7 @@ class HandBook extends React.Component {
 
     render() {
         // console.log("check state: ", this.state);
-        // console.log("check props: ", this.props);
+        console.log("check props: ", this.props);
         const { handbooks, isLoadContent } = this.state;
 
         return (
@@ -287,7 +287,7 @@ class HandBook extends React.Component {
                 >
                     <div
                         className={`section-container ${
-                            this.props.height && "height-160"
+                            this.props.height === true ? "height-fit" : ""
                         } ${
                             this.props.arrowPositionRemote &&
                             "arrow-position-remote"

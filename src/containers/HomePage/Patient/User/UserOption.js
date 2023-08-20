@@ -49,6 +49,17 @@ class UserOption extends React.Component {
                                 {userInfo?.roleId === "R1" ||
                                 userInfo?.roleId === "R2" ? (
                                     <>
+                                        <div className="intro">
+                                            <div
+                                                className="avatar"
+                                                style={{
+                                                    backgroundImage: `url(${image})`,
+                                                }}
+                                            ></div>
+                                            <span className="user-name">
+                                                {userInfo?.fullName}
+                                            </span>
+                                        </div>
                                         {(isAminPage && (
                                             <li
                                                 className="item"
@@ -87,7 +98,7 @@ class UserOption extends React.Component {
                             onClick={() => history.push(path.LOGIN)}
                         >
                             <span className="login-text">Đăng nhập</span>
-                            <i className="fa-solid fa-circle-user"></i>
+                            <i className="fa-solid fa-circle-user icon-login"></i>
                         </div>
                     )}
                 </div>

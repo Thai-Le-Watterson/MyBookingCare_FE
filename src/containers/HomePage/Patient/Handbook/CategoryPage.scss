@@ -1,5 +1,99 @@
 @import "../../../../styles/variables";
 
+@media (max-width: 576px) {
+    .category_container {
+        .head {
+            .list-char {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .category_container {
+        .head {
+            .list-char {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .category_container {
+        .head {
+            .list-char {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 8px;
+
+                .item {
+                    $width: 46px;
+                    width: $width;
+                    height: $width;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .category_container {
+        .head {
+            .list-char {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 8px;
+
+                .item {
+                    $width: 46px;
+                    width: $width;
+                    height: $width;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .category_container {
+        .head {
+            .list-char {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 8px;
+
+                .item {
+                    $width: 46px;
+                    width: $width;
+                    height: $width;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1400px) {
+    .category_container {
+        .head {
+            .list-char {
+                display: flex;
+                justify-content: flex-start;
+
+                .item {
+                    $width: 46px;
+                    width: $width;
+                    height: $width;
+                }
+            }
+        }
+    }
+}
+
 .category_container {
     .head {
         margin: 20px 0;
@@ -13,17 +107,12 @@
         }
 
         .list-char {
-            display: flex;
-            justify-content: space-between;
             margin-top: 20px;
             position: sticky;
             position: -webkit-sticky;
             top: 100px;
 
             .item {
-                $width: 46px;
-                width: $width;
-                height: $width;
                 // padding: 8px 16px;
                 text-decoration: none;
                 display: flex;

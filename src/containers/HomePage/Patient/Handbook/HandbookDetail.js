@@ -106,7 +106,7 @@ class HandbookDetail extends React.Component {
                 <div className="content-overlay">
                     <div className="container">
                         <div className="row">
-                            <div className="handbook-content_container">
+                            <div className="handbook-content_container col-12 col-md-9">
                                 <img src={reviewImage} width={"100%"} />
                                 <p className="handbook-name">{name}</p>
                                 <span className="fw-bold">
@@ -130,7 +130,7 @@ class HandbookDetail extends React.Component {
                                     }}
                                 ></p>
                             </div>
-                            <div className="handbook-navigate">
+                            <div className="handbook-navigate col-md-3">
                                 <p className="handbook-navigate_title main-color">
                                     <FormattedMessage id="handbook-detail.main-content" />
                                 </p>

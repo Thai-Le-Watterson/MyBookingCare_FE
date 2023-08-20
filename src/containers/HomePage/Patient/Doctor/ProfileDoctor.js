@@ -69,7 +69,11 @@ class ProfileDoctor extends React.Component {
                     </div>
                     <div className="intro-content right">
                         <h3 className="doctor-name">{`${position} || ${doctor.fullName}`}</h3>
-                        <span className="description mb-2">
+                        <span
+                            className={`description mb-2 ${
+                                this.props.isShowDescription ? "show" : ""
+                            }`}
+                        >
                             {`${doctor.MarkdownData?.description}`}
                         </span>
                         {this.props.isShowLikeShare && (

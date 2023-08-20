@@ -1,9 +1,16 @@
+@media (max-width: 576px) {
+}
+
+@media (min-width: 577px) {
+}
+
 .schedule-infor_container {
     margin-top: 20px;
     padding-bottom: 20px;
 }
 
 .doctor-content {
+    text-align: justify;
     background-color: #f9f9f9;
     border-bottom: 1px solid #ccc;
     padding: 20px 0;

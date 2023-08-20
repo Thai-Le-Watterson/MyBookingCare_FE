@@ -207,7 +207,7 @@ class SpecialtyDetail extends React.Component {
                                                 key={index}
                                                 className="item-doctor row"
                                             >
-                                                <div className="col-6">
+                                                <div className="col-12 col-sm-12 col-md-6">
                                                     <ProfileDoctor
                                                         doctorId={
                                                             doctor.doctorId
@@ -215,7 +215,7 @@ class SpecialtyDetail extends React.Component {
                                                         isShowMore={true}
                                                     />
                                                 </div>
-                                                <div className="col-6">
+                                                <div className="col-12 col-sm-12 col-md-6">
                                                     <DoctorSchedule
                                                         doctorId={
                                                             doctor.doctorId

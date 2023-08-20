@@ -105,7 +105,7 @@ class CategoryPage extends React.Component {
                                                 (category, index) => {
                                                     return (
                                                         <div
-                                                            className="item col-3"
+                                                            className="item col-6 col-sm-4 col-md-3"
                                                             key={index}
                                                             onClick={() =>
                                                                 this.props.history.push(

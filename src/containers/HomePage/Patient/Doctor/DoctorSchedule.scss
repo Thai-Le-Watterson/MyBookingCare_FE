@@ -1,6 +1,95 @@
-.schedule-container {
-    min-height: 200px;
+@media (max-width: 576px) {
+    .schedule-container {
+        min-height: unset;
 
+        .select-container {
+        }
+    }
+    .time-container {
+        justify-content: space-evenly;
+
+        .btn-time {
+            font-size: 9px;
+
+            &.vi {
+                min-width: 110px;
+            }
+
+            &.en {
+                min-width: 110px;
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .schedule-container {
+        min-height: unset;
+
+        .select-container {
+        }
+    }
+    .time-container {
+        justify-content: space-evenly;
+
+        .btn-time {
+            font-size: 9px;
+
+            &.vi {
+                min-width: 110px;
+            }
+
+            &.en {
+                min-width: 110px;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .schedule-container {
+        min-height: 200px;
+
+        .select-container {
+        }
+    }
+    .time-container {
+        .btn-time {
+            font-size: 12px;
+
+            &.vi {
+                min-width: 120px;
+            }
+
+            &.en {
+                min-width: 150px;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .schedule-container {
+        min-height: 200px;
+
+        .select-container {
+        }
+    }
+    .time-container {
+        .btn-time {
+            font-size: 14px;
+            &.vi {
+                min-width: 120px;
+            }
+
+            &.en {
+                min-width: 160px;
+            }
+        }
+    }
+}
+
+.schedule-container {
     .select-container {
         width: fit-content;
 
@@ -43,14 +132,6 @@
         .btn-time {
             padding: 8px 12px;
             background-color: #ffff63;
-
-            &.vi {
-                min-width: 120px;
-            }
-
-            &.en {
-                min-width: 160px;
-            }
 
             &:hover {
                 color: #fff;

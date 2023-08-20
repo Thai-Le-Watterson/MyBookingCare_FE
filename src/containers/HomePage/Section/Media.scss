@@ -1,3 +1,27 @@
+@media (max-width: 576px) {
+    .media-container {
+        .video {
+            height: 270px;
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .media-container {
+        .video {
+            height: 270px;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .media-container {
+        .video {
+            height: 450px;
+        }
+    }
+}
+
 .media-container {
     // display: flex;
     // gap: 20px;
@@ -5,7 +29,7 @@
 
     .video {
         // width: 50%;
-        height: 450px;
+        // height: 450px;
     }
 
     .media-content {

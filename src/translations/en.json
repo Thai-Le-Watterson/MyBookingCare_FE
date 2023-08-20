@@ -9,6 +9,9 @@
         "examinationPackage": "Examination package",
         "healthCheck": "General health check",
         "support": "Support",
+        "language": "Languages",
+        "vietnamese": "Vietnamese",
+        "english": "English",
         "userOption": {
             "logout": "Log Out",
             "goToAdmin": "Go to the admin page",
@@ -173,7 +176,8 @@
         "main-content": "Main content",
         "handbook-related": "Related Posts",
         "handbook-new": "New Posts",
-        "featured": "Featured Posts"
+        "featured": "Featured Posts",
+        "category": "Category"
     },
     "category": {
         "category": "Category",

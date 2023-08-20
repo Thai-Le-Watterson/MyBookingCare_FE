@@ -33,14 +33,45 @@ class SamplePrevArrow extends React.Component {
 }
 
 class HandbookPage extends React.Component {
-    settings = {
-        dots: false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
+    constructor(props) {
+        super(props);
+        this.state = {
+            handbookCategories: [],
+            isLoadContent: false,
+            screenWidth: 0,
+            settings: {
+                dots: false,
+                infinite: false,
+                speed: 500,
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                nextArrow: <SampleNextArrow />,
+                prevArrow: <SamplePrevArrow />,
+            },
+        };
+    }
+
+    componentDidMount = async () => {
+        window.onresize = (e) =>
+            this.handleResponsiveSection(e.target.innerWidth);
+
+        this.handleResponsiveSection(window.innerWidth);
+    };
+
+    handleResponsiveSection = (screenWidth) => {
+        if (screenWidth < 768) {
+            const copyState = { ...this.state };
+            copyState.screenWidth = screenWidth;
+            copyState.settings.slidesToShow = 1;
+
+            this.setState({ ...copyState });
+        } else if (screenWidth >= 768) {
+            const copyState = { ...this.state };
+            copyState.screenWidth = screenWidth;
+            copyState.settings.slidesToShow = 2;
+
+            this.setState({ ...copyState });
+        }
     };
 
     render() {
@@ -50,11 +81,15 @@ class HandbookPage extends React.Component {
                 <div className="handbook-page_overlay">
                     <HandbookFour newHandbook={true} />
                     <HandBook
-                        settings={{ ...this.settings, slidesToShow: 2 }}
+                        settings={{ ...this.state.settings }}
                         outstandingHandbook={true}
-                        isShowContentHead={true}
+                        isShowContentHead={
+                            this.state.screenWidth < 768 ? false : true
+                        }
                         height={true}
-                        arrowPositionRemote={true}
+                        arrowPositionRemote={
+                            this.state.screenWidth <= 992 ? false : true
+                        }
                     />
                     <CategoryHandbook onlyHaveImg={true} />
                 </div>

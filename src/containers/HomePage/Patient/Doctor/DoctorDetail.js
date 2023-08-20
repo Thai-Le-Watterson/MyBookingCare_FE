@@ -64,17 +64,18 @@ class DoctorDetail extends React.Component {
                         doctorId={doctor.id}
                         isShowLikeShare={true}
                         currentHref={currentHref}
+                        isShowDescription={true}
                     />
                 </div>
                 <div className="schedule-infor_container container">
                     <div className="row">
-                        <div className="col">
+                        <div className="col-12 col-sm-6">
                             <DoctorSchedule
                                 doctorId={doctor.id}
                                 handleOpenModal={this.toggleModal}
                             />
                         </div>
-                        <div className="col">
+                        <div className="col-12 col-sm-6">
                             <DoctorExtraInfor doctorId={doctor.id} />
                         </div>
                     </div>

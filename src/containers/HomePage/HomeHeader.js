@@ -13,17 +13,34 @@ class HomeHeader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            screenWidth: 0,
             userInfo: {},
         };
     }
 
     componentDidMount = () => {
+        window.onresize = (e) =>
+            this.handleResponsiveSection(e.target.innerWidth);
+
+        this.handleResponsiveSection(window.innerWidth);
+
         this.setState({
             userInfo: this.props.userInfo,
+            // screenWidth: this.props.screenWidth,
         });
     };
 
-    componentDidUpdate = (prevProps) => {};
+    componentDidUpdate = (prevProps) => {
+        if (this.props.screenWidth !== prevProps.screenWidth) {
+            this.setState({
+                screenWidth: this.props.screenWidth,
+            });
+        }
+    };
+
+    handleResponsiveSection = (screenWidth) => {
+        this.setState({ screenWidth });
+    };
 
     handleChangeLanguage = (language) => {
         this.props.changeLanguage(language);
@@ -31,6 +48,19 @@ class HomeHeader extends React.Component {
 
     handleRedirectToHome = () => {
         history.push("/home");
+    };
+
+    handleShowContactOnMobile = (e) => {
+        if (e.target.checked) {
+            document.querySelector(".contact-overlay.hide");
+        }
+    };
+
+    handleHideContactOnMobile = (e) => {
+        e.stopPropagation();
+        const element = document.querySelector("#show-contact");
+        element.checked = false;
+        console.log("Hide");
     };
 
     render() {
@@ -41,7 +71,9 @@ class HomeHeader extends React.Component {
                 <div className="home-header_container">
                     <div className="home-header_content">
                         <div className="logo-container">
-                            <i className="fa-solid fa-bars"></i>
+                            <label htmlFor="show-contact">
+                                <i className="fa-solid fa-bars"></i>
+                            </label>
                             <div
                                 className="logo"
                                 onClick={() => this.handleRedirectToHome()}
@@ -97,36 +129,80 @@ class HomeHeader extends React.Component {
                                 </a>
                             </li>
                         </ul>
-                        <div className="contact-container">
-                            <div className="contact">
-                                <i className="fa-solid fa-circle-question"></i>
-                                <FormattedMessage id={"homeHeader.support"} />
-                            </div>
-                            <div className="language">
-                                <span
-                                    className={
-                                        language === languages.VI
-                                            ? "language_vi active"
-                                            : "language_vi"
-                                    }
-                                    onClick={(e) => {
-                                        this.handleChangeLanguage(languages.VI);
-                                    }}
-                                >
-                                    VN
-                                </span>
-                                <span
-                                    className={
-                                        language === languages.EN
-                                            ? "language_en active"
-                                            : "language_en"
-                                    }
-                                    onClick={(e) => {
-                                        this.handleChangeLanguage(languages.EN);
-                                    }}
-                                >
-                                    EN
-                                </span>
+                        <input
+                            id="show-contact"
+                            type="checkbox"
+                            style={{ display: "none" }}
+                            onClick={(e) => this.handleShowContactOnMobile(e)}
+                        />
+                        <div
+                            className="contact-overlay"
+                            onClick={(e) => this.handleHideContactOnMobile(e)}
+                        >
+                            <div
+                                className="contact-container"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <div className="contact">
+                                    <i className="fa-solid fa-circle-question"></i>
+                                    <FormattedMessage
+                                        id={"homeHeader.support"}
+                                    />
+                                </div>
+                                <div className="language">
+                                    <label
+                                        className="language-title"
+                                        htmlFor="show-language"
+                                    >
+                                        <FormattedMessage
+                                            id={"homeHeader.language"}
+                                        />
+                                        <i className="fa-solid fa-caret-down"></i>
+                                    </label>
+                                    <input
+                                        id="show-language"
+                                        type="checkbox"
+                                        style={{ display: "none" }}
+                                    />
+                                    <ul className="list-language">
+                                        <span
+                                            className={
+                                                language === languages.VI
+                                                    ? "language_vi active"
+                                                    : "language_vi"
+                                            }
+                                            onClick={(e) => {
+                                                this.handleChangeLanguage(
+                                                    languages.VI
+                                                );
+                                            }}
+                                        >
+                                            {this.state.screenWidth <= 567 ? (
+                                                <FormattedMessage id="homeHeader.vietnamese" />
+                                            ) : (
+                                                "VN"
+                                            )}
+                                        </span>
+                                        <span
+                                            className={
+                                                language === languages.EN
+                                                    ? "language_en active"
+                                                    : "language_en"
+                                            }
+                                            onClick={(e) => {
+                                                this.handleChangeLanguage(
+                                                    languages.EN
+                                                );
+                                            }}
+                                        >
+                                            {this.state.screenWidth <= 567 ? (
+                                                <FormattedMessage id="homeHeader.english" />
+                                            ) : (
+                                                "EN"
+                                            )}
+                                        </span>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
