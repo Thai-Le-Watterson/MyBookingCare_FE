@@ -2,10 +2,11 @@ import React from "react";
 import * as userService from "../../../../services/userService";
 import _ from "lodash";
 import moment from "moment/moment";
+import { path } from "../../../../utils";
 
 import HomeHeader from "../../HomeHeader";
 import HomeFooter from "../../HomeFooter";
-import HandBookFour from "../../Section/HandBookFour";
+import HandBookFourSection from "../../Section/HandBookFourSection";
 import { FormattedMessage } from "react-intl";
 
 import "./HandbookDetail.scss";
@@ -93,7 +94,9 @@ class HandbookDetail extends React.Component {
                     <div className="bg-overlay">
                         <p className="navigate">
                             <span
-                                onClick={() => this.props.history.push("/home")}
+                                onClick={() =>
+                                    this.props.history.push(path.HOMEPAGE)
+                                }
                             >
                                 Trang chủ
                             </span>{" "}
@@ -140,7 +143,7 @@ class HandbookDetail extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <HandBookFour categoryId={categoryId} />
+                    <HandBookFourSection categoryId={categoryId} />
                 </div>
                 <HomeFooter />
             </>

@@ -58,7 +58,7 @@ class ProfileDoctor extends React.Component {
                         ></div>
                         {this.props.isShowMore && (
                             <Link
-                                to={`/detail-doctor/${
+                                to={`/doctor/${
                                     doctor.id
                                 }/${doctor.fullName?.replaceAll(" ", "-")}`}
                                 className="more-text"

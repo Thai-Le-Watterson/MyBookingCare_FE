@@ -8,9 +8,9 @@ import { FormattedMessage } from "react-intl";
 import { PuffLoader, BeatLoader } from "react-spinners";
 import HomeHeader from "../../HomeHeader";
 import HomeFooter from "../../HomeFooter";
-import ProfileDoctor from "./ProfileDoctor";
-import DoctorSchedule from "./DoctorSchedule";
-import DoctorExtraInfor from "./DoctorExtraInfor";
+import ProfileDoctor from "../Doctor/ProfileDoctor";
+import DoctorSchedule from "../Doctor/DoctorSchedule";
+import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
 
 import "./SpecialtyDetail.scss";
 

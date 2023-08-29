@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 
 import HomeHeader from "../../HomeHeader";
 import HomeFooter from "../../HomeFooter";
-import HandBook from "../../Section/HandBook";
-import HandbookFour from "../../Section/HandBookFour";
-import CategoryHandbook from "../../Section/CategoryHandbook";
+import HandBookSection from "../../Section/HandBookSection";
+import HandBookFourSection from "../../Section/HandBookFourSection";
+import CategoryHandbookSection from "../../Section/CategoryHandbookSection";
 
 import "./HandbookPage.scss";
 
@@ -79,8 +79,8 @@ class HandbookPage extends React.Component {
             <div>
                 <HomeHeader />
                 <div className="handbook-page_overlay">
-                    <HandbookFour newHandbook={true} />
-                    <HandBook
+                    <HandBookFourSection newHandbook={true} />
+                    <HandBookSection
                         settings={{ ...this.state.settings }}
                         outstandingHandbook={true}
                         isShowContentHead={
@@ -91,7 +91,7 @@ class HandbookPage extends React.Component {
                             this.state.screenWidth <= 992 ? false : true
                         }
                     />
-                    <CategoryHandbook onlyHaveImg={true} />
+                    <CategoryHandbookSection onlyHaveImg={true} />
                 </div>
                 <HomeFooter />
             </div>

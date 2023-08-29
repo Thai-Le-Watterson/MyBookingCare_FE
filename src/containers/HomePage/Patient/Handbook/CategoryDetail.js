@@ -1,11 +1,11 @@
 import React from "react";
 import * as userService from "../../../../services/userService";
 import _ from "lodash";
-import moment from "moment/moment";
+// import moment from "moment/moment";
 
 import HomeHeader from "../../HomeHeader";
 import HomeFooter from "../../HomeFooter";
-import HandBookFour from "../../Section/HandBookFour";
+// import HandBookFourSection from "../../Section/HandBookFourSection";
 import { FormattedMessage } from "react-intl";
 import { BeatLoader } from "react-spinners";
 import ContentLoader from "react-content-loader";
@@ -370,7 +370,7 @@ class CategoryDetail extends React.Component {
                                                     key={index}
                                                     onClick={() =>
                                                         this.props.history.push(
-                                                            `/detail-handbook/${handbook.id}/${name}`
+                                                            `/handbook/${handbook.id}/${name}`
                                                         )
                                                     }
                                                 >
@@ -422,7 +422,7 @@ class CategoryDetail extends React.Component {
                                                 key={index}
                                                 onClick={() =>
                                                     this.props.history.push(
-                                                        `/detail-category/${
+                                                        `/category/${
                                                             category.id
                                                         }/${category.name.replaceAll(
                                                             " ",

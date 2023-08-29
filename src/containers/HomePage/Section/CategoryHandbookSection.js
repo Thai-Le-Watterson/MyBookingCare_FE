@@ -1,17 +1,18 @@
 import React from "react";
 import * as userService from "../../../services/userService";
 import _ from "lodash";
-import moment from "moment";
+// import moment from "moment";
 import { withRouter } from "react-router-dom";
+import { path } from "../../../utils";
 
 import Slider from "react-slick";
 import ContentLoader from "react-content-loader";
 import { FormattedMessage } from "react-intl";
 
-import "./CategoryHandbook.scss";
+import "./CategoryHandbookSection.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { dateFormat } from "../../../utils";
+// import { dateFormat } from "../../../utils";
 
 class SampleNextArrow extends React.Component {
     // { className, style, onClick } = this.props;
@@ -35,7 +36,7 @@ class SamplePrevArrow extends React.Component {
     }
 }
 
-class CategoryHandbook extends React.Component {
+class CategoryHandbookSection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -202,7 +203,7 @@ class CategoryHandbook extends React.Component {
                             <button
                                 className="button"
                                 onClick={() =>
-                                    this.props.history.push("/category")
+                                    this.props.history.push(path.CATEGORY_PAGE)
                                 }
                             >
                                 <FormattedMessage id="homepage.more" />
@@ -223,7 +224,7 @@ class CategoryHandbook extends React.Component {
                                             key={index}
                                             onClick={() =>
                                                 this.props.history.push(
-                                                    `/detail-category/${
+                                                    `/category/${
                                                         category.id
                                                     }/${category.name.replaceAll(
                                                         " ",
@@ -257,4 +258,4 @@ class CategoryHandbook extends React.Component {
     }
 }
 
-export default withRouter(CategoryHandbook);
+export default withRouter(CategoryHandbookSection);

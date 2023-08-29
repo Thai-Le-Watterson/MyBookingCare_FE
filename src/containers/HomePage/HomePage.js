@@ -3,11 +3,11 @@ import * as actions from "../../store/actions/index";
 import { connect } from "react-redux";
 
 import HomeHeader from "./HomeHeader";
-import Speciallty from "./Section/Speciallty";
-import MedicalFacility from "./Section/MedicalFacility";
-import OutstandingDoctor from "./Section/OutstandingDoctor";
-import HandBook from "./Section/HandBook";
-import Media from "./Section/Media";
+import SpecialtySection from "./Section/SpecialtySection";
+import MedicalFacilitySection from "./Section/MedicalFacilitySection";
+import OutstandingDoctorSection from "./Section/OutstandingDoctorSection";
+import HandBookSection from "./Section/HandBookSection";
+import MediaSection from "./Section/MediaSection";
 import HomeFooter from "./HomeFooter";
 import HomeBanner from "./HomeBanner";
 
@@ -82,16 +82,18 @@ class HomePage extends React.Component {
     };
 
     render() {
-        console.log("check screenWidth: ", this.state.screenWidth);
+        // console.log("check screenWidth: ", this.state.screenWidth);
 
         return (
             <div>
                 <HomeHeader screenWidth={this.state.screenWidth} />
                 <HomeBanner />
-                <Speciallty settings={{ ...this.state.settings }} />
-                <MedicalFacility settings={{ ...this.state.settings }} />
-                <OutstandingDoctor settings={{ ...this.state.settings }} />
-                <HandBook
+                <SpecialtySection settings={{ ...this.state.settings }} />
+                <MedicalFacilitySection settings={{ ...this.state.settings }} />
+                <OutstandingDoctorSection
+                    settings={{ ...this.state.settings }}
+                />
+                <HandBookSection
                     bg={true}
                     settings={{
                         ...this.state.settings,
@@ -104,7 +106,7 @@ class HomePage extends React.Component {
                         this.state.screenWidth < 768 ? false : true
                     }
                 />
-                <Media />
+                <MediaSection />
                 <HomeFooter />
             </div>
         );

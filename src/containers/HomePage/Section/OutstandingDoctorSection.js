@@ -12,7 +12,7 @@ import ContentLoader from "react-content-loader";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-class OutstandingDoctor extends React.Component {
+class OutstandingDoctorSection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,7 +43,7 @@ class OutstandingDoctor extends React.Component {
 
     handleRedirect = (id, nameDoctor) => {
         nameDoctor = nameDoctor.replaceAll(" ", "-");
-        history.push(`/detail-doctor/${id}/${nameDoctor}`);
+        history.push(`/doctor/${id}/${nameDoctor}`);
     };
 
     contentLoader = (quantity) => {
@@ -182,4 +182,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(OutstandingDoctorSection);

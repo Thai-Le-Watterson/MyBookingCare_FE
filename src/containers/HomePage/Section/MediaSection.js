@@ -1,7 +1,7 @@
 import React from "react";
-import "./Media.scss";
+import "./MediaSection.scss";
 
-class Media extends React.Component {
+class MediaSection extends React.Component {
     render() {
         return (
             <div className="media-container container">
@@ -27,4 +27,4 @@ class Media extends React.Component {
     }
 }
 
-export default Media;
+export default MediaSection;

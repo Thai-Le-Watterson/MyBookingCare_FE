@@ -17,16 +17,17 @@ import Login from "../containers/Auth/Login.js";
 import System from "../routes/System";
 import HomePage from "./HomePage/HomePage";
 import DoctorDetail from "./HomePage/Patient/Doctor/DoctorDetail";
-import SpecialtyDetail from "./HomePage/Patient/Doctor/SpecialtyDetail";
+import SpecialtyDetail from "./HomePage/Patient/Specialty/SpecialtyDetail";
 import ClinicDetail from "./HomePage/Patient/Doctor/ClinicDetail";
 import HandbookDetail from "./HomePage/Patient/Handbook/HandbookDetail";
 import CategoryDetail from "./HomePage/Patient/Handbook/CategoryDetail";
 import HandbookPage from "./HomePage/Patient/Handbook/HandbookPage";
 import CategoryPage from "./HomePage/Patient/Handbook/CategoryPage";
 import VerifySchedule from "./HomePage/Patient/Doctor/VerifySchedule";
+import SpecialtyPage from "./HomePage/Patient/Specialty/SpecialtyPage";
 
 import CustomScrollbars from "../components/CustomScrollbars";
-import { CustomToastCloseButton } from "../components/CustomToast";
+// import { CustomToastCloseButton } from "../components/CustomToast";
 import ConfirmModal from "../components/ConfirmModal";
 import { RingLoader } from "react-spinners";
 
@@ -85,6 +86,11 @@ class App extends Component {
                                         path={path.CATEGORY_PAGE}
                                         exact
                                         component={CategoryPage}
+                                    />
+                                    <Route
+                                        path={path.SPECIALTY_PAGE}
+                                        exact
+                                        component={SpecialtyPage}
                                     />
                                     <Route
                                         path={path.HANDBOOK_PAGE}

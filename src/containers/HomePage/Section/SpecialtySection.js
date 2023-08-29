@@ -3,15 +3,16 @@ import Slider from "react-slick";
 import * as userService from "../../../services/userService";
 import _ from "lodash";
 import { history } from "../../../redux";
+// import { path } from "../../../utils";
 
 import { FormattedMessage } from "react-intl";
 import ContentLoader from "react-content-loader";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Speciallty.scss";
+import "./SpecialtySection.scss";
 
-class Speciallty extends React.Component {
+class SpecialtySection extends React.Component {
     constructor(props) {
         super(props);
         this.state = { specialties: [], isLoadContent: false };
@@ -37,7 +38,7 @@ class Speciallty extends React.Component {
 
     redirectToSpecialtyDetail = (specialtyId, nameSpecialty) => {
         nameSpecialty = nameSpecialty.replaceAll(" ", "-");
-        history.push(`/detail-specialty/${specialtyId}/${nameSpecialty}`);
+        history.push(`/specialty/${specialtyId}/${nameSpecialty}`);
     };
 
     contentLoader = (quantity) => {
@@ -148,4 +149,4 @@ class Speciallty extends React.Component {
     }
 }
 
-export default Speciallty;
+export default SpecialtySection;

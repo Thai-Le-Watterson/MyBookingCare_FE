@@ -11,7 +11,7 @@ import ContentLoader from "react-content-loader";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-class MedicalFacility extends React.Component {
+class MedicalFacilitySection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,7 +39,7 @@ class MedicalFacility extends React.Component {
 
     redirectToClinicDetail = (id, nameClinic) => {
         nameClinic = nameClinic.replaceAll(" ", "-");
-        history.push(`/detail-clinic/${id}/${nameClinic}`);
+        history.push(`/clinic/${id}/${nameClinic}`);
     };
 
     contentLoader = (quantity) => {
@@ -150,4 +150,4 @@ class MedicalFacility extends React.Component {
     }
 }
 
-export default MedicalFacility;
+export default MedicalFacilitySection;

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { languages } from "../../utils/constant";
 import * as actions from "../../store/actions";
 import { history } from "../../redux";
+import { path } from "../../utils/constant";
 
 import UserOption from "./Patient/User/UserOption";
 
@@ -47,7 +48,7 @@ class HomeHeader extends React.Component {
     };
 
     handleRedirectToHome = () => {
-        history.push("/home");
+        history.push(path.HOMEPAGE);
     };
 
     handleShowContactOnMobile = (e) => {

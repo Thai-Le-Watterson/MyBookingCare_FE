@@ -9,7 +9,7 @@ import * as actions from "../../../../store/actions/index";
 import { history } from "../../../../redux";
 import { createBooking } from "../../../../services/userService";
 import { toast } from "react-toastify";
-import { dateFormat } from "../../../../utils";
+import { dateFormat, path } from "../../../../utils";
 
 import Select from "react-select";
 import DatePicker from "../../../../components/Input/DatePicker";
@@ -59,7 +59,7 @@ class BookingModal extends React.Component {
         if (type === "self") {
             if (this.props.userInfor === null) {
                 const isLogin = this.handleRequiredLogin();
-                isLogin && history.push("/login");
+                isLogin && history.push(path.LOGIN);
                 return isLogin;
             }
             this.setState({
@@ -93,7 +93,7 @@ class BookingModal extends React.Component {
     handleBookingSchedule = async () => {
         if (this.props.userInfor === null) {
             const isLogin = this.handleRequiredLogin();
-            isLogin && history.push("/login");
+            isLogin && history.push(path.LOGIN);
             return isLogin;
         }
         const { doctor, bookingType, fullName, gender, reason, dateBirth } =

@@ -26,6 +26,7 @@ class UserOption extends React.Component {
     render() {
         let { userInfo, color, isAminPage, isLoggedIn } = this.props;
         const image = userInfo?.image && Buffer.from(userInfo.image).toString();
+        console.log(userInfo);
         return (
             <>
                 <div className="user-container" style={{ color: color || "" }}>
@@ -64,7 +65,7 @@ class UserOption extends React.Component {
                                             <li
                                                 className="item"
                                                 onClick={() =>
-                                                    history.push("/home")
+                                                    history.push(path.HOMEPAGE)
                                                 }
                                             >
                                                 <FormattedMessage id="homeHeader.userOption.goToHome" />
