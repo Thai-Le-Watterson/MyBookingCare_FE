@@ -1,0 +1,24 @@
+.header-goback_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 2px 4px #818181;
+    background-color: #fff;
+
+    .header-goback_container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+
+        .icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .header-title {
+            margin: 0;
+        }
+    }
+}

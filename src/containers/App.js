@@ -25,6 +25,7 @@ import HandbookPage from "./HomePage/Patient/Handbook/HandbookPage";
 import CategoryPage from "./HomePage/Patient/Handbook/CategoryPage";
 import VerifySchedule from "./HomePage/Patient/Doctor/VerifySchedule";
 import SpecialtyPage from "./HomePage/Patient/Specialty/SpecialtyPage";
+import DoctorPage from "./HomePage/Patient/Doctor/DoctorPage";
 
 import CustomScrollbars from "../components/CustomScrollbars";
 // import { CustomToastCloseButton } from "../components/CustomToast";
@@ -91,6 +92,11 @@ class App extends Component {
                                         path={path.SPECIALTY_PAGE}
                                         exact
                                         component={SpecialtyPage}
+                                    />
+                                    <Route
+                                        path={path.DOCTOR_PAGE}
+                                        exact
+                                        component={DoctorPage}
                                     />
                                     <Route
                                         path={path.HANDBOOK_PAGE}

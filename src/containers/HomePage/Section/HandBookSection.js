@@ -346,7 +346,7 @@ class HandBookSection extends React.Component {
                                                     </span>
                                                     {this.props
                                                         .isShowContentHead && (
-                                                        <p>
+                                                        <p className="descript">
                                                             {this.handleGetContentHeader(
                                                                 handbook
                                                             )}

@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 // import ContentLoader from "react-content-loader";
 
 import "./HomeBanner.scss";

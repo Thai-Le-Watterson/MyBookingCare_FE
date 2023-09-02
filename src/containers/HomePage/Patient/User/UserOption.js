@@ -26,7 +26,7 @@ class UserOption extends React.Component {
     render() {
         let { userInfo, color, isAminPage, isLoggedIn } = this.props;
         const image = userInfo?.image && Buffer.from(userInfo.image).toString();
-        console.log(userInfo);
+        // console.log(userInfo);
         return (
             <>
                 <div className="user-container" style={{ color: color || "" }}>

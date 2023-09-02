@@ -4,6 +4,7 @@ export const path = {
     HANDBOOK_PAGE: "/handbook",
     CATEGORY_PAGE: "/category",
     SPECIALTY_PAGE: "/specialty",
+    DOCTOR_PAGE: "/doctor",
     LOGIN: "/login",
     LOG_OUT: "/logout",
     SYSTEM: "/system",

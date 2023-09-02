@@ -77,33 +77,36 @@
 }
 
 @media (min-width: 992px) {
-    .search-container {
-        h1 {
-            font-size: 32px;
-        }
+    .home-header_banner {
+        height: 600px;
 
-        .search {
-            i {
+        .search-container {
+            h1 {
+                font-size: 32px;
             }
 
-            input {
-                width: 380px;
+            .search {
+                i {
+                }
+
+                input {
+                    width: 380px;
+                }
             }
         }
-    }
 
-    .option-container {
-        margin: 0;
+        .option-container {
+            margin: 0;
 
-        .option {
-            width: 150px;
-            font-size: 16px;
+            .option {
+                width: 150px;
+                font-size: 16px;
+            }
         }
     }
 }
 
 .home-header_banner {
-    // height: 600px;
     margin-bottom: 20px;
     background: url("../../assets/images/bookingcare-cover-4.jpg") center
         no-repeat;

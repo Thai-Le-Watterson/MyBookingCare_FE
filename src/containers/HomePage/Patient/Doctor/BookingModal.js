@@ -125,7 +125,7 @@ class BookingModal extends React.Component {
         };
 
         const isNotValid = this.checkEmptyData(dataRequest);
-        console.log(dataRequest);
+        // console.log(dataRequest);
         if (!isNotValid) {
             try {
                 const res = await createBooking(dataRequest);

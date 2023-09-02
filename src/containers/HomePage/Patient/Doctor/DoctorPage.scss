@@ -1,0 +1,83 @@
+.search_overlay {
+    margin-top: 82px;
+    padding: 20px;
+    background-color: #ddd;
+
+    .search {
+        position: relative;
+
+        .input {
+            border-radius: 20px;
+        }
+
+        .close {
+            position: absolute;
+            right: 28px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    }
+}
+
+.doctor-page_content {
+    margin-top: 10px;
+    // padding-top: 20px;
+    min-height: 67.9vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .list-doctor_title {
+        margin-top: 8px;
+        font-weight: bold;
+    }
+
+    .item-loader {
+        margin-bottom: 6px;
+        border-bottom: 1px solid #efefef;
+    }
+
+    .item {
+        display: flex;
+        gap: 20px;
+        cursor: pointer;
+        margin: 8px 0;
+        padding: 8px 0;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .img {
+            $width: 60px;
+            width: $width;
+            height: $width;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+        }
+
+        .title {
+            margin: 0;
+            text-align: left;
+
+            .doctor-name {
+                margin-top: 4px;
+                font-size: 14px;
+                color: #494949;
+                font-weight: normal;
+                text-transform: capitalize;
+            }
+
+            .specialty-name {
+                margin: 4px 0 0 0;
+                font-size: 12px;
+                color: #707070;
+                font-weight: normal;
+                text-transform: capitalize;
+            }
+        }
+    }
+}

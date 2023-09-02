@@ -6,6 +6,7 @@ import { FormattedMessage } from "react-intl";
 import { history } from "../../../redux";
 import * as actions from "../../../store/actions/index";
 import _ from "lodash";
+import { path } from "../../../utils";
 
 import ContentLoader from "react-content-loader";
 
@@ -97,6 +98,7 @@ class OutstandingDoctorSection extends React.Component {
         let topDoctors = this.state?.topDoctors?.length > 0 && [
             ...this.state.topDoctors,
         ];
+        console.log(topDoctors);
         // if (topDoctors && topDoctors.length < 4 && topDoctors.length > 0)
         //     topDoctors = topDoctors?.concat(topDoctors)?.concat(topDoctors);
         return (
@@ -107,7 +109,10 @@ class OutstandingDoctorSection extends React.Component {
                             <h1 className="title">
                                 <FormattedMessage id="homepage.outstanding-doctor" />
                             </h1>
-                            <button className="button">
+                            <button
+                                className="button"
+                                onClick={() => history.push(path.DOCTOR_PAGE)}
+                            >
                                 <FormattedMessage id="homepage.search" />
                             </button>
                         </div>
@@ -127,7 +132,7 @@ class OutstandingDoctorSection extends React.Component {
                                     return (
                                         <div
                                             className="section-item"
-                                            key={index}
+                                            key={`top-doctor-${index}`}
                                             onClick={() =>
                                                 this.handleRedirect(
                                                     topDoctor.id,
@@ -150,7 +155,12 @@ class OutstandingDoctorSection extends React.Component {
                                                               .valueEn
                                                 }, ${topDoctor.fullName}`}</p>
                                                 <span className="specialist">
-                                                    Cơ xương khớp
+                                                    {
+                                                        topDoctor
+                                                            .doctorInforData
+                                                            ?.specialtyData
+                                                            ?.name
+                                                    }
                                                 </span>
                                             </div>
                                         </div>

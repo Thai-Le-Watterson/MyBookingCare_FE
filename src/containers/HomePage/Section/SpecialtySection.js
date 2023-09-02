@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import * as userService from "../../../services/userService";
 import _ from "lodash";
 import { history } from "../../../redux";
-// import { path } from "../../../utils";
+import { path } from "../../../utils";
 
 import { FormattedMessage } from "react-intl";
 import ContentLoader from "react-content-loader";
@@ -95,7 +95,12 @@ class SpecialtySection extends React.Component {
                             <h1 className="title">
                                 <FormattedMessage id="homepage.specialty" />
                             </h1>
-                            <button className="button">
+                            <button
+                                className="button"
+                                onClick={() =>
+                                    history.push(path.SPECIALTY_PAGE)
+                                }
+                            >
                                 <FormattedMessage id="homepage.more" />
                             </button>
                         </div>

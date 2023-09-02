@@ -1,1 +1,40 @@
+.specilty-page_content {
+    margin-top: 70px;
+    padding-top: 20px;
+    min-height: 79.4vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
+    .item-loader {
+        margin-bottom: 6px;
+        border-bottom: 1px solid #efefef;
+    }
+
+    .item {
+        display: flex;
+        gap: 20px;
+        cursor: pointer;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .img {
+            width: 120px;
+            height: 100px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .title {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #2f2f2f;
+            font-weight: normal;
+            text-transform: capitalize;
+            text-align: left;
+        }
+    }
+}

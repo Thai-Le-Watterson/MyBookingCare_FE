@@ -18,6 +18,10 @@
             "goToHome": "Go to the home page"
         }
     },
+    "header-go-back": {
+        "specialty": "Specialy",
+        "doctor": "Doctor"
+    },
     "homeBanner": {
         "title1": "HEALTH FACILITIES",
         "title2": "COMPREHENSIVE HEALTH CARE",
@@ -148,6 +152,12 @@
         "search": "Search",
         "more": "More",
         "all": "All posts"
+    },
+    "doctorpage": {
+        "search": "Search...",
+        "outstanding-doctor": "Outstanding Doctor",
+        "search-doctor": "Search results",
+        "no-doctor": "Can't find a doctor"
     },
     "doctor-detail": {
         "extra-infor": {
