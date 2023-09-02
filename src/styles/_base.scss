@@ -1,6 +1,10 @@
 /*
  * General styles
  */
+* {
+    // transition: all linear 0.1s;
+}
+
 body,
 html {
     background-image: "#fff";
@@ -9,7 +13,8 @@ html {
     font-family: $fontmain;
     font-size: $base-size - 2px;
     height: 100vh;
-    overflow: hidden;
+    // overflow: hidden;
+    overflow: auto;
 }
 
 // .btn {

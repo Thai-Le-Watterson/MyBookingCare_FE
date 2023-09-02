@@ -16,6 +16,7 @@ class HandbookDetail extends React.Component {
         super(props);
         this.state = {
             handbook: {},
+            navList: [],
         };
     }
 
@@ -39,40 +40,66 @@ class HandbookDetail extends React.Component {
             document.querySelectorAll(".handbook-content")[0];
 
         if (hanbookContent?.children) {
-            const navList = Array.from(hanbookContent.children).map(
-                (child, index) => {
+            const navList = [];
+            let navListChild = [];
+
+            Array.from(hanbookContent.children)
+                .reverse()
+                .forEach((child, index) => {
                     if (child.localName === "h3") {
                         const id = `h3-${index}`;
                         child.setAttribute("id", id);
-                        return (
-                            <li className="nav-item_container">
-                                <a className="nav-item" href={`#${id}`}>
-                                    {child.innerText}
-                                </a>
-                            </li>
+                        navListChild.push(
+                            this.buildNavListItem(id, child.innerText)
                         );
                     } else if (child.localName === "h2") {
                         const id = `h2-${index}`;
                         child.setAttribute("id", id);
-                        return (
-                            <p className="nav-item_container">
-                                <a className="nav-item" href={`#${id}`}>
-                                    {child.innerText}
-                                </a>
-                            </p>
+                        navList.push(
+                            this.buildNavListItem(
+                                id,
+                                child.innerText,
+                                navListChild
+                            )
                         );
-                    } else return <></>;
-                }
-            );
 
+                        navListChild = [];
+                    }
+                });
+
+            let navListCopy = [...navList];
+            // navListCopy[0].props.children =
+            //     "Viêm đại tràng ăn gì? <li>hehe</li>";
+            // console.log("check navListCopy: ", navListCopy[0]);
+            // console.log({ navList: this.state.navList?.[0]?.props?.children });
             this.setState({
-                navList,
+                navList: [...navListCopy.reverse()],
             });
         }
     };
 
+    buildNavListItem = (id, textContent, children = []) => {
+        return (
+            <li
+                className={`nav-item`}
+                onClick={() => this.handleScrollToElement(id)}
+            >
+                {textContent}
+                {children.reverse()}
+            </li>
+        );
+    };
+
+    handleScrollToElement = (id) => {
+        const element = document.getElementById(id);
+        document.body.scroll({
+            left: 0,
+            top: element?.offsetTop - 88 || 0,
+            behavior: "smooth",
+        });
+    };
+
     render() {
-        // console.log("check state: ", this.state);
         const {
             image,
             name,

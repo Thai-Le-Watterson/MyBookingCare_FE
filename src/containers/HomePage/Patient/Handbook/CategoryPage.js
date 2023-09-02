@@ -36,10 +36,19 @@ class CategoryPage extends React.Component {
         // }
     };
 
-    handleClickCharList = (e) => {
+    handleClickCharList = (e, char) => {
         const elementActived = document.querySelector(".item.active");
         elementActived?.classList.remove("active");
         e.target.classList.add("active");
+
+        const [elementChar, ...rest] = document.querySelectorAll(
+            `#char-list-${char.toUpperCase()}`
+        );
+        document.body.scroll({
+            left: 0,
+            top: elementChar?.parentElement?.offsetTop - 90 || 0,
+            behavior: "smooth",
+        });
     };
 
     render() {
@@ -78,10 +87,13 @@ class CategoryPage extends React.Component {
                                     return (
                                         <a
                                             className="item"
-                                            key={index}
-                                            href={`#char-list-${char.toUpperCase()}`}
+                                            key={`char-${index}`}
+                                            // href={`#char-list-${char.toUpperCase()}`}
                                             onClick={(e) =>
-                                                this.handleClickCharList(e)
+                                                this.handleClickCharList(
+                                                    e,
+                                                    char
+                                                )
                                             }
                                         >
                                             {char.toUpperCase()}
@@ -91,44 +103,51 @@ class CategoryPage extends React.Component {
                             </div>
                         </div>
                         <div className="body">
-                            {Object.keys(listCategory).map((char, index) => {
-                                return (
-                                    <div className="list-category" key={index}>
+                            {Object.keys(listCategory)
+                                .sort()
+                                .map((char, index) => {
+                                    return (
                                         <div
-                                            className="char"
-                                            id={`char-list-${char}`}
+                                            className="list-category"
+                                            key={index}
                                         >
-                                            {char}
+                                            <div
+                                                className="char"
+                                                id={`char-list-${char}`}
+                                            >
+                                                {char}
+                                            </div>
+                                            <div className="list-item row">
+                                                {listCategory[char].map(
+                                                    (category, index) => {
+                                                        return (
+                                                            <div
+                                                                className="item col-6 col-sm-4 col-md-3"
+                                                                key={index}
+                                                                onClick={() =>
+                                                                    this.props.history.push(
+                                                                        `/category/${
+                                                                            category.id
+                                                                        }/${category.name.replaceAll(
+                                                                            " ",
+                                                                            "-"
+                                                                        )}`
+                                                                    )
+                                                                }
+                                                            >
+                                                                <span className="text">
+                                                                    {
+                                                                        category.name
+                                                                    }
+                                                                </span>
+                                                            </div>
+                                                        );
+                                                    }
+                                                )}
+                                            </div>
                                         </div>
-                                        <div className="list-item row">
-                                            {listCategory[char].map(
-                                                (category, index) => {
-                                                    return (
-                                                        <div
-                                                            className="item col-6 col-sm-4 col-md-3"
-                                                            key={index}
-                                                            onClick={() =>
-                                                                this.props.history.push(
-                                                                    `/category/${
-                                                                        category.id
-                                                                    }/${category.name.replaceAll(
-                                                                        " ",
-                                                                        "-"
-                                                                    )}`
-                                                                )
-                                                            }
-                                                        >
-                                                            <span className="text">
-                                                                {category.name}
-                                                            </span>
-                                                        </div>
-                                                    );
-                                                }
-                                            )}
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })}
                         </div>
                     </div>
                 </div>
