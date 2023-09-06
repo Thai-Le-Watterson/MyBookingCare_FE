@@ -17,6 +17,10 @@
             .logo-container {
                 width: auto;
 
+                label[for="show-contact"] {
+                    display: flex;
+                }
+
                 .logo {
                     width: 120px !important;
                 }
@@ -113,6 +117,10 @@
 
             .logo-container {
                 width: auto;
+
+                label[for="show-contact"] {
+                    display: flex;
+                }
             }
 
             #show-contact:checked {
@@ -446,7 +454,7 @@
             }
 
             label[for="show-contact"] {
-                display: flex;
+                // display: flex;
                 align-items: center;
             }
 

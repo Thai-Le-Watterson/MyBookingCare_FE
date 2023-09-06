@@ -159,6 +159,16 @@
         "search-doctor": "Kết quả tìm kiếm",
         "no-doctor": "Không tìm thấy bác sĩ"
     },
+    "clinicpage": {
+        "title": "Cơ sở y tế",
+        "search": "Tìm kiếm theo chữ cái",
+        "search-plh": "Tìm kiếm...",
+        "province": "Tỉnh thành",
+        "choose-province": "Lựa chọn tỉnh thành",
+        "reset": "Đặt lại",
+        "apply": "Áp dụng",
+        "loading": "Đang tải dữ liệu..."
+    },
     "doctor-detail": {
         "extra-infor": {
             "address-clinic": "Địa chỉ khám",

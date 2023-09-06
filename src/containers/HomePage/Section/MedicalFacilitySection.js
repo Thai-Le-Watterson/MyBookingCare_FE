@@ -1,10 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import * as userService from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
 import _ from "lodash";
 import { history } from "../../../redux";
+import { path } from "../../../utils";
 
 import ContentLoader from "react-content-loader";
 
@@ -98,7 +99,10 @@ class MedicalFacilitySection extends React.Component {
                             <h1 className="title">
                                 <FormattedMessage id="homepage.clinic" />
                             </h1>
-                            <button className="button">
+                            <button
+                                className="button"
+                                onClick={() => history.push(path.CLINIC_PAGE)}
+                            >
                                 <FormattedMessage id="homepage.search" />
                             </button>
                         </div>

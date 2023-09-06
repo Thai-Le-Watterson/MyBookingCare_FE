@@ -5,6 +5,7 @@ export const path = {
     CATEGORY_PAGE: "/category",
     SPECIALTY_PAGE: "/specialty",
     DOCTOR_PAGE: "/doctor",
+    CLINIC_PAGE: "/clinic",
     LOGIN: "/login",
     LOG_OUT: "/logout",
     SYSTEM: "/system",

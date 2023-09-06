@@ -159,6 +159,16 @@
         "search-doctor": "Search results",
         "no-doctor": "Can't find a doctor"
     },
+    "clinicpage": {
+        "title": "Health facilities",
+        "search": "Search by letter",
+        "search-plh": "Search...",
+        "province": "Province",
+        "choose-province": "Choose a province",
+        "reset": "Reset",
+        "apply": "Apply",
+        "loading": "Loading..."
+    },
     "doctor-detail": {
         "extra-infor": {
             "address-clinic": "Address for hospital clinic",

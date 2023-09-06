@@ -6,9 +6,9 @@ import _ from "lodash";
 
 import HomeHeader from "../../HomeHeader";
 import HomeFooter from "../../HomeFooter";
-import ProfileDoctor from "./ProfileDoctor";
-import DoctorSchedule from "./DoctorSchedule";
-import DoctorExtraInfor from "./DoctorExtraInfor";
+import ProfileDoctor from "../Doctor/ProfileDoctor";
+import DoctorSchedule from "../Doctor/DoctorSchedule";
+import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
 
 import "./ClinicDetail.scss";
 

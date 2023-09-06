@@ -18,7 +18,7 @@ import System from "../routes/System";
 import HomePage from "./HomePage/HomePage";
 import DoctorDetail from "./HomePage/Patient/Doctor/DoctorDetail";
 import SpecialtyDetail from "./HomePage/Patient/Specialty/SpecialtyDetail";
-import ClinicDetail from "./HomePage/Patient/Doctor/ClinicDetail";
+import ClinicDetail from "./HomePage/Patient/Clinic/ClinicDetail";
 import HandbookDetail from "./HomePage/Patient/Handbook/HandbookDetail";
 import CategoryDetail from "./HomePage/Patient/Handbook/CategoryDetail";
 import HandbookPage from "./HomePage/Patient/Handbook/HandbookPage";
@@ -26,6 +26,8 @@ import CategoryPage from "./HomePage/Patient/Handbook/CategoryPage";
 import VerifySchedule from "./HomePage/Patient/Doctor/VerifySchedule";
 import SpecialtyPage from "./HomePage/Patient/Specialty/SpecialtyPage";
 import DoctorPage from "./HomePage/Patient/Doctor/DoctorPage";
+import ClinicPage from "./HomePage/Patient/Clinic/ClinicPage";
+import Page404 from "./HomePage/Page404";
 
 import CustomScrollbars from "../components/CustomScrollbars";
 // import { CustomToastCloseButton } from "../components/CustomToast";
@@ -104,6 +106,11 @@ class App extends Component {
                                     component={HandbookPage}
                                 />
                                 <Route
+                                    path={path.CLINIC_PAGE}
+                                    exact
+                                    component={ClinicPage}
+                                />
+                                <Route
                                     path={path.DETAIL_DOCTOR}
                                     exact
                                     component={DoctorDetail}
@@ -141,6 +148,7 @@ class App extends Component {
                                     path={path.SYSTEM}
                                     component={userIsAuthenticated(System)}
                                 />
+                                <Route component={Page404} />
                             </Switch>
                             {/* </CustomScrollbars> */}
                         </div>
