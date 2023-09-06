@@ -9,6 +9,7 @@ import HomeFooter from "../../HomeFooter";
 import ProfileDoctor from "../Doctor/ProfileDoctor";
 import DoctorSchedule from "../Doctor/DoctorSchedule";
 import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
+import { FormattedMessage } from "react-intl";
 
 import "./ClinicDetail.scss";
 
@@ -30,9 +31,7 @@ class ClinicDetail extends React.Component {
                 clinic,
             },
             async () => {
-                const listDoctorId = await userService.getDoctorInforByClinic(
-                    clinicId
-                );
+                const listDoctorId = await userService.getDoctorInforByClinic(clinicId);
                 this.setState({
                     listDoctorId,
                 });
@@ -40,21 +39,23 @@ class ClinicDetail extends React.Component {
         );
     };
 
-    componentDidUpdate = (prevProps, prevState) => {};
+    handleScrollToElement = (id) => {
+        const element = document.getElementById(id).parentElement;
+
+        console.log({ element });
+
+        document.body.scroll({
+            left: 0,
+            top: element?.offsetTop - 120 || 0,
+            behavior: "smooth",
+        });
+    };
 
     render() {
-        console.log("Check state: ", this.state);
+        // console.log("Check state: ", this.state);
         const { listDoctorId } = this.state;
-        const {
-            name,
-            address,
-            image,
-            introduceHTML,
-            professionalHTML,
-            equipmentHTML,
-            locationHTML,
-            procedureHTML,
-        } = this.state.clinic;
+        const { name, address, image, introduceHTML, professionalHTML, equipmentHTML, locationHTML, procedureHTML } =
+            this.state.clinic;
         const { language } = this.props;
         const imagePreview = image && Buffer.from(image).toString();
 
@@ -63,10 +64,7 @@ class ClinicDetail extends React.Component {
                 <HomeHeader />
                 <div className="clinic-detail_overlay ">
                     <div className="clinic-intro container">
-                        <div
-                            className="clinic-img"
-                            style={{ backgroundImage: `url(${imagePreview})` }}
-                        ></div>
+                        <div className="clinic-img" style={{ backgroundImage: `url(${imagePreview})` }}></div>
                         <div className="clinic-describe">
                             <h2 className="clinic-name">{name}</h2>
                             <p className="clinic-address">{address}</p>
@@ -74,72 +72,85 @@ class ClinicDetail extends React.Component {
                     </div>
                     <div className="navigate-clinic-page container">
                         {listDoctorId && listDoctorId.length > 0 && (
-                            <a className="item" href="#list-doctor-title">
-                                Bác sĩ
+                            <a
+                                className="item"
+                                // href="#list-doctor-title"
+                                onClick={() => this.handleScrollToElement("list-doctor-title")}
+                            >
+                                <FormattedMessage id="clinic-detail.doctor" />
                             </a>
                         )}
                         {introduceHTML && (
-                            <a className="item" href="#introduce">
-                                GIỚI THIỆU
+                            <a
+                                className="item"
+                                // href="#introduce"
+                                onClick={() => this.handleScrollToElement("introduce")}
+                            >
+                                <FormattedMessage id="clinic-detail.introduce" />
                             </a>
                         )}
                         {professionalHTML && (
-                            <a className="item" href="#professional">
-                                THẾ MẠNH CHUYÊN MÔN
+                            <a
+                                className="item"
+                                // href="#professional"
+                                onClick={() => this.handleScrollToElement("professional")}
+                            >
+                                <FormattedMessage id="clinic-detail.professional" />
                             </a>
                         )}
                         {equipmentHTML && (
-                            <a className="item" href="#equipment">
-                                TRANG THIẾT BỊ
+                            <a
+                                className="item"
+                                // href="#equipment"
+                                onClick={() => this.handleScrollToElement("equipment")}
+                            >
+                                <FormattedMessage id="clinic-detail.equipment" />
                             </a>
                         )}
                         {locationHTML && (
-                            <a className="item" href="#location">
-                                VỊ TRÍ
+                            <a
+                                className="item"
+                                // href="#location"
+                                onClick={() => this.handleScrollToElement("location")}
+                            >
+                                <FormattedMessage id="clinic-detail.location" />
                             </a>
                         )}
                         {procedureHTML && (
-                            <a className="item" href="#procedure">
-                                QUY TRÌNH ĐI KHÁM
+                            <a
+                                className="item"
+                                // href="#procedure"
+                                onClick={() => this.handleScrollToElement("procedure")}
+                            >
+                                <FormattedMessage id="clinic-detail.procedure" />
                             </a>
                         )}
                     </div>
                     <div className="list-doctor_container container">
                         <p className="list-doctor-title" id="list-doctor-title">
-                            Bác sĩ
+                            <FormattedMessage id="clinic-detail.doctor" />
                         </p>
                         <div className="list-doctor">
                             {(listDoctorId &&
                                 !_.isEmpty(listDoctorId) &&
                                 listDoctorId.map((doctor, index) => {
                                     return (
-                                        <div
-                                            key={index}
-                                            className="item-doctor row"
-                                        >
+                                        <div key={index} className="item-doctor row">
                                             <div className="col-12 col-sm-12 col-md-6">
-                                                <ProfileDoctor
-                                                    doctorId={doctor.doctorId}
-                                                    isShowMore={true}
-                                                />
+                                                <ProfileDoctor doctorId={doctor.doctorId} isShowMore={true} />
                                             </div>
                                             <div className="col-12 col-sm-12 col-md-6">
                                                 <DoctorSchedule
                                                     doctorId={doctor.doctorId}
-                                                    handleOpenModal={
-                                                        this.toggleModal
-                                                    }
+                                                    handleOpenModal={this.toggleModal}
                                                 />
-                                                <DoctorExtraInfor
-                                                    doctorId={doctor.doctorId}
-                                                />
+                                                <DoctorExtraInfor doctorId={doctor.doctorId} />
                                             </div>
                                         </div>
                                     );
                                 })) || (
                                 <h1 className="no-doctor">
-                                    Không tìm thấy bác sĩ thuộc khu phòng khám
-                                    này!
+                                    <FormattedMessage id="clinic-detail.no-doctor" />
                                 </h1>
                             )}
                         </div>
@@ -148,7 +159,7 @@ class ClinicDetail extends React.Component {
                         {introduceHTML && (
                             <div className="content-item">
                                 <p className="title text-left" id="introduce">
-                                    Giới thiệu
+                                    <FormattedMessage id="clinic-detail.introduce" />
                                 </p>
                                 <div
                                     className="introduce"
@@ -160,11 +171,8 @@ class ClinicDetail extends React.Component {
                         )}
                         {professionalHTML && (
                             <div className="content-item">
-                                <p
-                                    className="title text-left"
-                                    id="professional"
-                                >
-                                    Thế mạnh chuyên môn
+                                <p className="title text-left" id="professional">
+                                    <FormattedMessage id="clinic-detail.professional" />
                                 </p>
                                 <div
                                     className="professional"
@@ -177,7 +185,7 @@ class ClinicDetail extends React.Component {
                         {equipmentHTML && (
                             <div className="content-item">
                                 <p className="title text-left" id="equipment">
-                                    Trang thiết bị
+                                    <FormattedMessage id="clinic-detail.equipment" />
                                 </p>
                                 <div
                                     className="equipment"
@@ -190,7 +198,7 @@ class ClinicDetail extends React.Component {
                         {locationHTML && (
                             <div className="content-item">
                                 <p className="title text-left" id="location">
-                                    Vị trí
+                                    <FormattedMessage id="clinic-detail.location" />
                                 </p>
                                 <div
                                     className="location"
@@ -203,7 +211,7 @@ class ClinicDetail extends React.Component {
                         {procedureHTML && (
                             <div className="content-item">
                                 <p className="title text-left" id="procedure">
-                                    Qyu trình đi khám
+                                    <FormattedMessage id="clinic-detail.procedure" />
                                 </p>
                                 <div
                                     className="procedure"

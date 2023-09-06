@@ -28,9 +28,7 @@ class DoctorExtraInfor extends React.Component {
 
     componentDidUpdate = async (prevProps) => {
         if (prevProps.doctorId !== this.props.doctorId) {
-            const doctor = await userService.getDoctorDetail(
-                this.props.doctorId
-            );
+            const doctor = await userService.getDoctorDetail(this.props.doctorId);
 
             this.setState({
                 doctorInfor: doctor,
@@ -49,10 +47,8 @@ class DoctorExtraInfor extends React.Component {
         const price =
             doctorInfor?.priceData &&
             !_.isEmpty(doctorInfor.priceData) &&
-            doctorInfor.priceData[
-                this.props.language === languages.VI ? "valueVi" : "valueEn"
-            ];
-        console.log("check doctorInfor: ", doctorInfor);
+            doctorInfor.priceData[this.props.language === languages.VI ? "valueVi" : "valueEn"];
+        // console.log("check doctorInfor: ", doctorInfor);
         return (
             <>
                 <div className="extra-infor_container">
@@ -61,12 +57,8 @@ class DoctorExtraInfor extends React.Component {
                             {" "}
                             <FormattedMessage id="doctor-detail.extra-infor.address-clinic" />
                         </div>
-                        <div className="clinic-name">
-                            {doctorInfor?.clinicData?.name}
-                        </div>
-                        <div className="clinic-address">
-                            {doctorInfor?.clinicData?.address}
-                        </div>
+                        <div className="clinic-name">{doctorInfor?.clinicData?.name}</div>
+                        <div className="clinic-address">{doctorInfor?.clinicData?.address}</div>
                     </div>
                     <div className="price-container">
                         {(!this.state.isShowDetail && (
@@ -81,19 +73,10 @@ class DoctorExtraInfor extends React.Component {
                                         allowLeadingZeros
                                         thousandSeparator=","
                                         displayType="text"
-                                        prefix={
-                                            this.props.language === languages.VI
-                                                ? "VND"
-                                                : "$"
-                                        }
+                                        prefix={this.props.language === languages.VI ? "VND" : "$"}
                                     />
                                 </span>
-                                <span
-                                    className="detail show"
-                                    onClick={() =>
-                                        this.changeShowDetail("show")
-                                    }
-                                >
+                                <span className="detail show" onClick={() => this.changeShowDetail("show")}>
                                     {" "}
                                     <FormattedMessage id="doctor-detail.extra-infor.show-detail" />
                                 </span>
@@ -114,30 +97,18 @@ class DoctorExtraInfor extends React.Component {
                                                 allowLeadingZeros
                                                 displayType="text"
                                                 thousandSeparator=","
-                                                suffix={
-                                                    this.props.language ===
-                                                    languages.VI
-                                                        ? "VND"
-                                                        : "$"
-                                                }
+                                                suffix={this.props.language === languages.VI ? "VND" : "$"}
                                             />
                                         </span>
                                     </div>
-                                    <div className="note">
-                                        {doctorInfor?.note}
-                                    </div>
+                                    <div className="note">{doctorInfor?.note}</div>
                                 </div>
                                 <div className="payment-infor">
                                     <FormattedMessage id="doctor-detail.extra-infor.payment-intro" />
                                     {": "}
                                     {doctorInfor?.paymentData?.valueVi}
                                 </div>
-                                <span
-                                    className="detail hide"
-                                    onClick={() =>
-                                        this.changeShowDetail("hide")
-                                    }
-                                >
+                                <span className="detail hide" onClick={() => this.changeShowDetail("hide")}>
                                     <FormattedMessage id="doctor-detail.extra-infor.hide-detail" />
                                 </span>
                             </>

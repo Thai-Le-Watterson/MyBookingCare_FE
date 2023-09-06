@@ -21,10 +21,7 @@ class HandbookDetail extends React.Component {
     }
 
     componentDidMount = async () => {
-        const handbook = await userService.getHandbook(
-            this.props.match.params.id,
-            "1"
-        );
+        const handbook = await userService.getHandbook(this.props.match.params.id, "1");
 
         this.setState({
             handbook: handbook && !_.isEmpty(handbook) ? handbook : {},
@@ -33,11 +30,8 @@ class HandbookDetail extends React.Component {
         this.buildNavContent();
     };
 
-    componentDidUpdate = async (prevProps, prevState) => {};
-
     buildNavContent = () => {
-        const hanbookContent =
-            document.querySelectorAll(".handbook-content")[0];
+        const hanbookContent = document.querySelectorAll(".handbook-content")[0];
 
         if (hanbookContent?.children) {
             const navList = [];
@@ -49,19 +43,11 @@ class HandbookDetail extends React.Component {
                     if (child.localName === "h3") {
                         const id = `h3-${index}`;
                         child.setAttribute("id", id);
-                        navListChild.push(
-                            this.buildNavListItem(id, child.innerText)
-                        );
+                        navListChild.push(this.buildNavListItem(id, child.innerText));
                     } else if (child.localName === "h2") {
                         const id = `h2-${index}`;
                         child.setAttribute("id", id);
-                        navList.push(
-                            this.buildNavListItem(
-                                id,
-                                child.innerText,
-                                navListChild
-                            )
-                        );
+                        navList.push(this.buildNavListItem(id, child.innerText, navListChild));
 
                         navListChild = [];
                     }
@@ -80,10 +66,7 @@ class HandbookDetail extends React.Component {
 
     buildNavListItem = (id, textContent, children = []) => {
         return (
-            <li
-                className={`nav-item`}
-                onClick={() => this.handleScrollToElement(id)}
-            >
+            <li className={`nav-item`} onClick={() => this.handleScrollToElement(id)}>
                 {textContent}
                 {children.reverse()}
             </li>
@@ -100,17 +83,9 @@ class HandbookDetail extends React.Component {
     };
 
     render() {
-        const {
-            image,
-            name,
-            publicationDate,
-            updateDate,
-            contentHTML,
-            categoryId,
-            categoryData,
-        } = this.state?.handbook;
-        const publicationDateOnView =
-            moment(publicationDate).format("DD/MM/YYYY");
+        const { image, name, publicationDate, updateDate, contentHTML, categoryId, categoryData } =
+            this.state?.handbook;
+        const publicationDateOnView = moment(publicationDate).format("DD/MM/YYYY");
         const updateDateOnView = moment(updateDate).format("DD/MM/YYYY");
         const reviewImage = image && Buffer.from(image).toString();
 
@@ -120,15 +95,8 @@ class HandbookDetail extends React.Component {
                 <div className="handbook-banner">
                     <div className="bg-overlay">
                         <p className="navigate">
-                            <span
-                                onClick={() =>
-                                    this.props.history.push(path.HOMEPAGE)
-                                }
-                            >
-                                Trang chủ
-                            </span>{" "}
-                            &gt; <span>Cẩm nang</span> &gt;{" "}
-                            <span>{categoryData?.name}</span>
+                            <span onClick={() => this.props.history.push(path.HOMEPAGE)}>Trang chủ</span> &gt;{" "}
+                            <span>Cẩm nang</span> &gt; <span>{categoryData?.name}</span>
                         </p>
                         <p className="handbook-name">{name}</p>
                     </div>
@@ -148,9 +116,8 @@ class HandbookDetail extends React.Component {
                                 <p className="fw-bold my-2">
                                     <FormattedMessage id="handbook-detail.date" />{" "}
                                     <span className="fw-normal">
-                                        {publicationDateOnView} |{" "}
-                                        <FormattedMessage id="handbook-detail.update-date" />
-                                        : {updateDateOnView}
+                                        {publicationDateOnView} | <FormattedMessage id="handbook-detail.update-date" />:{" "}
+                                        {updateDateOnView}
                                     </span>
                                 </p>
                                 <p
@@ -164,9 +131,7 @@ class HandbookDetail extends React.Component {
                                 <p className="handbook-navigate_title main-color">
                                     <FormattedMessage id="handbook-detail.main-content" />
                                 </p>
-                                <div className="nav-list">
-                                    {this.state?.navList}
-                                </div>
+                                <div className="nav-list">{this.state?.navList}</div>
                             </div>
                         </div>
                     </div>

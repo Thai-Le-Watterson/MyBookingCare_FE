@@ -169,6 +169,14 @@
         "apply": "Apply",
         "loading": "Loading..."
     },
+    "clinic-detail": {
+        "doctor": "Doctor",
+        "introduce": "Introduce",
+        "professional": "Professional strenghts",
+        "equipment": "Equipment",
+        "location": "Location",
+        "procedure": "Procedure"
+    },
     "doctor-detail": {
         "extra-infor": {
             "address-clinic": "Address for hospital clinic",

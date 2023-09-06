@@ -169,6 +169,15 @@
         "apply": "Áp dụng",
         "loading": "Đang tải dữ liệu..."
     },
+    "clinic-detail": {
+        "doctor": "Bác sĩ",
+        "no-doctor": "Không tìm thấy bác sĩ thuộc khu phòng khám này!",
+        "introduce": "Giới thiệu",
+        "professional": "Thế mạnh chuyên môn",
+        "equipment": "Trang thiết bị",
+        "location": "Vị trí",
+        "procedure": "Quy trình đi khám"
+    },
     "doctor-detail": {
         "extra-infor": {
             "address-clinic": "Địa chỉ khám",

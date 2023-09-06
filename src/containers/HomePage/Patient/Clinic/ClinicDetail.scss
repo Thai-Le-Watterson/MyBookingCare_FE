@@ -180,20 +180,21 @@
 
         .content-item {
             position: relative;
+            margin-top: 30px;
         }
 
-        .content-item:not(:last-child)::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -40px;
-            border: 1px solid #f4f4f4;
-        }
+        // .content-item:not(:last-child)::before {
+        //     content: "";
+        //     position: absolute;
+        //     left: 0;
+        //     right: 0;
+        //     bottom: -40px;
+        //     border: 1px solid #f4f4f4;
+        // }
 
         .title {
-            margin-top: 0;
-            padding-top: 110px;
+            margin-bottom: 20px;
+            // padding-top: 110px;
             color: rgba(51, 122, 183, 1);
             font-size: 20px;
             font-weight: bold;
