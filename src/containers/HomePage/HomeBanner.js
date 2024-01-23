@@ -21,11 +21,7 @@ class HomeBanner extends React.Component {
                         </h1>
                         <div className="search">
                             <i className="fa-solid fa-magnifying-glass"></i>
-                            <input
-                                type="text"
-                                name="user-search"
-                                placeholder={placeholder}
-                            />
+                            <input type="text" name="user-search" placeholder={placeholder} />
                         </div>
                     </div>
                     <ul className="option-container row">
