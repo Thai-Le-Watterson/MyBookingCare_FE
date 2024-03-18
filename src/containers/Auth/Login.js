@@ -56,7 +56,7 @@ class Login extends Component {
           <div>
             <h4>Admin Account</h4>
             <ul>
-              <li>Email: thaile@gmail.com</li>
+              <li>Email: thailevlfyb@gmail.com</li>
               <li>Password: 121212</li>
             </ul>
             <h4>Doctor Account</h4>
@@ -66,7 +66,7 @@ class Login extends Component {
             </ul>
             <h4>Patient Account</h4>
             <ul>
-              <li>Email: patient1@gmail.com</li>
+              <li>Email: lethaihihi11@gmail.com</li>
               <li>Password: 121212</li>
             </ul>
           </div>
